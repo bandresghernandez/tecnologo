@@ -16,7 +16,7 @@ public class MySQLConnection {
         }
     }
 
-    public static void closeConnection(Connection connection) {
+    publi static void closeConnection(Connection connection) {
         if (connection != null) {
             try {
                 connection.close();
