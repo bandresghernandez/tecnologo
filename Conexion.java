@@ -7,7 +7,7 @@ public class MySQLConnection {
     private static final String JDBC_USER = "usuario";
     private static final String JDBC_PASSWORD = "contraseña";
 
-    public static Connection getConnection() {
+    publi static Connection getConnection() {
         try {
             return DriverManager.getConnection(JDBC_URL, JDBC_USER, JDBC_PASSWORD);
         } catch (SQLException e) {
