@@ -1,4 +1,4 @@
-package logica;
+package datatypes;
 
 public class DtUsuario {
     private String nickname;
