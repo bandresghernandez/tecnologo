@@ -2,7 +2,7 @@ package logica;
 
 import datatypes.DtFecha;
 
-public class Usuario {
+public abstract class Usuario {
 
     private String nickname;
     private String nombre;
@@ -10,12 +10,12 @@ public class Usuario {
     private String email;
     private DtFecha fechaNac;
 
-    public Usuario(String ni, String n, String ap, String e, DtFecha fn) {
-        this.nickname = ni;
-        this.nombre = n;
-        this.apellido = ap;
-        this.email = e;
-        this.fechaNac = fn;
+    public Usuario(String nick, String nombre, String apellido, String email, DtFecha fechaNac) {
+        this.nickname = nick;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.email = email;
+        this.fechaNac = fechaNac;
     }
 
     public String getNickname() {
@@ -38,24 +38,26 @@ public class Usuario {
         return fechaNac;
     }
 
-    public void setNickname(String ni) {
-        nickname = ni;
+    public void setNickname(String nick) {
+        this.nickname = nick;
     }
 
-     public void setNombre(String n) {
-        nombre = n;
+     public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
-    public void setApellido(String ap) {
-        apellido = ap;
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
     }
 
-    public void setEmail(String e) {
-        email = e;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public void setFechaNac(DtFecha fn) {
-        fechaNac = fn;
+    public void setFechaNac(DtFecha fechaNac) {
+        this.fechaNac = fechaNac;
     }
+    
+    //public abstract DtUsuario obtenerInfo(); 
 
 }
