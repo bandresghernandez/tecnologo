@@ -1,11 +1,15 @@
 package logica;
 
+import java.util.List;
+
 import datatypes.DtFecha;
 
 public class Profesor extends Usuario {
     private String descripcion;
     private String biografia;
     private String sitioweb;
+    private List<Clase> clases;
+    private InstitucionDeportiva institucion;
 
     // Constructor
     public Profesor(String nickname, String nombre, String apellido, String email,
@@ -14,6 +18,9 @@ public class Profesor extends Usuario {
         this.descripcion = descripcion;
         this.biografia = biografia;
         this.sitioweb = sitioweb;
+        this.clases = null;
+        this.institucion = null;
+        
     }
 
     public  void setDescripcion(String descripcion)
@@ -46,4 +53,19 @@ public class Profesor extends Usuario {
         return this.sitioweb;
     }
 
+	public List<Clase> getClases() {
+		return clases;
+	}
+
+	public void setClases(List<Clase> clases) {
+		this.clases = clases;
+	}
+
+	public InstitucionDeportiva getInstitucion() {
+		return this.institucion;
+	}
+	
+	public void setInstitucion(InstitucionDeportiva institucion) {
+		this.institucion = institucion;
+	}
 }
