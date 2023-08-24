@@ -7,13 +7,11 @@ public class DtSocio extends DtUsuario {
         this.clase = clase;
     }
 
-    // Getter y setter para el atributo clase
+    // Getter 
     public DtClase getClase() {
         return clase;
     }
 
-    public void setClase(DtClase clase) {
-        this.clase = clase;
-    }
+
 }
 
