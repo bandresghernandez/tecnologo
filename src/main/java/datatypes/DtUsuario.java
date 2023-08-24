@@ -16,48 +16,35 @@ public class DtUsuario {
     
     }
 
-    // Getter y Setter para nickname
+    // Getter  nickname
     public String getNickname() {
         return nickname;
     }
 
-    public void setNickname(String nickname) {
-        this.nickname = nickname;
-    }
-
-    // Getter y Setter para nombre
+    // Getter  para nombre
     public String getNombre() {
         return nombre;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    // Getter y Setter para apellido
+  
+    // Getter  para apellido
     public String getApellido() {
         return apellido;
     }
 
-    public void setApellido(String apellido) {
-        this.apellido = apellido;
-    }
 
-    // Getter y Setter para email
+
+    // Getter  para email
     public String getEmail() {
         return email;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
 
-    // Getter y Setter para fechaNac
+
+    // Getter  para fechaNac
     public DtFecha getFechaNac() {
         return fechaNac;
     }
 
-    public void setFechaNac(DtFecha fechaNac) {
-        this.fechaNac = fechaNac;
-    }
+
 }
