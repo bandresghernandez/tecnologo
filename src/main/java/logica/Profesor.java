@@ -8,7 +8,7 @@ public class Profesor extends Usuario {
     private String descripcion;
     private String biografia;
     private String sitioweb;
-    private List<Clase> clases new ArrayList<>();
+    private List<Clase> clases;
     private InstitucionDeportiva institucion;
 
     // Constructor

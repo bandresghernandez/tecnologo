@@ -6,7 +6,7 @@ import datatypes.DtFecha;
 
 class Socio extends Usuario {
 	
-	private List<Registro> registros new ArrayList<>();
+	private List<Registro> registros ;
 	
     public Socio(String nickname, String nombre, String apellido, String email, DtFecha fechaNac) {
         super(nickname, nombre, apellido, email, fechaNac);
