@@ -8,7 +8,7 @@ public class Profesor extends Usuario {
     private String descripcion;
     private String biografia;
     private String sitioweb;
-    private List<Clase> clases;
+    private List<Clase> clases new ArrayList<>();
     private InstitucionDeportiva institucion;
 
     // Constructor
@@ -18,8 +18,7 @@ public class Profesor extends Usuario {
         this.descripcion = descripcion;
         this.biografia = biografia;
         this.sitioweb = sitioweb;
-        this.clases = null;
-        this.institucion = null;
+        this.institucion = institucion;
         
     }
 
