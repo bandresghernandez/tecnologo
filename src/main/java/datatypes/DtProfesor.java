@@ -1,9 +1,9 @@
 package datatypes;
 
 public class DtProfesor extends DtUsuario{
-	   public String descripcion;
-	   public String biografia;
-	   public String sitioweb;
+	   private String descripcion;
+	   private String biografia;
+	   private String sitioweb;
 	
 	
 	public DtProfesor (String nickname, String nombre, String apellido, String email,
