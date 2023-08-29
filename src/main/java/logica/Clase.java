@@ -1,5 +1,6 @@
 package logica;
 
+import datatypes.DtClase;
 import datatypes.DtFecha;
 import datatypes.DtHora;
 
@@ -58,6 +59,10 @@ public class Clase {
         this.fechaReg = fechaReg;
     }
 
+    public DtClase obtenerinfo() {
+    	return new DtClase(this.nombre, this.fecha);
+    }
+    
     public void mostrarInformacion() {
         System.out.println("Nombre: " + nombre);
         System.out.println("Fecha: " + fecha);

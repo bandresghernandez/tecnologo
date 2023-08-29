@@ -6,7 +6,6 @@ import datatypes.DtClase;
 import datatypes.DtFecha;
 import datatypes.DtSocio;
 import datatypes.DtUsuario;
-import logica.Registro;
 
 class Socio extends Usuario {
 	

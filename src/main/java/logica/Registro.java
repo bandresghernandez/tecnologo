@@ -1,5 +1,6 @@
 package logica;
 
+import logica.Clase;
 import datatypes.DtFecha;
 import datatypes.DtClase;
 import datatypes.DtSocio;
@@ -42,7 +43,7 @@ public class Registro {
 	
 	public DtClase obtenerInfoClase()
 	{
-		return null;
+		return this.clase.obtenerinfo();		
 	}
 	
 /*
