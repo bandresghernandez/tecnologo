@@ -1,5 +1,6 @@
 package logica;
 
+import datatypes.DtActividadDeportiva;
 import datatypes.DtClase;
 import datatypes.DtFecha;
 import datatypes.DtHora;
@@ -10,8 +11,17 @@ public class Clase {
     private DtHora horaInicio;
     private String url;
     private DtFecha fechaReg;
+    private ActividadDeportiva actividadDepo;
 
-    public Clase(String nombre, DtFecha fecha, DtHora horaInicio, String url, DtFecha fechaReg) {
+    public ActividadDeportiva getActividadDepo() {
+		return actividadDepo;
+	}
+
+	public void setActividadDepo(ActividadDeportiva actividadDepo) {
+		this.actividadDepo = actividadDepo;
+	}
+
+	public Clase(String nombre, DtFecha fecha, DtHora horaInicio, String url, DtFecha fechaReg) {
         this.nombre = nombre;
         this.fecha = fecha;
         this.horaInicio = horaInicio;
@@ -78,4 +88,10 @@ public class Clase {
 
         clase.mostrarInformacion();
     }
+
+	public DtActividadDeportiva obtenerInfoActividad() {
+		// TODO Auto-generated method stub
+		return this.actividadDepo.obtenerInfo();
+		
+	}
 }

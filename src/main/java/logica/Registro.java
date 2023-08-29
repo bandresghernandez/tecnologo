@@ -1,9 +1,7 @@
 package logica;
 
-import logica.Clase;
 import datatypes.DtFecha;
 import datatypes.DtClase;
-import datatypes.DtSocio;
 
 public class Registro {
 	//private Socio socio; segun cdc Registro ve Clase no Socio

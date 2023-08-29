@@ -4,8 +4,9 @@ import java.util.List;
 
 import datatypes.DtFecha;
 import datatypes.DtProfesor;
-import datatypes.DtSocio;
 import datatypes.DtUsuario;
+import datatypes.DtActividadDeportiva;
+import datatypes.DtClase;
 
 public class Profesor extends Usuario {
     private String descripcion;
@@ -22,7 +23,7 @@ public class Profesor extends Usuario {
         this.descripcion = descripcion;
         this.biografia = biografia;
         this.sitioweb = sitioweb;
-        this.institucion = institucion;
+        this.institucion = null;
         
     }
 
@@ -74,13 +75,22 @@ public class Profesor extends Usuario {
 
 	@Override
 	public DtUsuario getDtUsuario() {
-		return new DtProfesor(this.getNickname(), this.getNombre(), this.getApellido(), this.getEmail(), this.getFechaNac(), this.getDescripcion(),this.getBiogrfia(), this.getSitioweb());
-		
+		//return new DtProfesor(this.getNickname(), this.getNombre(), this.getApellido(), this.getEmail(), this.getFechaNac(), this.getDescripcion(),this.getBiogrfia(), this.getSitioweb());
+		return null;
 	}
 
 	@Override
 	public DtUsuario obtenerInfo() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		List <DtActividadDeportiva> actividades = new ArrayList<>();
+		List <DtClase> pClases = new ArrayList<>();
+		
+		//Guardo info de cada clase y su actividad deportiva
+		for (Clase clase : clases) {
+			pClases.add(clase.obtenerinfo());
+			actividades.add(clase.obtenerInfoActividad());
+		}
+		//creo un DtProfesor con su info y el listado de lcases y actividades vinculadas
+		return new DtProfesor(this.getNickname(), this.getNombre(), this.getApellido(), this.getEmail(), this.getFechaNac(), this.getDescripcion(),this.getBiogrfia(), this.getSitioweb(),actividades,pClases);
 	}
 }

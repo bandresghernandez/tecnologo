@@ -1,5 +1,6 @@
 package logica;
 
+import datatypes.DtActividadDeportiva;
 import datatypes.DtFecha;
 
 public class ActividadDeportiva {
@@ -71,4 +72,9 @@ public class ActividadDeportiva {
 
         actividad.mostrarInformacion();
     }
+
+	public DtActividadDeportiva obtenerInfo() {
+		// TODO Auto-generated method stub
+		return new DtActividadDeportiva(this.nombre, this.descripcion, null);
+	}
 }
