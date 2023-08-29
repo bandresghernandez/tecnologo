@@ -77,4 +77,10 @@ public class Profesor extends Usuario {
 		return new DtProfesor(this.getNickname(), this.getNombre(), this.getApellido(), this.getEmail(), this.getFechaNac(), this.getDescripcion(),this.getBiogrfia(), this.getSitioweb());
 		
 	}
+
+	@Override
+	public DtUsuario obtenerInfo() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

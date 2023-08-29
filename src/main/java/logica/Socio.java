@@ -2,9 +2,11 @@ package logica;
 import java.util.ArrayList;
 import java.util.List;
 
+import datatypes.DtClase;
 import datatypes.DtFecha;
 import datatypes.DtSocio;
 import datatypes.DtUsuario;
+import logica.Registro;
 
 class Socio extends Usuario {
 	
@@ -24,8 +26,8 @@ class Socio extends Usuario {
 		this.registros = registros;
 	}*/
 
-	public void agregarRegistros(Socio socio, DtFecha fechaRegistro) {
-		Registro r = new Registro(socio,fechaRegistro);
+	public void agregarRegistros(Clase clase, DtFecha fechaRegistro) {
+		Registro r = new Registro(clase,fechaRegistro);
 		registros.add(r);
 	}
 	@Override
@@ -34,6 +36,20 @@ class Socio extends Usuario {
 		//return new DtSocio(this.getNickname(), this.getNombre(), this.getApellido(), this.getEmail(), this.getFechaNac());
 		return null;
 		// Falta pasarle un DtClase al constructor
+	}
+
+	@Override
+	public DtUsuario obtenerInfo() {
+		List<DtClase> clases = new ArrayList<>();
+		for(Registro i : registros) {
+			//Guardo cada clase que esta vinculada al Socio en "clases"
+			clases.add(i.obtenerInfoClase());			
+		}
+		
+		//una ves teniendo todas las clases creo el DtSocio
+		DtSocio data = new DtSocio(this.getNickname(), this.getNombre(), this.getApellido(), this.getEmail(),this.getFechaNac(),clases);
+		//String nickname, String nombre, String apellido, String email,DtFecha fechaNac,List<DtClase> clases
+		return data;
 	}
     
     

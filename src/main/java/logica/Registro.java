@@ -1,10 +1,12 @@
 package logica;
 
 import datatypes.DtFecha;
+import datatypes.DtClase;
 import datatypes.DtSocio;
 
 public class Registro {
-	private Socio socio;
+	//private Socio socio; segun cdc Registro ve Clase no Socio
+	private Clase clase;
     private DtFecha fechaReg;
 
     public Registro(DtFecha f) {
@@ -16,16 +18,12 @@ public class Registro {
 		super();
 	}
 
-	public Registro(Socio socio, DtFecha fecha) {
+	public Registro(Clase clase, DtFecha fecha) {
 		super();
-		this.socio = socio;
+		this.clase = clase;
 		this.fechaReg = fecha;
 	}
 
-	public Registro(Socio socio, Clase clase) {
-		super();
-		this.socio = socio;
-	}
 	
     public DtFecha getFechaReg() {
         return fechaReg;
@@ -34,15 +32,19 @@ public class Registro {
     public void setFechaReg(DtFecha f) {
         fechaReg = f;
     }
-    public Socio getSocio() {
-		return socio;
+    public Clase getClase() {
+		return clase;
 	}
-    public void setSocio(Socio socio) {
-		this.socio = socio;
+    public void setClase(Clase clase) {
+		this.clase = clase;
 	}
-	public String getNicknameSocio() {
-		return this.socio.getNickname();
+	
+	
+	public DtClase obtenerInfoClase()
+	{
+		return null;
 	}
+	
 /*
 	public DtSocio getDtSocio(){
 		return new DtSocio(socio.getNickname(), socio.getNombre(), socio.getApellido(), socio.getEmail(), socio.getFechaNac());

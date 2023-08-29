@@ -61,6 +61,6 @@ public abstract class Usuario {
         this.fechaNac = fechaNac;
     }
     
-    //public abstract DtUsuario obtenerInfo(); 
+    public abstract DtUsuario obtenerInfo(); 
 
 }
