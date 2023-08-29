@@ -3,11 +3,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import datatypes.DtFecha;
+import datatypes.DtProfesor;
+import datatypes.DtSocio;
+import datatypes.DtUsuario;
 
 public class Profesor extends Usuario {
     private String descripcion;
     private String biografia;
     private String sitioweb;
+   
     private List<Clase> clases;
     private InstitucionDeportiva institucion;
 
@@ -66,5 +70,11 @@ public class Profesor extends Usuario {
 	
 	public void setInstitucion(InstitucionDeportiva institucion) {
 		this.institucion = institucion;
+	}
+
+	@Override
+	public DtUsuario getDtUsuario() {
+		return new DtProfesor(this.getNickname(), this.getNombre(), this.getApellido(), this.getEmail(), this.getFechaNac(), this.getDescripcion(),this.getBiogrfia(), this.getSitioweb());
+		
 	}
 }

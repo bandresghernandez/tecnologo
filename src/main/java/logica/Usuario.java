@@ -1,6 +1,7 @@
 package logica;
 
 import datatypes.DtFecha;
+import datatypes.DtUsuario;
 
 public abstract class Usuario {
 
@@ -18,6 +19,8 @@ public abstract class Usuario {
         this.fechaNac = fechaNac;
     }
 
+    public abstract DtUsuario getDtUsuario();
+    
     public String getNickname() {
         return nickname;
     }
