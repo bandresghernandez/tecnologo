@@ -43,9 +43,10 @@ public class Registro {
 	public String getNicknameSocio() {
 		return this.socio.getNickname();
 	}
-
+/*
 	public DtSocio getDtSocio(){
 		return new DtSocio(socio.getNickname(), socio.getNombre(), socio.getApellido(), socio.getEmail(), socio.getFechaNac());
 	}
-	
+	// Falta pasarle un DtClase al constructor
+	*/
 }

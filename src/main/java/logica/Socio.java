@@ -31,7 +31,8 @@ class Socio extends Usuario {
 	@Override
 	public DtUsuario getDtUsuario() {
 		// TODO Auto-generated method stub
-		return new DtSocio(this.getNickname(), this.getNombre(), this.getApellido(), this.getEmail(), this.getFechaNac());
+		//return new DtSocio(this.getNickname(), this.getNombre(), this.getApellido(), this.getEmail(), this.getFechaNac());
+		return null;
 		// Falta pasarle un DtClase al constructor
 	}
     
