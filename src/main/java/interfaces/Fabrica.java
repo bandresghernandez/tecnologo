@@ -1,6 +1,6 @@
-package logica;
+package interfaces;
 
-import logica.Controlador;
+import logica.CUsuario2;
 
 public class Fabrica {
 	private static Fabrica instancia = null;
@@ -13,8 +13,16 @@ public class Fabrica {
 		return instancia;
 	}
 	
-	public IControlador getIControlador() {
-		return new Controlador();
+	public ICUsuario getICUsuario() {
+		return new CUsuario2();
 	}
-	
+
+
+
+
 }
+
+
+
+
+
