@@ -163,22 +163,7 @@ public class IngresarUsuario2 extends JInternalFrame {
     }
     
 	
-	private boolean checkFormulario() {
-        String id = this.textFieldNickname.getSelectedText().toString();
-        if (id.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "No puede haber campos vacíos", "Agregar Inscripcion",
-                    JOptionPane.ERROR_MESSAGE);
-            return false;
-        }
-        try {
-            Integer.parseInt(id);
-        } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(this, "El ID debe ser un numero", "Agregar Inscripción",
-                    JOptionPane.ERROR_MESSAGE);
-            return false;
-        }
-        return true;
-    }
+
     
     
     
