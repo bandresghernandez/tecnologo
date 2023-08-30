@@ -51,5 +51,32 @@ class Socio extends Usuario {
 		return data;
 	}
     
+	
+	public Boolean crearRegistro(Clase c, DtFecha fechaReg) {
+		DtFecha fecha = null;
+		Boolean flag = false;
+		
+		for(Registro r: registros) {
+			fecha = r.getFechaReg();
+			
+			//Si encuentro una fecha igual salgo del for
+			if (fecha.getAnio() == fechaReg.getAnio() &&
+				    fecha.getMes() == fechaReg.getMes() &&
+				    fecha.getDia() == fechaReg.getDia()) {
+				    flag = true;
+				    break;
+			}		
+		}
+		
+		//Si flag es True es por que esta repetido por lo tanto no debe crearse el registro
+		//si flag es False entonces se pude crear el registro ya que no hay un repetido
+		
+		if (!flag) {
+			Registro reg = new Registro(c,fechaReg);
+			this.registros.add(reg);
+		}
+		
+		return !flag;
+	}
     
 }
