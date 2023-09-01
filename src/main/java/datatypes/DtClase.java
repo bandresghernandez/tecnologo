@@ -27,4 +27,3 @@ public class DtClase {
         return "Nombre: " + nombre + ", Fecha: " + fecha;
     }
 }
-
