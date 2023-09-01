@@ -1,10 +1,13 @@
 package datatypes;
+
+import java.util.Set;
+
 public class DtActividadDeportiva {
     private String nombre;
     private String descripcion;
-    private DtClase clase;
+    private Set<DtClase> clase;
 
-    public DtActividadDeportiva(String nombre, String descripcion, DtClase clase) {
+    public DtActividadDeportiva(String nombre, String descripcion, Set<DtClase> clase) {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.clase = clase;
@@ -27,13 +30,13 @@ public class DtActividadDeportiva {
         this.descripcion = descripcion;
     }
 
-    public DtClase getClase() {
+    public Set<DtClase> getClase() {
         return clase;
     }
 
-    public void setClase(DtClase clase) {
+    /public void setClase(DtClase clase) {
         this.clase = clase;
-    }
+    }/
 
     @Override
     public String toString() {
