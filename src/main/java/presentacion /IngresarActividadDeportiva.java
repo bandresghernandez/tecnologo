@@ -31,7 +31,7 @@ public class IngresarActividadDeportiva extends JInternalFrame {
 	/**
 	 * Create the frame.
 	 */
-	public IngresarActividadDeportiva2() {
+	public IngresarActividadDeportiva() {
 		setClosable(true);
 		setDefaultCloseOperation(JInternalFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 450);
