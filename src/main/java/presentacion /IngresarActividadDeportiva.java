@@ -15,7 +15,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import logica.Clase;
 
-public class IngresarActividadDeportiva2 extends JInternalFrame {
+public class IngresarActividadDeportiva extends JInternalFrame {
 
 	private JPanel contentPane;
 	private JTextField textFieldNombre;
