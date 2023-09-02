@@ -48,7 +48,7 @@ public class Principal {
         JMenuItem mntmUsuario = new JMenuItem("Usuario");
         mntmUsuario.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                IngresarUsuario2 ingresoUsuario = new IngresarUsuario2();
+                IngresarUsuario ingresoUsuario = new IngresarUsuario();
                 desktopPane.add(ingresoUsuario);
                 ingresoUsuario.setVisible(true);
             }
@@ -58,7 +58,7 @@ public class Principal {
         JMenuItem mntmInstDeportiva = new JMenuItem("Inst. Deportiva");
         mntmInstDeportiva.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-            	IngresarInstitucionDeportiva2 ingresoInst = new IngresarInstitucionDeportiva2();
+            	IngresarInstitucionDeportiva ingresoInst = new IngresarInstitucionDeportiva();
                 desktopPane.add(ingresoInst);
                 ingresoInst.setVisible(true);
             }
@@ -91,7 +91,7 @@ public class Principal {
         JMenuItem mntmClase = new JMenuItem("Clase");
         mntmClase.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-            	IngresarClase2 B = new IngresarClase2();
+            	IngresarClase B = new IngresarClase();
                 desktopPane.add(B);
                 B.setVisible(true);
             }
