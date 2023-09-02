@@ -33,7 +33,7 @@ public class CUsuario implements ICUsuario{
 	}
 
 	@Override
-	public DtUsuario obtenerUsuario(String nickname) {
+	public DtUsuario obtenerUsuario(String nickname) {// seria selecUsuario en el dcd
 		ManejadorUsuario mU = ManejadorUsuario.getInstancia();
 		Usuario usuario = mU.buscarUsuario(nickname);
 		
@@ -45,28 +45,30 @@ public class CUsuario implements ICUsuario{
 	@Override
 	public Set<String> listarUsuarios(){
 	    ManejadorUsuario mU = ManejadorUsuario.getInstancia();
-	    ArrayList<String> arrayUsuarios = mU.getUsuarios();//Asumo que usamos un manejador con esta funcion
-	    Set<String> usuariosSet = new HashSet<>(arrayUsuarios);// Creo el set y agrego los socios
+	    ArrayList<String> arrayUsuarios = mU.getUsuarios();
+	    Set<String> usuariosSet = new HashSet<>(arrayUsuarios);
 	    return usuariosSet;
 	}
 
 	@Override
 	public Set<String> listarSocios(){
 	    ManejadorUsuario mU = ManejadorUsuario.getInstancia();
-	    ArrayList<String> arraySocios = mU.getSocios();//Asumo que usamos un manejador con esta funcion
-	    Set<String> sociosSet = new HashSet<>(arraySocios);// Creo el set y agrego los socios
+	    ArrayList<String> arraySocios = mU.getSocios();
+	    Set<String> sociosSet = new HashSet<>(arraySocios);
 	    return sociosSet;
 	}
 
-	/*
+
+	/* encuentro el socio, encuentro la clase y si no existe el regitro de ese socio a esa clase lo creo
+	@Override
+	public boolean selecDatos(String socio, String clase, DtFecha fechaReg, Float costo){
+		ManejadorUsuario mU = ManejadorUsuario.getInstancia();
+		Usuario usuario = mU.buscarUsuario(socio);
+		
+		
+ 
+	}
+	*/
+
 	
-	@Override
-	public boolean selecDatos(String socio, String clase, DtFecha fechaReg, Float costo);
-
-
-	@Override
-    public DtUsuario selecUsuario(String usuario);// busca el usuario y devuelve un dtUsuario, deberia estar en el manejador?
-
-
-*/
 }
