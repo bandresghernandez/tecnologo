@@ -32,7 +32,7 @@ public class IngresarInstitucionDeportiva extends JInternalFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					IngresarInstitucionDeportiva2 frame = new IngresarInstitucionDeportiva2();
+					IngresarInstitucionDeportiva frame = new IngresarInstitucionDeportiva();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -44,7 +44,7 @@ public class IngresarInstitucionDeportiva extends JInternalFrame {
 	/**
 	 * Create the frame.
 	 */
-	public IngresarInstitucionDeportiva2() {
+	public IngresarInstitucionDeportiva() {
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
