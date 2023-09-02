@@ -66,11 +66,10 @@ public class InstitucionDeportiva {
 		return actividades.keySet();
 	}
 
-	public boolean crearClase(String actividad, String nombre, DtFecha fechaIni, DtHora horaIni, String profesor, String url, DtFecha fechaAlta) {
-		boolean res = false;
+	public Clase crearClase(String actividad, String nombre, DtFecha fechaIni, DtHora horaIni, String profesor, String url, DtFecha fechaAlta) {
 		ActividadDeportiva act = actividades.get(actividad);
-		res = act.crearClase(nombre, fechaIni, horaIni, url, fechaAlta);
-		return res;
+		Clase c = act.crearClase(nombre, fechaIni, horaIni, url, fechaAlta, act);
+		return c;
 	}
 	
 	public ActividadDeportiva getActividad(String nombre) {
