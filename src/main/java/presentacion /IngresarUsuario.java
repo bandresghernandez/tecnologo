@@ -128,7 +128,7 @@ public class IngresarUsuario extends JInternalFrame {
                 CUsuario.agregarUsuario(null);
                 
                 
-               CUsuario2.listarSocio();
+   
 
                JFrame frame = new JFrame("Mensaje de Éxito");
 
