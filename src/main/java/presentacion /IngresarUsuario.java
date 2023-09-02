@@ -15,7 +15,7 @@ import java.awt.event.ActionEvent;
 import datatypes.DtFecha;
 import logica.CUsuario2;
 
-public class IngresarUsuario2 extends JInternalFrame {
+public class IngresarUsuario extends JInternalFrame {
 
     private JTextField textFieldNickname;
     private JTextField textFieldNombre;
