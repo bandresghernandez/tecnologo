@@ -1,6 +1,20 @@
 package presentacion;
 
 import java.awt.EventQueue;
+import javax.swing.JInternalFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+
+import logica.ActividadDeportiva;
+
+import javax.swing.JTextField;
+import javax.swing.JLabel;
+import javax.swing.JButton;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.util.ArrayList;
 
 public class IngresarInstitucionDeportiva2 extends JInternalFrame {
 
