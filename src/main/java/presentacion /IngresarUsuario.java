@@ -13,7 +13,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import datatypes.DtFecha;
-import logica.CUsuario2;
+import logica.CUsuario;
 
 public class IngresarUsuario extends JInternalFrame {
 
