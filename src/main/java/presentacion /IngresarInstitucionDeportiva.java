@@ -16,7 +16,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 
-public class IngresarInstitucionDeportiva2 extends JInternalFrame {
+public class IngresarInstitucionDeportiva extends JInternalFrame {
 
 	private JPanel contentPane;
 	private JTextField textFieldNombre;
