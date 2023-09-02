@@ -44,7 +44,7 @@ public class IngresarClase extends JInternalFrame {
         });
     }
 
-    public IngresarClase2() {
+    public IngresarClase() {
         setTitle("Ingresar Clase");
         setBounds(100, 100, 450, 300);
         getContentPane().setLayout(null);
