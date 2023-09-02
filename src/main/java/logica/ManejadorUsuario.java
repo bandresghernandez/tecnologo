@@ -29,5 +29,25 @@ public class ManejadorUsuario {
 		}
 		return aretornar;
 	}
+
+	public ArrayList<String> getUsuarios(){
+		ArrayList<String> UsuRet = new ArrayList<String>();
+		for(Usuario i: usuarios) {
+			UsuRet.add(i.getNickname());		
+		}
+		return UsuRet;
+	}
+
+	public ArrayList<String> getSocios(){
+		ArrayList<String> SociosRet = new ArrayList<String>();
+		for(Usuario i: usuarios) {
+			if (i instanceof Socio) {
+				SociosRet.add(i.getNickname());
+			}	
+		}
+		return SociosRet;
+	}
+
+	
 	
 }
