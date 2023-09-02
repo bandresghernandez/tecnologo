@@ -9,9 +9,13 @@ import datatypes.DtActividadDeportiva;
 import datatypes.DtClase;
 import datatypes.DtFecha;
 import datatypes.DtHora;
-import interfaces.IInstitucion;
+import interfaces.ICInstitucion;
 
-public class CInstitucion implements IInstitucion {
+public class CInstitucion implements ICInstitucion {
+	
+	
+	
+	
 	
 	private String institucion;
 	private String actividadDeportiva;

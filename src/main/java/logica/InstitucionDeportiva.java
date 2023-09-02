@@ -106,7 +106,7 @@ public class InstitucionDeportiva {
     	return dtc;
     }
 
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
 
         // Crear una lista de actividades deportivas
        List<ActividadDeportiva> actividades = new ArrayList<>();
@@ -145,5 +145,5 @@ public class InstitucionDeportiva {
 
         // Mostrar información de la institución
       //  institucion.mostrarInformacion();
-    //}
+    //}*/
 }

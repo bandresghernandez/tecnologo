@@ -1,17 +1,48 @@
-package logic;
+package logica;
 
-import interfaces.IUsuario;
 import java.util.Set;
+
+import datatypes.DtProfesor;
+import datatypes.DtSocio;
+import datatypes.DtUsuario;
+import interfaces.ICUsuario;
+
 import java.util.ArrayList;
 import java.util.HashSet;
-
+	
 // falta el puntero a usuario
-public class CUsuario implements IUsuario{
+public class CUsuario implements ICUsuario{
 
 	public CUsuario(){
 		super();
 	}
 	
+	@Override
+	public void agregarUsuario(DtUsuario usuario) {
+		// TODO Auto-generated method stub
+		Usuario nuevoUsuario= null;
+		if (usuario instanceof DtSocio)
+			nuevoUsuario = new Socio(usuario.getNickname(),usuario.getNombre(), usuario.getApellido(), usuario.getEmail(), usuario.getFechaNac());	
+		if (usuario instanceof DtProfesor)
+			nuevoUsuario = new Profesor(usuario.getNickname(),usuario.getNombre(), usuario.getApellido(), usuario.getEmail(), usuario.getFechaNac(), ((DtProfesor) usuario).getDescripcion(),((DtProfesor) usuario).getBiogrfia(), ((DtProfesor) usuario).getSitioweb() );
+		
+		ManejadorUsuario mU = ManejadorUsuario.getInstancia();
+		mU.agregarUsuario(nuevoUsuario);
+		
+		
+	}
+
+	@Override
+	public DtUsuario obtenerUsuario(String nickname) {
+		ManejadorUsuario mU = ManejadorUsuario.getInstancia();
+		Usuario usuario = mU.buscarUsuario(nickname);
+		
+		DtUsuario dtUsuario = usuario.getDtUsuario();
+		
+		return dtUsuario;
+	}
+	
+	/*
 	@Override
 	public Set<String> listarSocios(){
     ManejadorUsuario mU = ManejadorUsuario.getInstancia();
@@ -54,5 +85,5 @@ public class CUsuario implements IUsuario{
 			mU.agregarUsuario(nuevoUsuario);//agrego el profe a la col
 		}
 	}
-
+*/
 }
