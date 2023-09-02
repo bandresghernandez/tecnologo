@@ -74,13 +74,13 @@ public class ActividadDeportiva {
     	return res;
     }
     
-    public boolean crearClase(String nombre, DtFecha fechaIni, DtHora horaIni, String url, DtFecha fechaAlta) {
-    	boolean res = false;
+    public Clase crearClase(String nombre, DtFecha fechaIni, DtHora horaIni, String url, DtFecha fechaAlta, ActividadDeportiva actividadDepo) {
+    	Clase c = null;
     	if(!existeClase(nombre)) {
-    		Clase c = new Clase(nombre, fechaIni, horaIni, url, fechaAlta);
+    		c = new Clase(nombre, fechaIni, horaIni, url, fechaAlta, actividadDepo);
     		clases.put(nombre, c);
     	}
-    	return res;
+    	return c;
     }
     
     public DtActividadDeportiva getDtActividadDeportiva() {
