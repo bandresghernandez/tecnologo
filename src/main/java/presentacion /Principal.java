@@ -9,7 +9,7 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
-public class Principal2 {
+public class Principal {
 
     private JFrame frame;
     private JDesktopPane desktopPane;
@@ -107,7 +107,7 @@ public class Principal2 {
         
         
         JMenuItem mntmSocio = new JMenuItem("Socios");
-        
+        /*
         mntmSocio.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
             	InfoSocios a = new InfoSocios();
@@ -117,6 +117,7 @@ public class Principal2 {
         });
         
         mnInformacion.add(mntmSocio);
-    }
+    }*/
+}
 }
 
