@@ -32,7 +32,7 @@ public class IngresarUsuario extends JInternalFrame {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    IngresarUsuario2 frame = new IngresarUsuario2();
+                    IngresarUsuario frame = new IngresarUsuario();
                     frame.setVisible(true);
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -44,7 +44,7 @@ public class IngresarUsuario extends JInternalFrame {
     /**
      * Create the frame.
      */
-    public IngresarUsuario2() {
+    public IngresarUsuario() {
         setTitle("Ingresar Usuario");
 
         setDefaultCloseOperation(JInternalFrame.EXIT_ON_CLOSE);
