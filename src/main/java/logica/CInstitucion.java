@@ -89,9 +89,19 @@ public class CInstitucion implements ICInstitucion {
 	
 	@Override
 	public boolean altaClase(String actividad, String nombre, DtFecha fechaIni, DtHora horaIni, String profesor, String url, DtFecha fechaAlta) {
+		boolean res = false;
 		ManejadorInstitucionDeportiva mi = ManejadorInstitucionDeportiva.getInstancia();
 		InstitucionDeportiva inst = mi.getInstitucion(this.institucion);
-		return inst.crearClase(actividad, nombre, fechaIni, horaIni, profesor, url, fechaAlta);
+		Clase c = inst.crearClase(actividad, nombre, fechaIni, horaIni, profesor, url, fechaAlta);
+		if(c != null) {
+			ManejadorUsuario mu = ManejadorUsuario.getInstancia();
+			Usuario profe = mu.buscarUsuario(profesor);
+			if(profe instanceof Profesor) {
+				Profesor prof = (Profesor) profe;
+				prof.daClase(c);
+			}
+		}
+		return res;
 	}
 	
 	@Override
