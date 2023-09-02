@@ -13,6 +13,7 @@ import javax.swing.SpinnerNumberModel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import logica.Clase;
 
 public class IngresarActividadDeportiva2 extends JInternalFrame {
 
