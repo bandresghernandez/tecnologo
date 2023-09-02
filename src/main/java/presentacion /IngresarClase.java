@@ -35,7 +35,7 @@ public class IngresarClase extends JInternalFrame {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    IngresarClase2 frame = new IngresarClase2();
+                    IngresarClase frame = new IngresarClase();
                     frame.setVisible(true);
                 } catch (Exception e) {
                     e.printStackTrace();
