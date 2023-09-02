@@ -18,7 +18,7 @@ public class Principal {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    Principal2 window = new Principal2();
+                    Principal window = new Principal();
                     window.frame.setVisible(true);
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -27,7 +27,7 @@ public class Principal {
         });
     }
 
-    public Principal2() {
+    public Principal() {
         initialize();
     }
 
