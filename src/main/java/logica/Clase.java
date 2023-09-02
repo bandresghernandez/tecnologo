@@ -21,12 +21,13 @@ public class Clase {
 		this.actividadDepo = actividadDepo;
 	}
 
-	public Clase(String nombre, DtFecha fecha, DtHora horaInicio, String url, DtFecha fechaReg) {
+	public Clase(String nombre, DtFecha fecha, DtHora horaInicio, String url, DtFecha fechaReg, ActividadDeportiva actividadDepo) {
         this.nombre = nombre;
         this.fecha = fecha;
         this.horaInicio = horaInicio;
         this.url = url;
         this.fechaReg = fechaReg;
+	this.actividadDepo = actividadDepo;
     }
 
     public String getNombre() {
