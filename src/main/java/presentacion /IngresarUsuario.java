@@ -124,8 +124,8 @@ public class IngresarUsuario2 extends JInternalFrame {
              
           
                 // Crear una instancia de la clase CUsuario y llamar al método ingresarSocio con los datos ingresados
-                CUsuario2 CUsuario2 = new CUsuario2();
-                CUsuario2.ingresarSocio(nickname, nombre, apellido, email, new DtFecha(dia, mes, anio));
+                CUsuario CUsuario = new CUsuario();
+                CUsuario.agregarUsuario(null);
                 
                 
                CUsuario2.listarSocio();
