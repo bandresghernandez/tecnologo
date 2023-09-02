@@ -1,6 +1,7 @@
 package interfaces;
 
-import logica.CUsuario2;
+import logica.CInstitucion;
+import logica.CUsuario;
 
 public class Fabrica {
 	private static Fabrica instancia = null;
@@ -14,7 +15,11 @@ public class Fabrica {
 	}
 	
 	public ICUsuario getICUsuario() {
-		return new CUsuario2();
+		return new CUsuario();
+	}
+
+	public ICInstitucion getICInstitucion() {
+		return new CInstitucion();
 	}
 
 
