@@ -1,7 +1,23 @@
 package presentacion;
 
-import java.awt.EventQueue;
 
+import java.awt.EventQueue;
+import javax.swing.JInternalFrame;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+import javax.swing.JComboBox;
+import javax.swing.JFormattedTextField;
+import javax.swing.text.MaskFormatter;
+
+import datatypes.DtFecha;
+import datatypes.DtHora;
+
+import java.text.ParseException;
+import java.awt.Font;
+import javax.swing.JButton;
+import javax.swing.SwingConstants;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 public class IngresarClase2 extends JInternalFrame {
 
     private JTextField nombreField;
