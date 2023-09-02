@@ -18,7 +18,7 @@ import javax.swing.JButton;
 import javax.swing.SwingConstants;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-public class IngresarClase2 extends JInternalFrame {
+public class IngresarClase extends JInternalFrame {
 
     private JTextField nombreField;
     private JFormattedTextField fechaField;
