@@ -76,7 +76,7 @@ public class Principal {
         JMenuItem mntmActDeportivaa = new JMenuItem("Act. Deportiva");
         mntmActDeportivaa.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-            	IngresarActividadDeportiva2 a = new IngresarActividadDeportiva2();
+            	IngresarActividadDeportiva a = new IngresarActividadDeportiva();
                 desktopPane.add(a);
                 a.setVisible(true);
             }
