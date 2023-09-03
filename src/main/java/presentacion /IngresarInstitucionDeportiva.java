@@ -1,12 +1,16 @@
 package presentacion;
 
-import java.awt.EventQueue;
+ //import java.awt.EventQueue;
+
 import javax.swing.JInternalFrame;
 import javax.swing.JPanel;
+import javax.swing.JOptionPane;
 import javax.swing.border.EmptyBorder;
+import javax.swing.JFrame;
 
-import logica.ActividadDeportiva;
-
+//import logica.ActividadDeportiva;
+import interfaces.ICInstitucion;
+//import Excepciones.InstitucionRepetidaExcepcion;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.JButton;
@@ -14,20 +18,23 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import java.util.ArrayList;
+//import java.util.ArrayList;
 
 public class IngresarInstitucionDeportiva extends JInternalFrame {
 
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField textFieldNombre;
 	private JTextArea textAreaDescripcion;
 	private JTextField textFieldUrl;
-	private ArrayList<ActividadDeportiva> actividades;
-	private JTextField textFieldActividadDeportiva;
+	//private ArrayList<ActividadDeportiva> actividades;
+	//private JTextField textFieldActividadDeportiva;
+	private ICInstitucion iinst;
 
 	/**
 	 * Launch the application.
 	 */
+	/*
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -40,11 +47,20 @@ public class IngresarInstitucionDeportiva extends JInternalFrame {
 			}
 		});
 	}
-
+	*/
 	/**
 	 * Create the frame.
 	 */
-	public IngresarInstitucionDeportiva() {
+	public IngresarInstitucionDeportiva(ICInstitucion iinst) {
+		this.iinst=iinst;
+		
+		setResizable(true);//permite cambiar el tamaño del jframe
+        setIconifiable(true);//permite poner iconos
+        setMaximizable(true);//permite maximizar y minimizar el jframe
+        setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);// se oculta jframe en lugar de cerrarse
+        setClosable(true);// permite que el usuario cierre la ventana
+        setTitle("Alta de una Institucion");//setteo el titulo
+		
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -80,29 +96,13 @@ public class IngresarInstitucionDeportiva extends JInternalFrame {
 		contentPane.add(textFieldUrl);
 		textFieldUrl.setColumns(10);
 
-		JLabel lblActividadDeportiva = new JLabel("Actividad Deportiva:");
-		lblActividadDeportiva.setBounds(12, 192, 200, 20);
-		contentPane.add(lblActividadDeportiva);
-
-		textFieldActividadDeportiva = new JTextField();
-		textFieldActividadDeportiva.setBounds(210, 193, 200, 20);
-		contentPane.add(textFieldActividadDeportiva);
-		textFieldActividadDeportiva.setColumns(10);
-
-		actividades = new ArrayList<ActividadDeportiva>();
+		//actividades = new ArrayList<ActividadDeportiva>();
 
 		JButton btnAceptar = new JButton("ACEPTAR");
 		btnAceptar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String nombre = textFieldNombre.getText();
-				String descripcion = textAreaDescripcion.getText();
-				String url = textFieldUrl.getText();
-				
-				// Aquí puedes realizar acciones con los datos ingresados, como crear la institución deportiva
-				// y agregar las actividades deportivas a la lista
-				
-				// Cerrar la ventana
-				dispose();
+				agregarInstitucionAceptarActionPerformed(e);
+				//dispose();
 			}
 		});
 		btnAceptar.setBounds(149, 230, 123, 23);
@@ -111,8 +111,8 @@ public class IngresarInstitucionDeportiva extends JInternalFrame {
 		JButton btnCancelar = new JButton("CANCELAR");
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				// Cerrar la ventana
-				dispose();
+				agregarInstitucionCancelarActionPerformed(e);
+				//dispose();
 			}
 		});
 		btnCancelar.setBounds(284, 230, 146, 23);
@@ -122,4 +122,53 @@ public class IngresarInstitucionDeportiva extends JInternalFrame {
 		lblInstDeportiva.setBounds(149, 2, 225, 15);
 		contentPane.add(lblInstDeportiva);
 	}
+	
+	
+	protected void agregarInstitucionAceptarActionPerformed(ActionEvent arg0) {
+		String nombre = textFieldNombre.getText();
+		String descripcion = textAreaDescripcion.getText();
+		String url = textFieldUrl.getText();
+		
+		 if (checkFormulario()) {
+	            this.iinst.altaInstitucionDeportiva(nombre,descripcion,url);
+				JOptionPane.showMessageDialog(this, "La institución se ha creado con éxito", "Agregar Institución",
+				        JOptionPane.INFORMATION_MESSAGE);
+	            limpiarFormulario();
+	            setVisible(false);
+	            /*
+	             try {
+	            	this.iinst.altaInstitucionDeportiva(nombre,descripcion,url);
+	                JOptionPane.showMessageDialog(this, "La institución se ha creado con éxito", "Agregar Institución",
+	                        JOptionPane.INFORMATION_MESSAGE);
+	            } catch (InstitucionRepetidaExcepcion e) {
+	                JOptionPane.showMessageDialog(this, e.getMessage(), "Agregar Institución", JOptionPane.ERROR_MESSAGE);
+	            }
+	             */
+	        }
+		
+	}
+	
+
+	protected void agregarInstitucionCancelarActionPerformed(ActionEvent arg0) {
+		limpiarFormulario();
+        setVisible(false);
+	}
+	
+	private boolean checkFormulario() {
+        String nombre = this.textFieldNombre.getText();
+        String desc = this.textAreaDescripcion.getText();
+        String url = this.textFieldUrl.getText();
+        if (nombre.isEmpty() || desc.isEmpty() || url.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "No puede haber campos vacíos", "Agregar Institucion",
+                    JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        return true;
+    }
+	
+	private void limpiarFormulario() {
+        textFieldNombre.setText("");
+        textAreaDescripcion.setText("");
+        textFieldUrl.setText("");
+ }
 }
