@@ -8,11 +8,19 @@ import javax.swing.JDesktopPane;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import java.awt.Dimension;
+
+import interfaces.Fabrica;
+import interfaces.ICInstitucion;
+import interfaces.ICUsuario;
 
 public class Principal {
 
-    private JFrame frame;
+    private JFrame frame;//frame principal
+    
     private JDesktopPane desktopPane;
+    private IngresarInstitucionDeportiva ingresarInstDepInternalFrame;
+    
 
     public static void main(String[] args) {
         EventQueue.invokeLater(new Runnable() {
@@ -29,6 +37,20 @@ public class Principal {
 
     public Principal() {
         initialize();
+        
+        Fabrica fabrica = Fabrica.getInstancia();
+        ICUsuario iusu = fabrica.getICUsuario();
+        ICInstitucion iinst = fabrica.getICInstitucion();
+        
+        Dimension desktopSize = frame.getSize();
+		Dimension jInternalFrameSize;
+        
+        ingresarInstDepInternalFrame = new IngresarInstitucionDeportiva(iinst);//lo instancio
+        jInternalFrameSize = ingresarInstDepInternalFrame.getSize();
+        ingresarInstDepInternalFrame.setLocation((desktopSize.width - jInternalFrameSize.width)/2,//lo pongo en el medio de la pantalla
+		    (desktopSize.height- jInternalFrameSize.height)/2);
+        ingresarInstDepInternalFrame.setVisible(false);//lo hago invisible
+		frame.getContentPane().add(ingresarInstDepInternalFrame);//lo agrego
     }
 
     private void initialize() {
@@ -57,10 +79,8 @@ public class Principal {
         
         JMenuItem mntmInstDeportiva = new JMenuItem("Inst. Deportiva");
         mntmInstDeportiva.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-            	IngresarInstitucionDeportiva ingresoInst = new IngresarInstitucionDeportiva();
-                desktopPane.add(ingresoInst);
-                ingresoInst.setVisible(true);
+            public void actionPerformed(ActionEvent arg0) {
+            	ingresarInstDepInternalFrame.setVisible(true);
             }
         });
         
@@ -68,10 +88,7 @@ public class Principal {
         
         mnAltas.add(mntmInstDeportiva);
         
-        
-        
-        
-        
+
         
         JMenuItem mntmActDeportivaa = new JMenuItem("Act. Deportiva");
         mntmActDeportivaa.addActionListener(new ActionListener() {
