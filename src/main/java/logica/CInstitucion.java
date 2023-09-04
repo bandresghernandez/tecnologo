@@ -10,6 +10,7 @@ import datatypes.DtClase;
 import datatypes.DtFecha;
 import datatypes.DtHora;
 import interfaces.ICInstitucion;
+import excepciones.InstitucionRepetidaExcepcion;
 
 public class CInstitucion implements ICInstitucion {
 	
@@ -69,7 +70,7 @@ public class CInstitucion implements ICInstitucion {
 	}
 	
 	@Override
-	public boolean altaInstitucionDeportiva(String nombre_institucion, String descripcion, String url) {
+	public boolean altaInstitucionDeportiva(String nombre_institucion, String descripcion, String url)throws InstitucionRepetidaExcepcion {
 		boolean res = false;
 		ManejadorInstitucionDeportiva mi = ManejadorInstitucionDeportiva.getInstancia();
 		if(!mi.existeInsttitucion(nombre_institucion)) {
