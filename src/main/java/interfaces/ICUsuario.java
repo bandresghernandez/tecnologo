@@ -4,9 +4,10 @@ import java.util.ArrayList;
 import java.util.Set;
 
 import datatypes.DtUsuario;
+import excepciones.UsuarioEnUsoExcepcion;
 
 public interface ICUsuario {
-	public void agregarUsuario(DtUsuario usuario);
+	public void agregarUsuario(DtUsuario usuario) throws UsuarioEnUsoExcepcion;
 	
 	public DtUsuario obtenerUsuario(String nickname);// en pav usabamos el main para iterar y mostrar toda la info de usuario
 	
