@@ -3,6 +3,7 @@ package presentacion;
  //import java.awt.EventQueue;
 
 import javax.swing.JInternalFrame;
+
 import javax.swing.JPanel;
 import javax.swing.JOptionPane;
 import javax.swing.border.EmptyBorder;
@@ -10,7 +11,7 @@ import javax.swing.JFrame;
 
 //import logica.ActividadDeportiva;
 import interfaces.ICInstitucion;
-//import Excepciones.InstitucionRepetidaExcepcion;
+import excepciones.InstitucionRepetidaExcepcion;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.JButton;
@@ -130,12 +131,6 @@ public class IngresarInstitucionDeportiva extends JInternalFrame {
 		String url = textFieldUrl.getText();
 		
 		 if (checkFormulario()) {
-	            this.iinst.altaInstitucionDeportiva(nombre,descripcion,url);
-				JOptionPane.showMessageDialog(this, "La institución se ha creado con éxito", "Agregar Institución",
-				        JOptionPane.INFORMATION_MESSAGE);
-	            limpiarFormulario();
-	            setVisible(false);
-	            /*
 	             try {
 	            	this.iinst.altaInstitucionDeportiva(nombre,descripcion,url);
 	                JOptionPane.showMessageDialog(this, "La institución se ha creado con éxito", "Agregar Institución",
@@ -143,7 +138,7 @@ public class IngresarInstitucionDeportiva extends JInternalFrame {
 	            } catch (InstitucionRepetidaExcepcion e) {
 	                JOptionPane.showMessageDialog(this, e.getMessage(), "Agregar Institución", JOptionPane.ERROR_MESSAGE);
 	            }
-	             */
+	             
 	        }
 		
 	}
