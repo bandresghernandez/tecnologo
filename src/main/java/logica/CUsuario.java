@@ -5,6 +5,7 @@ import java.util.Set;
 import datatypes.DtProfesor;
 import datatypes.DtSocio;
 import datatypes.DtUsuario;
+import excepciones.UsuarioEnUsoExcepcion;
 import interfaces.ICUsuario;
 
 import java.util.ArrayList;
@@ -18,15 +19,21 @@ public class CUsuario implements ICUsuario{
 	}
 	
 	@Override
-	public void agregarUsuario(DtUsuario usuario) {
+	public void agregarUsuario(DtUsuario usuario) throws UsuarioEnUsoExcepcion {
 		// TODO Auto-generated method stub
-		Usuario nuevoUsuario= null;
-		if (usuario instanceof DtSocio)
-			nuevoUsuario = new Socio(usuario.getNickname(),usuario.getNombre(), usuario.getApellido(), usuario.getEmail(), usuario.getFechaNac());	
-		if (usuario instanceof DtProfesor)
-			nuevoUsuario = new Profesor(usuario.getNickname(),usuario.getNombre(), usuario.getApellido(), usuario.getEmail(), usuario.getFechaNac(), ((DtProfesor) usuario).getDescripcion(),((DtProfesor) usuario).getBiogrfia(), ((DtProfesor) usuario).getSitioweb() );
-		
 		ManejadorUsuario mU = ManejadorUsuario.getInstancia();
+		Usuario nuevoUsuario = mU.buscarUsuario(usuario.getNickname());
+		//Usuario nuevoUsuario= null;
+		if (nuevoUsuario != null) {
+			throw new UsuarioEnUsoExcepcion("El usuario" + usuario.getNickname() + "ya esta en uso"); 
+		}else {
+		if (usuario instanceof DtSocio) {
+			nuevoUsuario = new Socio(usuario.getNickname(),usuario.getNombre(), usuario.getApellido(), usuario.getEmail(), usuario.getFechaNac());	
+		}
+		if (usuario instanceof DtProfesor) {
+			nuevoUsuario = new Profesor(usuario.getNickname(),usuario.getNombre(), usuario.getApellido(), usuario.getEmail(), usuario.getFechaNac(), ((DtProfesor) usuario).getDescripcion(),((DtProfesor) usuario).getBiogrfia(), ((DtProfesor) usuario).getSitioweb() );
+		}
+		}
 		mU.agregarUsuario(nuevoUsuario);
 		
 		
