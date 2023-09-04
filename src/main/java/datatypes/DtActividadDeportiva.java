@@ -34,9 +34,9 @@ public class DtActividadDeportiva {
         return clase;
     }
 
-    /public void setClase(DtClase clase) {
+     public void setClase(Set<DtClase> clase) {
         this.clase = clase;
-    }/
+    }
 
     @Override
     public String toString() {
