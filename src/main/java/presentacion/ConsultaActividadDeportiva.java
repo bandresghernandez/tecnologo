@@ -16,6 +16,8 @@ import javax.swing.JTextPane;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 
 public class ConsultaActividadDeportiva extends JInternalFrame {
 
@@ -46,9 +48,37 @@ public class ConsultaActividadDeportiva extends JInternalFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JComboBox comboBoxInstituto = new JComboBox();
+		JComboBox comboBoxInstituto = new JComboBox();	
+		comboBoxInstituto.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusGained(FocusEvent e) {
+				comboBoxInstituto.removeAllItems();
+				
+				ArrayList<String> instituciones = iinst.listarInstitucionDeportiva();
+				if(instituciones.isEmpty()) {
+					comboBoxInstituto.addItem("<Sin intituciones creadas>");
+					comboBoxInstituto.setSelectedItem("<Sin intituciones creadas>");
+				}else {
+					comboBoxInstituto.addItem("<Seleccionar institucion>");
+					comboBoxInstituto.setSelectedItem("<Seleccionar institucion>");
+				}
+				// miro si me trae algo
+				for (String s : instituciones) {
+					System.out.print(s);
+				}
+				
+				for (String s : instituciones) {
+					comboBoxInstituto.addItem(s);
+				}	
+				
+				if(comboBoxInstituto.getSelectedItem()=="<Seleccionar institucion>" ||
+				   comboBoxInstituto.getSelectedItem()=="<Sin intituciones creadas>") {					
+				}
+			}
+		});
 		comboBoxInstituto.setBounds(10, 57, 328, 22);	
 		contentPane.add(comboBoxInstituto);
+	
 		
 		
 		JComboBox comboBoxActividad = new JComboBox();
@@ -87,17 +117,7 @@ public class ConsultaActividadDeportiva extends JInternalFrame {
 		btnRecargar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				comboBoxInstituto.removeAllItems();
-				ArrayList<String> instituciones = iinst.listarInstitucionDeportiva();
-				// miro si me trae algo
-				for (String s : instituciones) {
-					System.out.print(s);
-				}
-				
-				for (String s : instituciones) {
-					comboBoxInstituto.addItem(s);
-				}
-			comboBoxInstituto.addItem("cosa 1");
+			
 			}
 		});
 		btnRecargar.setBounds(10, 303, 89, 23);
