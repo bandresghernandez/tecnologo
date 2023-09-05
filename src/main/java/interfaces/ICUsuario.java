@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import java.util.Set;
 
+import datatypes.DtFecha;
 import datatypes.DtUsuario;
 import excepciones.UsuarioEnUsoExcepcion;
 
@@ -13,4 +14,5 @@ public interface ICUsuario {
 	public Set<String> listarUsuarios();
 	public Set<String> listarSocios();
 	//public boolean selecDatos(String socio, String clase, DtFecha fechaReg, Float costo);
+	boolean selecDatos(String socio, String clase, DtFecha fechaReg, Float costo);
 	}

@@ -113,4 +113,8 @@ public class ActividadDeportiva {
 		// TODO Auto-generated method stub
 		return new DtActividadDeportiva(this.nombre, this.descripcion, null);
 	}
+
+	public Clase obtenerClase(String clase) {
+		return this.clases.get(clase);
+	}
 }

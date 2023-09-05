@@ -2,10 +2,13 @@ package logica;
 
 import java.util.Set;
 
+import datatypes.DtFecha;
 import datatypes.DtProfesor;
 import datatypes.DtSocio;
 import datatypes.DtUsuario;
 import excepciones.UsuarioEnUsoExcepcion;
+import interfaces.Fabrica;
+import interfaces.ICInstitucion;
 import interfaces.ICUsuario;
 
 import java.util.ArrayList;
@@ -66,16 +69,24 @@ public class CUsuario implements ICUsuario{
 	}
 
 
-	/* encuentro el socio, encuentro la clase y si no existe el regitro de ese socio a esa clase lo creo
+	// encuentro el socio, encuentro la clase y si no existe el regitro de ese socio a esa clase lo creo
 	@Override
 	public boolean selecDatos(String socio, String clase, DtFecha fechaReg, Float costo){
 		ManejadorUsuario mU = ManejadorUsuario.getInstancia();
-		Usuario usuario = mU.buscarUsuario(socio);
+		Fabrica db = Fabrica.getInstancia();
+		ICInstitucion cin = db.getICInstitucion();
+		
+		Clase clac = cin.obtenerClase(clase);		
+		Socio usr = (Socio) mU.buscarUsuario(socio);
+		
+		usr.crearRegistro(clac, fechaReg);
+		
+		return false;
 		
 		
  
 	}
-	*/
+	
 
 	
 }

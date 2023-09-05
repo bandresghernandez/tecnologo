@@ -13,6 +13,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import datatypes.DtFecha;
+import excepciones.UsuarioEnUsoExcepcion;
 import logica.CUsuario;
 
 public class IngresarUsuario extends JInternalFrame {
@@ -125,7 +126,12 @@ public class IngresarUsuario extends JInternalFrame {
           
                 // Crear una instancia de la clase CUsuario y llamar al método ingresarSocio con los datos ingresados
                 CUsuario CUsuario = new CUsuario();
-                CUsuario.agregarUsuario(null);
+                try {
+					CUsuario.agregarUsuario(null);
+				} catch (UsuarioEnUsoExcepcion e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
                 
                 
    

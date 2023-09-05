@@ -82,13 +82,13 @@ public class Clase {
         System.out.println("Fecha de Registro: " + fechaReg);
     }
 
-    public static void main(String[] args) {
+   /* public static void main(String[] args) {
         DtFecha fecha = new DtFecha(8, 8, 2023);
         DtHora horaInicio = new DtHora(15, 30);
         Clase clase = new Clase("Yoga en lÃ­nea", fecha, horaInicio, "http://www.claseyoga.com", fecha);
 
         clase.mostrarInformacion();
-    }
+    }*/
 
 	public DtActividadDeportiva obtenerInfoActividad() {
 		// TODO Auto-generated method stub

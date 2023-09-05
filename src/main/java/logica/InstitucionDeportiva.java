@@ -105,6 +105,12 @@ public class InstitucionDeportiva {
     	return dtc;
     }
 
+	public Clase obtenerClase(String clase, String actividadDeportiva) {
+		ActividadDeportiva act = this.actividades.get(actividadDeportiva);
+		Clase clac = act.obtenerClase(clase);
+		return clac;
+	}
+
     /*public static void main(String[] args) {
 
         // Crear una lista de actividades deportivas

@@ -64,6 +64,7 @@ public class CInstitucion implements ICInstitucion {
 		if(mi.existeInsttitucion(institucion)) { // si ya se que la institucion existe esto es al cuete
 			this.setInstitucion(institucion);
 			InstitucionDeportiva inst = mi.getInstitucion(institucion);
+			this.institucion = institucion;
 			res = inst.getActividades();
 		}
 		return res;
@@ -85,6 +86,7 @@ public class CInstitucion implements ICInstitucion {
 	public DtActividadDeportiva selectActividadDeportiva(String actividad) {
 		ManejadorInstitucionDeportiva mi = ManejadorInstitucionDeportiva.getInstancia();
 		InstitucionDeportiva inst = mi.getInstitucion(this.institucion);
+		this.actividadDeportiva = actividad;
 		return inst.getDtActividad(actividad);
 	}
 	
@@ -118,5 +120,13 @@ public class CInstitucion implements ICInstitucion {
 		InstitucionDeportiva id = mi.getInstitucion(this.institucion);
 		DtClase dtc = id.getDtClase(this.actividadDeportiva, nombre);
 		return dtc;
+	}
+	
+	@Override
+	public Clase obtenerClase(String clase) {
+		ManejadorInstitucionDeportiva mi = ManejadorInstitucionDeportiva.getInstancia();
+		InstitucionDeportiva id = mi.getInstitucion(this.institucion);
+		Clase clac = id.obtenerClase(clase,this.actividadDeportiva);
+		return clac;
 	}
 }
