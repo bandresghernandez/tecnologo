@@ -94,11 +94,11 @@ public class ConsultaActividadDeportiva extends JInternalFrame {
 		contentPane.add(lblComboInstituto);
 		
 		JLabel lblComboActividad = new JLabel("Actividades");
-		lblComboActividad.setBounds(10, 127, 64, 14);
+		lblComboActividad.setBounds(10, 127, 282, 14);
 		contentPane.add(lblComboActividad);
 		
 		JLabel lblComboClase = new JLabel("Clases");
-		lblComboClase.setBounds(10, 216, 46, 14);
+		lblComboClase.setBounds(10, 216, 183, 14);
 		contentPane.add(lblComboClase);
 		
 		JTextPane textInfoClase = new JTextPane();
@@ -112,16 +112,6 @@ public class ConsultaActividadDeportiva extends JInternalFrame {
 		textInfoActividad.setText("Informacion de Actividad . . .");
 		textInfoActividad.setBounds(385, 32, 372, 314);
 		contentPane.add(textInfoActividad);
-		
-		JButton btnRecargar = new JButton("Recargar");
-		btnRecargar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-			
-			}
-		});
-		btnRecargar.setBounds(10, 303, 89, 23);
-		contentPane.add(btnRecargar);
 		
 	}
 }
