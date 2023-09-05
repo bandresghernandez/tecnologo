@@ -20,6 +20,7 @@ public class Principal {
     
     private JDesktopPane desktopPane;
     private IngresarInstitucionDeportiva ingresarInstDepInternalFrame;
+    private ConsultaActividadDeportiva consultaActividadDeportivaFrame;
     
 
     public static void main(String[] args) {
@@ -45,12 +46,21 @@ public class Principal {
         Dimension desktopSize = frame.getSize();
 		Dimension jInternalFrameSize;
         
+		//Ingresar Institucion Deportiva		
         ingresarInstDepInternalFrame = new IngresarInstitucionDeportiva(iinst);//lo instancio
         jInternalFrameSize = ingresarInstDepInternalFrame.getSize();
         ingresarInstDepInternalFrame.setLocation((desktopSize.width - jInternalFrameSize.width)/2,//lo pongo en el medio de la pantalla
 		    (desktopSize.height- jInternalFrameSize.height)/2);
         ingresarInstDepInternalFrame.setVisible(false);//lo hago invisible
 		frame.getContentPane().add(ingresarInstDepInternalFrame);//lo agrego
+		
+		//Consulta Actividad Deportiva
+		consultaActividadDeportivaFrame = new ConsultaActividadDeportiva(iinst);//lo instancio
+        jInternalFrameSize = consultaActividadDeportivaFrame.getSize();
+        consultaActividadDeportivaFrame.setLocation((desktopSize.width - jInternalFrameSize.width)/2,//lo pongo en el medio de la pantalla
+		    (desktopSize.height- jInternalFrameSize.height)/2);
+        consultaActividadDeportivaFrame.setVisible(false);//lo hago invisible
+		frame.getContentPane().add(consultaActividadDeportivaFrame);//lo agrego
     }
 
     private void initialize() {
@@ -120,6 +130,14 @@ public class Principal {
         
         JMenu mnInformacion = new JMenu("Información");
         menuBar.add(mnInformacion);
+        
+        JMenuItem mntmConsutlaActividad = new JMenuItem("Consulta Actividad Deportiva");
+        mntmConsutlaActividad.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		consultaActividadDeportivaFrame.setVisible(true);
+        	}
+        });
+        mnInformacion.add(mntmConsutlaActividad);
         
         
         
