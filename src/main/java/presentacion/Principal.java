@@ -63,6 +63,17 @@ public class Principal {
 		    (desktopSize.height- jInternalFrameSize.height)/2);
         consultaActividadDeportivaFrame.setVisible(false);//lo hago invisible
 		frame.getContentPane().add(consultaActividadDeportivaFrame);//lo agrego
+	
+	    //Ingresar registro
+
+IngresarRegistroFrame = new IngresarRegistro(iusu);//lo instancio
+        jInternalFrameSize = IngresarRegistroFrame.getSize();
+        IngresarRegistroFrame.setLocation((desktopSize.width - jInternalFrameSize.width)/2,//lo pongo en el medio de la pantalla
+		    (desktopSize.height- jInternalFrameSize.height)/2);
+        IngresarRegistroFrame.setVisible(false);//lo hago invisible
+		frame.getContentPane().add(IngresarRegistroFrame);//lo agrego
+
+	    
     }
 
     private void initialize() {
