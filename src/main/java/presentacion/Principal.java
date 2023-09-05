@@ -22,8 +22,8 @@ public class Principal {
     private IngresarInstitucionDeportiva ingresarInstDepInternalFrame;
     private ConsultaActividadDeportiva consultaActividadDeportivaFrame;
     private IngresarRegistro IngresarRegistroFrame;
-
-    
+	private IngresarUsuario ingresarUsuarioInternalFrame;
+   private ConsultaUsuario consultaUsuarioInternalFrame;
 
     public static void main(String[] args) {
         EventQueue.invokeLater(new Runnable() {
@@ -47,7 +47,16 @@ public class Principal {
         
         Dimension desktopSize = frame.getSize();
 		Dimension jInternalFrameSize;
-        
+
+	    //Ingresar Usuario
+        ingresarUsuarioInternalFrame = new IngresarUsuario(iusu);
+		jInternalFrameSize = ingresarUsuarioInternalFrame.getSize();
+		ingresarUsuarioInternalFrame.setLocation((desktopSize.width - jInternalFrameSize.width)/2, (desktopSize.height- jInternalFrameSize.height)/2);
+		//ingresarUsuarioInternalFrame.setSize(450, 300);
+		ingresarUsuarioInternalFrame.setVisible(false);
+		frame.getContentPane().add(ingresarUsuarioInternalFrame);
+		//ingresarInstDepInternalFrame.getContentPane().add(ingresarUsuarioInternalFrame);
+	    
 		//Ingresar Institucion Deportiva		
         ingresarInstDepInternalFrame = new IngresarInstitucionDeportiva(iinst);//lo instancio
         jInternalFrameSize = ingresarInstDepInternalFrame.getSize();
@@ -55,7 +64,16 @@ public class Principal {
 		    (desktopSize.height- jInternalFrameSize.height)/2);
         ingresarInstDepInternalFrame.setVisible(false);//lo hago invisible
 		frame.getContentPane().add(ingresarInstDepInternalFrame);//lo agrego
-		
+//Consulta Usuario
+consultaUsuarioInternalFrame = new ConsultaUsuario(iusu);//lo instancio
+        jInternalFrameSize = consultaUsuarioInternalFrame.getSize();
+        consultaUsuarioInternalFrame.setLocation((desktopSize.width - jInternalFrameSize.width)/2,//lo pongo en el medio de la pantalla
+		    (desktopSize.height- jInternalFrameSize.height)/2);
+        consultaUsuarioInternalFrame.setVisible(false);//lo hago invisible
+		frame.getContentPane().add(consultaUsuarioInternalFrame, BorderLayout.NORTH);
+
+	    
+	    
 		//Consulta Actividad Deportiva
 		consultaActividadDeportivaFrame = new ConsultaActividadDeportiva(iinst);//lo instancio
         jInternalFrameSize = consultaActividadDeportivaFrame.getSize();
@@ -90,12 +108,13 @@ IngresarRegistroFrame = new IngresarRegistro(iusu);//lo instancio
         JMenu mnAltas = new JMenu("Altas");
         menuBar.add(mnAltas);
 
-        JMenuItem mntmUsuario = new JMenuItem("Usuario");
+         JMenuItem mntmUsuario = new JMenuItem("Usuario");
         mntmUsuario.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                IngresarUsuario ingresoUsuario = new IngresarUsuario();
-                desktopPane.add(ingresoUsuario);
-                ingresoUsuario.setVisible(true);
+                //IngresarUsuario ingresoUsuario = new IngresarUsuario();
+                //desktopPane.add(ingresoUsuario);
+                //ingresoUsuario.setVisible(true);
+            	ingresarUsuarioInternalFrame.setVisible(true);
             }
         });
         mnAltas.add(mntmUsuario);
@@ -143,7 +162,16 @@ IngresarRegistroFrame = new IngresarRegistro(iusu);//lo instancio
         
         JMenu mnInformacion = new JMenu("Información");
         menuBar.add(mnInformacion);
-        
+
+	   JMenuItem mntmSocioInfo = new JMenuItem("Socio");
+        mntmSocioInfo.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		consultaUsuarioInternalFrame.setVisible(true);
+        		consultaUsuarioInternalFrame.iniciarlizarComboBoxes();
+        	}
+        });
+        mnInformacion.add(mntmSocioInfo);
+	    
         JMenuItem mntmConsutlaActividad = new JMenuItem("Consulta Actividad Deportiva");
         mntmConsutlaActividad.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
