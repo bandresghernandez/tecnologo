@@ -2,6 +2,7 @@ package presentacion;
 
 import java.awt.EventQueue;
 import java.util.ArrayList;
+import java.util.Set;
 
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
@@ -48,34 +49,7 @@ public class ConsultaActividadDeportiva extends JInternalFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JComboBox comboBoxInstituto = new JComboBox();	
-		comboBoxInstituto.addFocusListener(new FocusAdapter() {
-			@Override
-			public void focusGained(FocusEvent e) {
-				comboBoxInstituto.removeAllItems();
-				
-				ArrayList<String> instituciones = iinst.listarInstitucionDeportiva();
-				if(instituciones.isEmpty()) {
-					comboBoxInstituto.addItem("<Sin intituciones creadas>");
-					comboBoxInstituto.setSelectedItem("<Sin intituciones creadas>");
-				}else {
-					comboBoxInstituto.addItem("<Seleccionar institucion>");
-					comboBoxInstituto.setSelectedItem("<Seleccionar institucion>");
-				}
-				// miro si me trae algo
-				for (String s : instituciones) {
-					System.out.print(s);
-				}
-				
-				for (String s : instituciones) {
-					comboBoxInstituto.addItem(s);
-				}	
-				
-				if(comboBoxInstituto.getSelectedItem()=="<Seleccionar institucion>" ||
-				   comboBoxInstituto.getSelectedItem()=="<Sin intituciones creadas>") {					
-				}
-			}
-		});
+		JComboBox comboBoxInstituto = new JComboBox();			
 		comboBoxInstituto.setBounds(10, 57, 328, 22);	
 		contentPane.add(comboBoxInstituto);
 	
@@ -83,10 +57,13 @@ public class ConsultaActividadDeportiva extends JInternalFrame {
 		
 		JComboBox comboBoxActividad = new JComboBox();
 		comboBoxActividad.setBounds(10, 152, 328, 22);
+		comboBoxActividad.addItem("<Seleccionar Actividad Deportiva");
 		contentPane.add(comboBoxActividad);
 		
 		JComboBox comboBoxClase = new JComboBox();
 		comboBoxClase.setBounds(10, 254, 328, 22);
+		comboBoxClase.addItem("<Seleccionar Clase");
+		comboBoxClase.setEnabled(false);
 		contentPane.add(comboBoxClase);
 		
 		JLabel lblComboInstituto = new JLabel("Institutos");
@@ -112,6 +89,83 @@ public class ConsultaActividadDeportiva extends JInternalFrame {
 		textInfoActividad.setText("Informacion de Actividad . . .");
 		textInfoActividad.setBounds(385, 32, 372, 314);
 		contentPane.add(textInfoActividad);
+		
+		comboBoxInstituto.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusGained(FocusEvent e) {
+				comboBoxInstituto.removeAllItems();
+				
+				ArrayList<String> instituciones = iinst.listarInstitucionDeportiva();
+				if(instituciones.isEmpty()) {
+					comboBoxInstituto.addItem("<Sin intituciones creadas>");
+					comboBoxInstituto.setSelectedItem("<Sin intituciones creadas>");
+				}else {
+					comboBoxInstituto.addItem("<Seleccionar institucion>");
+					comboBoxInstituto.setSelectedItem("<Seleccionar institucion>");
+				}
+				// miro si me trae algo
+				for (String s : instituciones) {
+					System.out.print(s);
+				}
+				
+				for (String s : instituciones) {
+					comboBoxInstituto.addItem(s);
+				}	
+			
+			}
+			
+			
+		});
+		// Desabilitar/habilitar combo actividades segun lo que se seleccione en el combo instituto
+		comboBoxInstituto.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e) {
+				if(comboBoxInstituto.getSelectedIndex()==0) {
+					comboBoxActividad.setEnabled(false);
+				}else {
+					comboBoxActividad.setEnabled(true);
+				}
+			}
+			
+		});
+		
+		// Desabilitar/habilitar combo Clases segun lo que se seleccione en el combo Actividad
+		comboBoxActividad.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e) {
+				if(comboBoxActividad.getSelectedIndex()==0) {
+					comboBoxClase.setEnabled(false);
+				}else {
+					comboBoxClase.setEnabled(true);
+				}
+			}
+			
+		});
+		
+		comboBoxActividad.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusGained(FocusEvent e) {
+				comboBoxActividad.removeAllItems();
+				
+				Set<String> actividades = iinst.selectInstitucionDeportiva(comboBoxInstituto.getSelectedItem().toString());
+				if(actividades.isEmpty()) {
+					comboBoxActividad.addItem("<Sin intituciones creadas>");
+					comboBoxActividad.setSelectedItem("<Sin intituciones creadas>");
+				}else {
+					comboBoxActividad.addItem("<Seleccionar institucion>");
+					comboBoxActividad.setSelectedItem("<Seleccionar institucion>");
+				}
+				// miro si me trae algo
+				for (String s : actividades) {
+					System.out.print(s);
+				}
+				
+				for (String s : actividades) {
+					comboBoxActividad.addItem(s);
+				}	
+			
+			}
+			
+			
+		});
 		
 	}
 }
