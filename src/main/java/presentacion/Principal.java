@@ -21,6 +21,8 @@ public class Principal {
     private JDesktopPane desktopPane;
     private IngresarInstitucionDeportiva ingresarInstDepInternalFrame;
     private ConsultaActividadDeportiva consultaActividadDeportivaFrame;
+    private IngresarRegistro IngresarRegistroFrame;
+
     
 
     public static void main(String[] args) {
