@@ -13,23 +13,35 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import datatypes.DtFecha;
+import datatypes.DtProfesor;
+import datatypes.DtSocio;
+import datatypes.DtUsuario;
 import excepciones.UsuarioEnUsoExcepcion;
+import interfaces.ICUsuario;
 import logica.CUsuario;
+import javax.swing.SwingConstants;
+import javax.swing.JRadioButton;
 
 public class IngresarUsuario extends JInternalFrame {
 
-    private JTextField textFieldNickname;
+	private static final long serialVersionUID = 1L;
+	private ICUsuario icon;
+	
+	private JTextField textFieldNickname;
     private JTextField textFieldNombre;
     private JTextField textFieldApellido;
     private JTextField textFieldEmail;
     private JTextField textFieldDia;
     private JTextField textFieldMes;
     private JTextField textFieldAnio;
-
-    /**
-     * Launch the application.
-     */
-    public static void main(String[] args) {
+    private JTextField textFieldDescripcion;
+    private JTextField textFieldBiografia;
+    private JTextField textFieldSitioWeb;
+    private JRadioButton rdbtnSocio;
+    private JRadioButton rdbtnProfesor;
+    
+  
+   /* public static void main(String[] args) {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
@@ -45,8 +57,12 @@ public class IngresarUsuario extends JInternalFrame {
     /**
      * Create the frame.
      */
-    public IngresarUsuario() {
-        setTitle("Ingresar Usuario");
+    public IngresarUsuario(ICUsuario icon) {
+        this.icon=icon;
+        setResizable(true);
+        setIconifiable(true);
+        setMaximizable(true);
+    	setTitle("Ingresar Usuario");
 
         setDefaultCloseOperation(JInternalFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 450, 300);
@@ -56,100 +72,56 @@ public class IngresarUsuario extends JInternalFrame {
         contentPane.setLayout(null);
 
         JLabel lblNickname = new JLabel("Nickname:");
-        lblNickname.setBounds(30, 30, 100, 20);
+        lblNickname.setBounds(10, 70, 100, 20);
         contentPane.add(lblNickname);
 
         textFieldNickname = new JTextField();
-        textFieldNickname.setBounds(140, 30, 200, 20);
+        textFieldNickname.setBounds(64, 76, 151, 15);
         contentPane.add(textFieldNickname);
         textFieldNickname.setColumns(10);
 
         JLabel lblNombre = new JLabel("Nombre:");
-        lblNombre.setBounds(30, 60, 100, 20);
+        lblNombre.setBounds(10, 89, 100, 20);
         contentPane.add(lblNombre);
 
         textFieldNombre = new JTextField();
-        textFieldNombre.setBounds(140, 60, 200, 20);
+        textFieldNombre.setBounds(52, 95, 151, 15);
         contentPane.add(textFieldNombre);
         textFieldNombre.setColumns(10);
 
         JLabel lblApellido = new JLabel("Apellido:");
-        lblApellido.setBounds(30, 90, 100, 20);
+        lblApellido.setBounds(10, 116, 100, 20);
         contentPane.add(lblApellido);
 
         textFieldApellido = new JTextField();
-        textFieldApellido.setBounds(140, 90, 200, 20);
+        textFieldApellido.setBounds(52, 119, 151, 15);
         contentPane.add(textFieldApellido);
         textFieldApellido.setColumns(10);
 
         JLabel lblEmail = new JLabel("Email:");
-        lblEmail.setBounds(30, 120, 100, 20);
+        lblEmail.setBounds(20, 138, 100, 20);
         contentPane.add(lblEmail);
 
         textFieldEmail = new JTextField();
-        textFieldEmail.setBounds(140, 120, 200, 20);
+        textFieldEmail.setBounds(52, 141, 151, 15);
         contentPane.add(textFieldEmail);
         textFieldEmail.setColumns(10);
 
         JLabel lblFecha = new JLabel("Fecha de Nacimiento:");
-        lblFecha.setBounds(69, 152, 179, 20);
+        lblFecha.setBounds(10, 167, 109, 20);
         contentPane.add(lblFecha);
 
         textFieldDia = new JTextField();
-        textFieldDia.setBounds(235, 151, 40, 20);
+        textFieldDia.setBounds(115, 168, 40, 20);
         contentPane.add(textFieldDia);
         textFieldDia.setColumns(10);
 
         textFieldMes = new JTextField();
-        textFieldMes.setBounds(287, 152, 40, 20);
+        textFieldMes.setBounds(165, 168, 40, 20);
         contentPane.add(textFieldMes);
         textFieldMes.setColumns(10);
 
-        textFieldAnio = new JTextField();
-        textFieldAnio.setBounds(339, 153, 34, 20);
-        contentPane.add(textFieldAnio);
-        textFieldAnio.setColumns(10);
-
-        JButton btnAceptar = new JButton("ACEPTAR");
-        btnAceptar.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                String nickname = textFieldNickname.getText();
-                String nombre = textFieldNombre.getText();
-                String apellido = textFieldApellido.getText();
-                String email = textFieldEmail.getText();
-                int dia = Integer.parseInt(textFieldDia.getText());
-                int mes = Integer.parseInt(textFieldMes.getText());
-                int anio = Integer.parseInt(textFieldAnio.getText());
-
-        		
-             
-          
-                // Crear una instancia de la clase CUsuario y llamar al método ingresarSocio con los datos ingresados
-                CUsuario CUsuario = new CUsuario();
-                try {
-					CUsuario.agregarUsuario(null);
-				} catch (UsuarioEnUsoExcepcion e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-                
-                
-   
-
-               JFrame frame = new JFrame("Mensaje de Éxito");
-
-               // Mostrar un cuadro de diálogo con el mensaje
-               JOptionPane.showMessageDialog(frame, "Socio ingresado exitosamente", "Éxito", JOptionPane.INFORMATION_MESSAGE);
-                // Mostrar mensaje de éxito o realizar otras acciones
-             //  System.out.println("Socio ingresado exitosamente");
-
-                
-                // Cerrar la ventana
-                dispose();
-            }
-        });
-        btnAceptar.setBounds(88, 190, 121, 23);
-        contentPane.add(btnAceptar);
+        
 
         JButton btnCancelar = new JButton("CANCELAR");
         btnCancelar.addActionListener(new ActionListener() {
@@ -158,20 +130,174 @@ public class IngresarUsuario extends JInternalFrame {
                 dispose(); // Cierra la ventana
             }
         });
-        btnCancelar.setBounds(231, 190, 129, 23);
+        btnCancelar.setBounds(273, 88, 129, 23);
         contentPane.add(btnCancelar);
         
         JLabel lblAltaUsuario = new JLabel("Alta Usuario");
         lblAltaUsuario.setBounds(160, 0, 140, 15);
         contentPane.add(lblAltaUsuario);
         
-          
+        textFieldAnio = new JTextField();
+        textFieldAnio.setColumns(10);
+        textFieldAnio.setBounds(215, 168, 40, 20);
+        contentPane.add(textFieldAnio);
+        
+        JLabel lblTipoU = new JLabel("Tipo de Usuario");
+        lblTipoU.setHorizontalAlignment(SwingConstants.TRAILING);
+        lblTipoU.setBounds(20, 31, 72, 13);
+        contentPane.add(lblTipoU);
+        
+       
+        
+       
+        
+   
+        
+        
+        JLabel lblDescripcion = new JLabel("Descripcion");
+        lblDescripcion.setBounds(10, 204, 62, 13);
+        contentPane.add(lblDescripcion);
+        
+        JLabel lblBiografia = new JLabel("Biografia");
+        lblBiografia.setBounds(170, 207, 45, 13);
+        contentPane.add(lblBiografia);
+        
+        JLabel lblSitioWeb = new JLabel("Sitio Web");
+        lblSitioWeb.setBounds(281, 204, 45, 13);
+        contentPane.add(lblSitioWeb);
+        
+      
+        textFieldDescripcion = new JTextField();
+        textFieldDescripcion.setEnabled(false);
+        textFieldDescripcion.setBounds(10, 226, 100, 16);
+        contentPane.add(textFieldDescripcion);
+        textFieldDescripcion.setColumns(10);
+        
+        textFieldBiografia = new JTextField();
+        textFieldBiografia.setEnabled(false);
+        textFieldBiografia.setBounds(140, 223, 91, 19);
+        contentPane.add(textFieldBiografia);
+        textFieldBiografia.setColumns(10);
+        
+        textFieldSitioWeb = new JTextField();
+        textFieldSitioWeb.setEnabled(false);
+        textFieldSitioWeb.setBounds(273, 225, 72, 17);
+        contentPane.add(textFieldSitioWeb);
+        textFieldSitioWeb.setColumns(10);
+        
+        JButton btnAceptar = new JButton("ACEPTAR");
+        btnAceptar.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+            	agregarIngresarUsuarioAceptarActionPerformed(e);
+   
+            }
+        });
+        btnAceptar.setBounds(281, 43, 121, 23);
+        contentPane.add(btnAceptar);
+        
+        rdbtnSocio = new JRadioButton("Socio");
+        rdbtnSocio.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		rdbtnSocio.setSelected(true);
+        		rdbtnProfesor.setSelected(false);
+        		textFieldDescripcion.setText("");
+				textFieldDescripcion.setEnabled(false);
+				textFieldBiografia.setText("");
+				textFieldBiografia.setEnabled(false);
+				textFieldSitioWeb.setText("");
+				textFieldSitioWeb.setEnabled(false);
+        	}
+        });
+        rdbtnSocio.setSelected(true);
+        textFieldDescripcion.setEnabled(false);
+        textFieldBiografia.setEnabled(false);
+        textFieldSitioWeb.setEnabled(false);
+        
+        rdbtnSocio.setBounds(98, 21, 103, 21);
+        contentPane.add(rdbtnSocio);
+        
+        rdbtnProfesor = new JRadioButton("Profesor");
+        rdbtnProfesor.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		rdbtnSocio.setSelected(false);
+        		rdbtnProfesor.setSelected(true);
+        		textFieldDescripcion.setText("");
+				textFieldDescripcion.setEnabled(true);
+				textFieldBiografia.setText("");
+				textFieldBiografia.setEnabled(true);
+				textFieldSitioWeb.setText("");
+				textFieldSitioWeb.setEnabled(true);
+        	
+        	}
+        });
+        rdbtnProfesor.setSelected(false);
+        rdbtnProfesor.setBounds(98, 43, 103, 21);
+        contentPane.add(rdbtnProfesor);
+        
     }
     
+    
+    protected void agregarIngresarUsuarioAceptarActionPerformed(ActionEvent arg0) {
+		//String nombre = this.textFieldNombre.getText();
+       // String ci = this.textFieldCI.getText();
+    	String nickname = textFieldNickname.getText();
+        String nombre = textFieldNombre.getText();
+        String apellido = textFieldApellido.getText();
+        String email = textFieldEmail.getText();
+        int dia = Integer.parseInt(textFieldDia.getText());
+        int mes = Integer.parseInt(textFieldMes.getText());
+        int anio = Integer.parseInt(textFieldAnio.getText());
+        String descripcion = textFieldDescripcion.getText();
+        String biografia = textFieldBiografia.getText();
+        String sitioWeb = textFieldSitioWeb.getText();
+        DtFecha fechaNac = new DtFecha(dia,mes,anio); 
+        DtUsuario dtusuario=null;;
+        
+        
+        if(rdbtnSocio.isSelected()) {
+        dtusuario = new DtSocio(nickname,nombre,apellido,email,fechaNac);
+        } else if(rdbtnProfesor.isSelected()) {
+        	dtusuario = new DtProfesor(nickname,nombre,apellido,email,fechaNac,descripcion,biografia,sitioWeb);
+        }
+        
+    	if (checkFormulario()) {
+            try {
+                this.icon.agregarUsuario(dtusuario);
+                JOptionPane.showMessageDialog(this, "El Usuario se ha creado con éxito", "Agregar Socio", JOptionPane.INFORMATION_MESSAGE);
+            } catch (UsuarioEnUsoExcepcion e) {
+                //JOptionPane.showMessageDialog(this, e.getMessage(), "Agregar Usuario", JOptionPane.ERROR_MESSAGE);
+            }
+            limpiarFormulario();
+            setVisible(false);
+        }
+		
+	} 
 	
-
-    
-    
-    
-    
+	
+	
+	private boolean checkFormulario() {
+        String nickname = this.textFieldNickname.getText();
+        String email = this.textFieldEmail.getText();
+        if (nickname.isEmpty() || email.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "No puede haber campos vacíos", "Agregar Usuario",
+                    JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        
+        return true;
+    }
+	
+	private void limpiarFormulario() {
+		textFieldNickname.setText("");
+        textFieldNombre.setText("");
+        textFieldApellido.setText("");
+        textFieldEmail.setText("");
+        textFieldDia.setText("");
+        textFieldMes.setText("");
+        textFieldAnio.setText("");
+        textFieldDescripcion.setText("");
+        textFieldBiografia.setText("");
+        textFieldSitioWeb.setText("");
+       
+ }
 }
