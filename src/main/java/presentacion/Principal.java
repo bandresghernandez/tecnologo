@@ -139,7 +139,24 @@ public class Principal {
         });
         mnInformacion.add(mntmConsutlaActividad);
         
+  
+        JMenu mnRegistro = new JMenu("Registro");
         
+   
+        menuBar.add(mnRegistro);
+        
+        JMenuItem mntmAgregar = new JMenuItem("Agregar");
+        mntmAgregar.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+            	IngresarRegistro l = new IngresarRegistro(null);
+                desktopPane.add(l);
+                IngresarRegistroFrame.setVisible(true);
+            }
+        });
+        mnRegistro.add(mntmAgregar);
+        
+
+	    
         
         JMenuItem mntmSocio = new JMenuItem("Socios");
         /*
