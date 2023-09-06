@@ -91,7 +91,7 @@ public class Profesor extends Usuario {
 			actividades.add(clase.obtenerInfoActividad());
 		}
 		//creo un DtProfesor con su info y el listado de lcases y actividades vinculadas
-		return new DtProfesor(this.getNickname(), this.getNombre(), this.getApellido(), this.getEmail(), this.getFechaNac(), this.getDescripcion(),this.getBiogrfia(), this.getSitioweb(),actividades,pClases);
+		return new DtProfesor(this.getNickname(), this.getNombre(), this.getApellido(), this.getEmail(), this.getFechaNac(), this.getDescripcion(),this.getBiogrfia(), this.getSitioweb());
 	}
 
 	public void daClase(Clase c) {
