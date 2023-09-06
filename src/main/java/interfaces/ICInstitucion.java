@@ -20,5 +20,5 @@ public interface ICInstitucion {
     public boolean altaActividadDeportiva(String nombre_institucion, String nombre, String descripcion, int duracion, Float costo, DtFecha fechaAlta)throws ActividadDeportivaRepetidaExcepcion;
     public DtClase selectClase(String nombre);
 	public Clase obtenerClase(String clase);
-	
+	public String[] listarInstitucion();
 }
