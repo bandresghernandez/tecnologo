@@ -11,6 +11,8 @@ import datatypes.DtFecha;
 import datatypes.DtHora;
 import interfaces.ICInstitucion;
 import excepciones.InstitucionRepetidaExcepcion;
+import excepciones.ActividadDeportivaRepetidaExcepcion;
+
 
 public class CInstitucion implements ICInstitucion {
 	
