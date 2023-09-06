@@ -24,6 +24,7 @@ public class Principal {
     private IngresarRegistro IngresarRegistroFrame;
 	private IngresarUsuario ingresarUsuarioInternalFrame;
    private ConsultaUsuario consultaUsuarioInternalFrame;
+	private IngresarActividadDeportiva ingresarActividadDepInternalFrame;
 
     public static void main(String[] args) {
         EventQueue.invokeLater(new Runnable() {
@@ -72,7 +73,12 @@ consultaUsuarioInternalFrame = new ConsultaUsuario(iusu);//lo instancio
         consultaUsuarioInternalFrame.setVisible(false);//lo hago invisible
 		frame.getContentPane().add(consultaUsuarioInternalFrame, BorderLayout.NORTH);
 
-	    
+	    //Alta Actividad Deportiva
+	    ingresarActividadDepInternalFrame = new IngresarActividadDeportiva(iinst);
+		jInternalFrameSize = ingresarActividadDepInternalFrame.getSize();
+		ingresarActividadDepInternalFrame.setLocation((desktopSize.width - jInternalFrameSize.width)/2, (desktopSize.height- jInternalFrameSize.height)/2);
+		ingresarActividadDepInternalFrame.setVisible(false);
+		frame.getContentPane().add(ingresarActividadDepInternalFrame);
 	    
 		//Consulta Actividad Deportiva
 		consultaActividadDeportivaFrame = new ConsultaActividadDeportiva(iinst);//lo instancio
