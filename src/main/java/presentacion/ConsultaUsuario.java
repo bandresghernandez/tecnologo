@@ -188,7 +188,7 @@ public class ConsultaUsuario extends JInternalFrame {
 		
 			 public void iniciarlizarComboBoxes() {
 					
-				 DefaultComboBoxModel<String> modelclases = new DefaultComboBoxModel<String>(icon.listarUsuarios());
+				 DefaultComboBoxModel<String> modelclases = new DefaultComboBoxModel<String>(icon.listarUsuario());
 				 comboBoxNickname.setModel(modelclases);//nickname Usuario
 				 /*DefaultComboBoxModel<String> modelclases = new DefaultComboBoxModel<String>(icon.listarProfesor());
 					comboBoxClasesD.setModel(modelclases);
