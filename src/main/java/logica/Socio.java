@@ -46,7 +46,7 @@ class Socio extends Usuario {
 		}
 		
 		//una ves teniendo todas las clases creo el DtSocio
-		DtSocio data = new DtSocio(this.getNickname(), this.getNombre(), this.getApellido(), this.getEmail(),this.getFechaNac(),clases);
+		DtSocio data = new DtSocio(this.getNickname(), this.getNombre(), this.getApellido(), this.getEmail(),this.getFechaNac());
 		//String nickname, String nombre, String apellido, String email,DtFecha fechaNac,List<DtClase> clases
 		return data;
 	}
