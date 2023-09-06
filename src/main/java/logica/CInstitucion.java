@@ -108,10 +108,17 @@ public class CInstitucion implements ICInstitucion {
 	}
 	
 	@Override
-	public boolean altaActividadDeportiva(String nombre_institucion, String nombre, String descripcion, int duracion, Float costo, DtFecha fechaAlta) {
+	public boolean altaActividadDeportiva(String nombre_institucion, String nombre, String descripcion, int duracion, Float costo, DtFecha fechaAlta)throws ActividadDeportivaRepetidaExcepcion {
 		ManejadorInstitucionDeportiva mi = ManejadorInstitucionDeportiva.getInstancia();
 		InstitucionDeportiva inst = mi.getInstitucion(nombre_institucion);
-		return inst.crearActividadDeportiva(nombre, descripcion, duracion, costo, fechaAlta);
+		boolean res = false;
+		if(inst.existeActividadDeportiva(nombre)) {
+			throw new ActividadDeportivaRepetidaExcepcion("Ya existe una actividad conm el nombre: "+ nombre+ " por favor elija otro");
+		}
+		else {
+			res = inst.crearActividadDeportiva(nombre, descripcion, duracion, costo, fechaAlta);
+		}
+		return res;
 	}
 	
 	@Override
@@ -128,5 +135,19 @@ public class CInstitucion implements ICInstitucion {
 		InstitucionDeportiva id = mi.getInstitucion(this.institucion);
 		Clase clac = id.obtenerClase(clase,this.actividadDeportiva);
 		return clac;
+	}
+	
+	@Override
+	public String[] listarInstitucion() {
+		ArrayList<String> inst = listarInstitucionDeportiva();
+		String[] inst_ret = new String[inst.size()];
+        int i=0;
+        for(String s:inst) {
+            inst_ret[i]=s;
+            i++;
+        }
+        String[] inst_ret1 = new String[1];
+        inst_ret1[0] = "Actividad 1";
+        return inst_ret1;
 	}
 }
