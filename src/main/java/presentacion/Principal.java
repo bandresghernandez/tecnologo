@@ -244,7 +244,7 @@ public class Principal {
         });
         menuBar.add(mnSalir);
         
-        JMenuItem mntmSalirSistema = new JMenuItem("Salir sistema");
+        JMenuItem mntmSalirSistema = new JMenuItem("Salir Sistema");
         mnSalir.add(mntmSalirSistema);
 
         
