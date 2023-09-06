@@ -85,6 +85,19 @@ public class CUsuario implements ICUsuario{
 		
  
 	}
+		//@Override
+	public String[] listarUsuario() {
+		ArrayList<String> usuarios;
+		ManejadorUsuario mU = ManejadorUsuario.getInstancia();
+		usuarios = mU.getUsuarios();
+		String[] usuarios_ret = new String[usuarios.size()];
+        int i=0;
+        for(String u:usuarios) {
+        	usuarios_ret[i]=u;
+        	i++;
+        }
+        return usuarios_ret;
+	}
 	
 
 	
