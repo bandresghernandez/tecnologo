@@ -6,7 +6,7 @@ public class DtSocio extends DtUsuario {
     private List<DtClase> clases;
     // en el DtSocio guardamos la lista de clases que esta inscripto
 
-    public DtSocio(String nickname, String nombre, String apellido, String email,DtFecha fechaNac,List<DtClase> clases) {
+    public DtSocio(String nickname, String nombre, String apellido, String email,DtFecha fechaNac) {
         super(nickname, nombre, apellido, email,  fechaNac);
         this.clases = clases;
     }
