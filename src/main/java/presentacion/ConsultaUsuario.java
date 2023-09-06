@@ -65,61 +65,61 @@ public class ConsultaUsuario extends JInternalFrame {
 				consultaUsuarioAceptarActionPerformed(e);
 			}
 		});
-		btnVerDatos.setBounds(311, 35, 85, 21);
+		btnVerDatos.setBounds(284, 35, 125, 21);
 		getContentPane().add(btnVerDatos);
 		
 		JLabel lblnombre = new JLabel("Nombre");
-		lblnombre.setBounds(37, 43, 45, 13);
+		lblnombre.setBounds(37, 39, 70, 13);
 		getContentPane().add(lblnombre);
 		
 		JLabel lblapellido = new JLabel("Apellido");
-		lblapellido.setBounds(37, 66, 45, 13);
+		lblapellido.setBounds(37, 66, 70, 13);
 		getContentPane().add(lblapellido);
 		
 		JLabel lblemail = new JLabel("Email");
 		lblemail.setBounds(37, 89, 45, 13);
 		getContentPane().add(lblemail);
 		
-		JLabel lblFechNac = new JLabel("Fecha Nacimiento");
-		lblFechNac.setBounds(37, 112, 89, 13);
+		JLabel lblFechNac = new JLabel("Fecha Nac");
+		lblFechNac.setBounds(37, 114, 89, 13);
 		getContentPane().add(lblFechNac);
 		
 		JLabel lblSOCIO = new JLabel("SOCIO :");
-		lblSOCIO.setBounds(37, 151, 45, 13);
+		lblSOCIO.setBounds(12, 151, 89, 13);
 		getContentPane().add(lblSOCIO);
 		
 		JLabel lblclasesR = new JLabel("Clases Registradas");
-		lblclasesR.setBounds(92, 151, 97, 13);
+		lblclasesR.setBounds(109, 139, 142, 28);
 		getContentPane().add(lblclasesR);
 		
 		JLabel lblprofesor = new JLabel("PROFESOR :");
-		lblprofesor.setBounds(38, 191, 58, 15);
+		lblprofesor.setBounds(12, 191, 109, 15);
 		getContentPane().add(lblprofesor);
 		
 		JLabel lblClasesDic = new JLabel("Clases Dictadas");
-		lblClasesDic.setBounds(111, 192, 97, 13);
+		lblClasesDic.setBounds(96, 192, 116, 13);
 		getContentPane().add(lblClasesDic);
 		
-		JLabel lblactividadesDepAsoc = new JLabel("Actividades Deportivas Asociadas");
-		lblactividadesDepAsoc.setBounds(218, 192, 161, 13);
+		JLabel lblactividadesDepAsoc = new JLabel("Actividades Deportivas");
+		lblactividadesDepAsoc.setBounds(220, 192, 208, 13);
 		getContentPane().add(lblactividadesDepAsoc);
 		
 		JButton btnCancelar = new JButton("Cancelar");
-		btnCancelar.setBounds(311, 66, 85, 21);
+		btnCancelar.setBounds(284, 66, 125, 21);
 		getContentPane().add(btnCancelar);
 		
 		textFieldNomb = new JTextField();
-		textFieldNomb.setBounds(81, 43, 79, 13);
+		textFieldNomb.setBounds(114, 39, 98, 13);
 		getContentPane().add(textFieldNomb);
 		textFieldNomb.setColumns(10);
 		
 		textFieldEmail = new JTextField();
-		textFieldEmail.setBounds(79, 89, 111, 13);
+		textFieldEmail.setBounds(111, 89, 111, 13);
 		getContentPane().add(textFieldEmail);
 		textFieldEmail.setColumns(10);
 		
 		textFieldApellido = new JTextField();
-		textFieldApellido.setBounds(81, 66, 96, 15);
+		textFieldApellido.setBounds(112, 65, 96, 15);
 		getContentPane().add(textFieldApellido);
 		textFieldApellido.setColumns(10);
 		
@@ -139,19 +139,19 @@ public class ConsultaUsuario extends JInternalFrame {
 		getContentPane().add(textFieldMes);
 		
 		 comboBoxNickname = new JComboBox();
-		comboBoxNickname.setBounds(98, 7, 91, 18);
+		comboBoxNickname.setBounds(111, 8, 91, 18);
 		getContentPane().add(comboBoxNickname);
 		
 		JComboBox comboBoxClasesR = new JComboBox();
-		comboBoxClasesR.setBounds(180, 153, 89, 15);
+		comboBoxClasesR.setBounds(269, 150, 89, 15);
 		getContentPane().add(comboBoxClasesR);
 		
 		JComboBox comboBoxClasesD = new JComboBox();
-		comboBoxClasesD.setBounds(111, 211, 78, 15);
+		comboBoxClasesD.setBounds(96, 211, 116, 15);
 		getContentPane().add(comboBoxClasesD);
 		
 		JComboBox comboBoxActividadesAsoc = new JComboBox();
-		comboBoxActividadesAsoc.setBounds(216, 211, 142, 15);
+		comboBoxActividadesAsoc.setBounds(230, 211, 142, 15);
 		getContentPane().add(comboBoxActividadesAsoc);
 		
 		setBounds(100, 100, 450, 300);
@@ -188,7 +188,7 @@ public class ConsultaUsuario extends JInternalFrame {
 		
 			 public void iniciarlizarComboBoxes() {
 					
-				 DefaultComboBoxModel<String> modelclases = new DefaultComboBoxModel<String>(icon.listarUsuario());
+				 DefaultComboBoxModel<String> modelclases = new DefaultComboBoxModel<String>(icon.listarUsuarios());
 				 comboBoxNickname.setModel(modelclases);//nickname Usuario
 				 /*DefaultComboBoxModel<String> modelclases = new DefaultComboBoxModel<String>(icon.listarProfesor());
 					comboBoxClasesD.setModel(modelclases);
