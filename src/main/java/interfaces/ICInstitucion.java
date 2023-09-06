@@ -8,6 +8,7 @@ import datatypes.DtClase;
 import datatypes.DtFecha;
 import datatypes.DtHora;
 import excepciones.InstitucionRepetidaExcepcion;
+import excepciones.ActividadDeportivaRepetidaExcepcion;
 import logica.Clase;
 
 public interface ICInstitucion {
