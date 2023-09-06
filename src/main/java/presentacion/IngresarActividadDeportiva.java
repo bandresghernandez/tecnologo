@@ -134,6 +134,41 @@ public class IngresarActividadDeportiva extends JInternalFrame {
 		btnAceptar.setBounds(210, 320, 100, 23);
 		contentPane.add(btnAceptar);
 
+
+				//nw
+		comboBoxInst.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusGained(FocusEvent e) {
+				comboBoxInst.removeAllItems();
+				HashSet<String> instituciones = new HashSet<>(iinst.listarInstitucionDeportiva());
+
+				//ArrayList<String> socios = (ArrayList<String>) iusu.listarSocios();
+				if(instituciones.isEmpty()) {
+					comboBoxInst.addItem("<Sin instituciones ingresadas >");
+					comboBoxInst.setSelectedItem("<Sin instituciones ingresadas>");
+				}else {
+					comboBoxInst.addItem("<Seleccionar intitucion>");
+					comboBoxInst.setSelectedItem("<Sin instituciones ingresadas>");
+				}
+				// miro si me trae algo
+				for (String i : instituciones) {
+					System.out.print(i);
+				}
+				
+				for (String i : instituciones) {
+					comboBoxInst.addItem(i);
+				}	
+			
+			}
+		});
+		
+
+
+		
+
+
+		
+
 		JButton btnCancelar = new JButton("CANCELAR");
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
