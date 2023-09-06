@@ -182,7 +182,15 @@ public class ConsultaUsuario extends JInternalFrame {
             
             
             }
-       
+       		JButton btnCancelar = new JButton("Cancelar");
+		btnCancelar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
+		btnCancelar.setBounds(284, 68, 125, 21);
+		getContentPane().add(btnCancelar);
+		
 	
 		
 		
