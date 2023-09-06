@@ -17,10 +17,9 @@ import java.util.HashSet;
 // falta el puntero a usuario
 public class CUsuario implements ICUsuario{
 
-	public CUsuario(){
+		public CUsuario(){
 		super();
 	}
-	
 	@Override
 	public void agregarUsuario(DtUsuario usuario) throws UsuarioEnUsoExcepcion {
 		// TODO Auto-generated method stub
