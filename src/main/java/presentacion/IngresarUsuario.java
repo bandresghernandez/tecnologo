@@ -1,5 +1,27 @@
 package presentacion;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
+import java.awt.EventQueue;
+import javax.swing.JInternalFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.JTextField;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import datatypes.DtFecha;
+import datatypes.DtProfesor;
+import datatypes.DtSocio;
+import datatypes.DtUsuario;
+import excepciones.UsuarioEnUsoExcepcion;
+import interfaces.ICUsuario;
+import logica.CUsuario;
+import javax.swing.SwingConstants;
+import javax.swing.JRadioButton;
+import interfaces.ICUsuario;
 
 public class IngresarUsuario extends JInternalFrame {
 
