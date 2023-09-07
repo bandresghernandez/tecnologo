@@ -84,17 +84,7 @@ public class Principal {
         ingresarInstDepInternalFrame.setVisible(false);//lo hago invisible
 		frame.getContentPane().add(ingresarInstDepInternalFrame);//lo agrego
 		
-		
-		
-		
-		ingresarActividadDeportivaInternalFrame = new IngresarActividadDeportiva(iinst);//lo instancio
-        jInternalFrameSize = ingresarActividadDeportivaInternalFrame.getSize();
-        ingresarActividadDeportivaInternalFrame.setLocation((desktopSize.width - jInternalFrameSize.width)/2,//lo pongo en el medio de la pantalla
-		    (desktopSize.height- jInternalFrameSize.height)/2);
-        ingresarActividadDeportivaInternalFrame.setVisible(false);//lo hago invisible
-		frame.getContentPane().add(ingresarActividadDeportivaInternalFrame);//lo agrego
-		
-		ingresarClaseInternalFrame = new IngresarClase();//lo instancio
+		ingresarClaseInternalFrame = new IngresarClase(iinst);//lo instancio
         jInternalFrameSize = ingresarClaseInternalFrame.getSize();
         ingresarClaseInternalFrame.setLocation((desktopSize.width - jInternalFrameSize.width)/2,//lo pongo en el medio de la pantalla
 		    (desktopSize.height- jInternalFrameSize.height)/2);
@@ -114,6 +104,15 @@ public class Principal {
 		    (desktopSize.height- jInternalFrameSize.height)/2);
         consultaActividadDepInternalFrame.setVisible(false);//lo hago invisible
 		frame.getContentPane().add(consultaActividadDepInternalFrame, BorderLayout.NORTH);
+		
+		
+		
+		
+		ingresarActividadDeportivaInternalFrame = new IngresarActividadDeportiva(iinst);//lo instancio
+		ingresarActividadDeportivaInternalFrame.setBounds(110, 79, 450, 450);
+		consultaActividadDepInternalFrame.getContentPane().add(ingresarActividadDeportivaInternalFrame);
+		jInternalFrameSize = ingresarActividadDeportivaInternalFrame.getSize();
+		ingresarActividadDeportivaInternalFrame.setVisible(false);
     
 		//registro
 		IngresarRegistroFrame = new IngresarRegistro(iusu);//lo instancio
@@ -180,6 +179,7 @@ public class Principal {
         mntmClase.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
             	ingresarClaseInternalFrame.setVisible(true);
+            	ingresarClaseInternalFrame.inicializarComboBox();
             }
         });
         

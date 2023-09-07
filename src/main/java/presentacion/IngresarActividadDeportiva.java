@@ -191,6 +191,7 @@ public class IngresarActividadDeportiva extends JInternalFrame {
 	}
 	
 	private boolean checkFormulario() {
+		// falta chequear la combo box
 		String nombre = textFieldNombre.getText();
 		String descripcion = textAreaDescripcion.getText();
 		String duracion = textFieldDuracion.getText();

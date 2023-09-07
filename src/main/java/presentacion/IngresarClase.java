@@ -4,6 +4,7 @@ package presentacion;
 import java.awt.EventQueue;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
@@ -11,27 +12,41 @@ import javax.swing.text.MaskFormatter;
 
 import datatypes.DtFecha;
 import datatypes.DtHora;
+import excepciones.ActividadDeportivaRepetidaExcepcion;
+import excepciones.ClaseRepetidaExcepcion;
+import interfaces.ICInstitucion;
 
 import java.text.ParseException;
+import java.util.HashSet;
 import java.awt.Font;
+
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 import java.awt.event.ActionEvent;
+import javax.swing.JFormattedTextField$AbstractFormatter;
 public class IngresarClase extends JInternalFrame {
 
+	private ICInstitucion iinst;
     private JTextField nombreField;
-    private JFormattedTextField fechaField;
-    private JTextField horaInicioField;
+    private JFormattedTextField fechaRefDiaField_1;
+    private JTextField horaField;
     private JTextField urlField;
     private JFormattedTextField fechaRefDiaField; // Separate fields for day, month, and year
     private JFormattedTextField fechaRefMesField;
     private JFormattedTextField fechaRefAnioField;
-    private JComboBox<ActividadDeportiva> actividadComboBox;
-    private JLabel lblIngresarClase;
+    private JComboBox<String> actividadComboBox;
+    private JComboBox<String> institucionComboBox;
     private JButton btnNewButton;
+    private JTextField profeField;
+    private JTextField fechaRefMesField_1;
+    private JTextField fechaRefAnioField_1;
+    private JTextField minutoField;
 
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
@@ -42,54 +57,55 @@ public class IngresarClase extends JInternalFrame {
                 }
             }
         });
-    }
+    }*/
 
-    public IngresarClase() {
+    public IngresarClase(ICInstitucion iinst) {
+    	this.iinst = iinst;
         setTitle("Ingresar Clase");
         setBounds(100, 100, 450, 300);
         getContentPane().setLayout(null);
 
         JLabel lblNombre = new JLabel("Nombre:");
         lblNombre.setFont(new Font("Tahoma", Font.PLAIN, 14));
-        lblNombre.setBounds(26, 30, 80, 14);
+        lblNombre.setBounds(26, 77, 80, 14);
         getContentPane().add(lblNombre);
 
         nombreField = new JTextField();
-        nombreField.setBounds(116, 28, 150, 20);
+        nombreField.setBounds(166, 76, 150, 20);
         getContentPane().add(nombreField);
         nombreField.setColumns(10);
 
         JLabel lblFecha = new JLabel("Fecha:");
         lblFecha.setFont(new Font("Tahoma", Font.PLAIN, 14));
-        lblFecha.setBounds(26, 66, 80, 14);
+        lblFecha.setBounds(26, 124, 80, 14);
         getContentPane().add(lblFecha);
 
-        fechaField = new JFormattedTextField(); // Assuming you've integrated DtFecha appropriately
-        fechaField.setBounds(116, 64, 150, 20);
-        getContentPane().add(fechaField);
+        fechaRefDiaField_1 = new JFormattedTextField(); // Assuming you've integrated DtFecha appropriately
+        fechaRefDiaField_1.setBounds(166, 123, 40, 20);
+        getContentPane().add(fechaRefDiaField_1);
 
         JLabel lblHoraInicio = new JLabel("Hora Inicio:");
         lblHoraInicio.setFont(new Font("Tahoma", Font.PLAIN, 14));
-        lblHoraInicio.setBounds(26, 102, 80, 14);
+        lblHoraInicio.setBounds(26, 149, 80, 14);
         getContentPane().add(lblHoraInicio);
 
-        horaInicioField = new JTextField();
-        horaInicioField.setBounds(116, 100, 150, 20);
-        getContentPane().add(horaInicioField);
+        horaField = new JTextField();
+        horaField.setBounds(166, 148, 70, 20);
+        getContentPane().add(horaField);
 
         JLabel lblURL = new JLabel("URL:");
         lblURL.setFont(new Font("Tahoma", Font.PLAIN, 14));
-        lblURL.setBounds(26, 138, 80, 14);
+        lblURL.setBounds(26, 174, 80, 14);
         getContentPane().add(lblURL);
 
         urlField = new JTextField();
-        urlField.setBounds(116, 136, 150, 20);
+        urlField.setBounds(166, 173, 150, 20);
         getContentPane().add(urlField);
         urlField.setColumns(10);
 
         JLabel lblFechaRef = new JLabel("Fecha Ref:");
         lblFechaRef.setFont(new Font("Tahoma", Font.PLAIN, 14));
-        lblFechaRef.setBounds(26, 174, 80, 14);
+        lblFechaRef.setBounds(26, 199, 80, 14);
         getContentPane().add(lblFechaRef);
 
         try {
@@ -104,9 +120,9 @@ public class IngresarClase extends JInternalFrame {
             e.printStackTrace();
         }
 
-        fechaRefDiaField.setBounds(116, 172, 40, 20);
-        fechaRefMesField.setBounds(166, 172, 40, 20);
-        fechaRefAnioField.setBounds(216, 172, 32, 20);
+        fechaRefDiaField.setBounds(166, 198, 40, 20);
+        fechaRefMesField.setBounds(209, 198, 46, 20);
+        fechaRefAnioField.setBounds(259, 198, 57, 20);
 
         getContentPane().add(fechaRefDiaField);
         getContentPane().add(fechaRefMesField);
@@ -114,20 +130,28 @@ public class IngresarClase extends JInternalFrame {
 
         JLabel lblActividadDeportiva = new JLabel("Actividad Deportiva:");
         lblActividadDeportiva.setFont(new Font("Tahoma", Font.PLAIN, 14));
-        lblActividadDeportiva.setBounds(26, 210, 130, 14);
+        lblActividadDeportiva.setBounds(26, 52, 130, 14);
         getContentPane().add(lblActividadDeportiva);
 
-        actividadComboBox = new JComboBox<ActividadDeportiva>();
-        actividadComboBox.setBounds(166, 208, 150, 20);
+        actividadComboBox = new JComboBox<String>();
+        actividadComboBox.setBounds(166, 51, 150, 20);
+        // Agregar un ActionListener al comboBoxA para manejar la selección
+        actividadComboBox.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                actualizarActividadComboBox();
+            }
+        });
         getContentPane().add(actividadComboBox);
 
         JButton btnGuardar = new JButton("GUARDAR");
+        btnGuardar.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		altaClaseActionPerformed();
+        	}
+        });
         btnGuardar.setBounds(103, 241, 122, 23);
         getContentPane().add(btnGuardar);
-        
-        lblIngresarClase = new JLabel("Alta de Clase");
-        lblIngresarClase.setBounds(120, 1, 132, 15);
-        getContentPane().add(lblIngresarClase);
         
         btnNewButton = new JButton("CANCELAR");
         btnNewButton.addActionListener(new ActionListener() {
@@ -137,15 +161,194 @@ public class IngresarClase extends JInternalFrame {
         	}
         });
         
-    
+        institucionComboBox.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusGained(FocusEvent e) {
+				institucionComboBox.removeAllItems();
+				HashSet<String> instituciones = new HashSet<>(iinst.listarInstitucionDeportiva());
+
+				//ArrayList<String> socios = (ArrayList<String>) iusu.listarSocios();
+				if(instituciones.isEmpty()) {
+					institucionComboBox.addItem("<Sin instituciones ingresadas>");
+					institucionComboBox.setSelectedItem("<Sin instituciones ingresadas>");
+				}else {
+					institucionComboBox.addItem("<Seleccionar intitucion>");
+					institucionComboBox.setSelectedItem("<Sin instituciones>");
+				}
+				// miro si me trae algo
+				for (String i : instituciones) {
+					System.out.print(i);
+				}
+				
+				for (String i : instituciones) {
+					institucionComboBox.addItem(i);
+				}	
+			
+			}
+		});
 		
         
         btnNewButton.setVerticalAlignment(SwingConstants.BOTTOM);
         btnNewButton.setBounds(250, 240, 117, 25);
         getContentPane().add(btnNewButton);
+        
+        JLabel lblNewLabel = new JLabel("Institucion");
+        lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
+        lblNewLabel.setBounds(27, 27, 64, 14);
+        getContentPane().add(lblNewLabel);
+        
+        institucionComboBox = new JComboBox<String>();
+        institucionComboBox.setBounds(166, 25, 150, 22);
+        getContentPane().add(institucionComboBox);
+        
+        JLabel lblNewLabel_1 = new JLabel("Profesor");
+        lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
+        lblNewLabel_1.setBounds(26, 102, 65, 14);
+        getContentPane().add(lblNewLabel_1);
+        
+        profeField = new JTextField();
+        profeField.setBounds(166, 101, 150, 20);
+        getContentPane().add(profeField);
+        profeField.setColumns(10);
+        
+        fechaRefMesField_1 = new JTextField();
+        fechaRefMesField_1.setBounds(209, 123, 46, 20);
+        getContentPane().add(fechaRefMesField_1);
+        fechaRefMesField_1.setColumns(10);
+        
+        fechaRefAnioField_1 = new JTextField();
+        fechaRefAnioField_1.setBounds(259, 123, 57, 20);
+        getContentPane().add(fechaRefAnioField_1);
+        fechaRefAnioField_1.setColumns(10);
+        
+        minutoField = new JTextField();
+        minutoField.setBounds(241, 148, 75, 20);
+        getContentPane().add(minutoField);
+        minutoField.setColumns(10);
     }
+    
+    public void inicializarComboBox() {
+		DefaultComboBoxModel<String> modelInst1 = new DefaultComboBoxModel<String>(this.iinst.listarInstitucion());
+		institucionComboBox.setModel(modelInst1);
+	}
 
     private class ActividadDeportiva {
         // Define properties and methods for the ActividadDeportiva class
+    }
+    
+    private void altaClaseActionPerformed() {
+    	String nombre_inst = (String) institucionComboBox.getSelectedItem();
+    	String act = (String) actividadComboBox.getSelectedItem();
+		String nombre = nombreField.getText();
+		int dia =  Integer.parseInt(fechaRefDiaField_1.getText());
+		int mes = Integer.parseInt(fechaRefMesField_1.getText());
+		int anio = Integer.parseInt(fechaRefAnioField_1.getText());
+		//String fechaReg = dia + "/" + mes + "/" + anio;
+		DtFecha dtf = new DtFecha(dia, mes, anio); //fecha de la clase
+		int hora = Integer.parseInt(horaField.getText());
+		int minuto = Integer.parseInt(minutoField.getText());
+		DtHora dth = new DtHora(hora, minuto);
+		int dia2 = Integer.parseInt(fechaRefDiaField.getText());
+		int mes2 = Integer.parseInt(fechaRefMesField.getText());
+		int anio2 = Integer.parseInt(fechaRefAnioField.getText());
+		DtFecha dtf2 = new DtFecha(dia2, mes2, anio2); //fecha de alta
+		String profe = profeField.getText();
+		String url = urlField.getText();
+		if(checkFormulario()) {
+			try {
+				iinst.altaClase(nombre_inst, act, nombre, dtf, dth, profe, url, dtf2);
+				JOptionPane.showMessageDialog(this, "No puede haber campos vacios", "Clase", JOptionPane.INFORMATION_MESSAGE);
+			} catch (ClaseRepetidaExcepcion e1){
+				JOptionPane.showMessageDialog(this, e1.getMessage(), "Clase", JOptionPane.ERROR_MESSAGE);
+				}
+			limpiarFormulario();
+			setVisible(false);
+		}
+		dispose();
+    }
+    
+    private void actualizarActividadComboBox() {
+    	actividadComboBox.removeAllItems();
+    	String nombre_inst = (String) institucionComboBox.getSelectedItem();
+    	DefaultComboBoxModel<String> modelInst2 = new DefaultComboBoxModel<String>(this.iinst.listarActividades(nombre_inst));
+		actividadComboBox.setModel(modelInst2);
+    }
+    
+    private void limpiarFormulario() {
+		institucionComboBox.setSelectedItem("<Sin instituciones ingresadas>");
+		actividadComboBox.setSelectedItem("<Sin instituciones ingresadas>");
+		nombreField.setText("");
+		fechaRefDiaField.setValue(null);
+		fechaRefMesField.setValue(null);
+		fechaRefAnioField.setValue(null);
+	}
+    
+    private boolean checkFormulario() {
+    	String nombre_inst = (String) institucionComboBox.getSelectedItem();
+    	String act = (String) actividadComboBox.getSelectedItem();
+		String nombre = nombreField.getText();
+		String dia =  fechaRefDiaField_1.getText();
+		String mes = fechaRefMesField_1.getText();
+		String anio = fechaRefAnioField_1.getText();
+		String hora = horaField.getText();
+		String minuto = minutoField.getText();
+		String dia2 = fechaRefDiaField.getText();
+		String mes2 = fechaRefMesField.getText();
+		String anio2 = fechaRefAnioField.getText();
+		String profe = profeField.getText();
+		String url = urlField.getText();
+		if(nombre_inst.isEmpty() || act.isEmpty() || nombre.isEmpty() || dia.isEmpty() || mes.isEmpty() || anio.isEmpty() || hora.isEmpty() || minuto.isEmpty() || dia2.isEmpty() || mes2.isEmpty() || anio2.isEmpty() || profe.isEmpty() || url.isEmpty()) {
+			JOptionPane.showMessageDialog(this, "No puede haber campos vacíos", "Actividad Deportiva", JOptionPane.ERROR_MESSAGE);
+			return false;
+		}
+		try {
+			Integer.parseInt(dia);
+		} catch (NumberFormatException e) {
+			JOptionPane.showMessageDialog(this, "El dia debe ser un numero", "Actividad Deportiva", JOptionPane.ERROR_MESSAGE);
+			return false;
+		}
+		try {
+			Integer.parseInt(mes);
+		} catch (NumberFormatException e) {
+			JOptionPane.showMessageDialog(this, "El mes debe ser un numero", "Actividad Deportiva", JOptionPane.ERROR_MESSAGE);
+			return false;
+		}
+		try {
+			Integer.parseInt(anio);
+		} catch (NumberFormatException e) {
+			JOptionPane.showMessageDialog(this, "El anio debe ser un numero", "Actividad Deportiva", JOptionPane.ERROR_MESSAGE);
+			return false;
+		}
+		try {
+			Integer.parseInt(dia2);
+		} catch (NumberFormatException e) {
+			JOptionPane.showMessageDialog(this, "El dia debe ser un numero", "Actividad Deportiva", JOptionPane.ERROR_MESSAGE);
+			return false;
+		}
+		try {
+			Integer.parseInt(mes2);
+		} catch (NumberFormatException e) {
+			JOptionPane.showMessageDialog(this, "El mes debe ser un numero", "Actividad Deportiva", JOptionPane.ERROR_MESSAGE);
+			return false;
+		}
+		try {
+			Integer.parseInt(anio2);
+		} catch (NumberFormatException e) {
+			JOptionPane.showMessageDialog(this, "El anio debe ser un numero", "Actividad Deportiva", JOptionPane.ERROR_MESSAGE);
+			return false;
+		}
+		try {
+			Integer.parseInt(hora);
+		} catch (NumberFormatException e) {
+			JOptionPane.showMessageDialog(this, "La hora debe ser un numero", "Actividad Deportiva", JOptionPane.ERROR_MESSAGE);
+			return false;
+		}
+		try {
+			Integer.parseInt(minuto);
+		} catch (NumberFormatException e) {
+			JOptionPane.showMessageDialog(this, "Los minutos deben ser un numero", "Actividad Deportiva", JOptionPane.ERROR_MESSAGE);
+			return false;
+		}
+		return true;
     }
 }

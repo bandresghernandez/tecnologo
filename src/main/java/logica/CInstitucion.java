@@ -93,10 +93,10 @@ public class CInstitucion implements ICInstitucion {
 	}
 	
 	@Override
-	public boolean altaClase(String actividad, String nombre, DtFecha fechaIni, DtHora horaIni, String profesor, String url, DtFecha fechaAlta) {
+	public boolean altaClase(String nombre_inst, String actividad, String nombre, DtFecha fechaIni, DtHora horaIni, String profesor, String url, DtFecha fechaAlta) {
 		boolean res = false;
 		ManejadorInstitucionDeportiva mi = ManejadorInstitucionDeportiva.getInstancia();
-		InstitucionDeportiva inst = mi.getInstitucion(this.institucion);
+		InstitucionDeportiva inst = mi.getInstitucion(nombre_inst);
 		Clase c = inst.crearClase(actividad, nombre, fechaIni, horaIni, profesor, url, fechaAlta);
 		if(c != null) {
 			ManejadorUsuario mu = ManejadorUsuario.getInstancia();
@@ -148,8 +148,20 @@ public class CInstitucion implements ICInstitucion {
             inst_ret[i]=s;
             i++;
         }
-        String[] inst_ret1 = new String[1];
-        inst_ret1[0] = "Actividad 1";
-        return inst_ret1;
+        return inst_ret;
+	}
+	
+	@Override
+	public String[] listarActividades(String nombre_inst) {
+		ManejadorInstitucionDeportiva mi = ManejadorInstitucionDeportiva.getInstancia();
+		InstitucionDeportiva id = mi.getInstitucion(nombre_inst);
+		Set<String> act = id.getActividades();
+		String[] act_ret = new String[act.size()];
+        int i=0;
+        for(String s:act) {
+            act_ret[i]=s;
+            i++;
+        }
+        return act_ret;
 	}
 }
