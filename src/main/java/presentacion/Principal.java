@@ -105,15 +105,15 @@ public class Principal {
         consultaActividadDepInternalFrame.setVisible(false);//lo hago invisible
 		frame.getContentPane().add(consultaActividadDepInternalFrame, BorderLayout.NORTH);
 		
-		
-		
-		
-		ingresarActividadDeportivaInternalFrame = new IngresarActividadDeportiva(iinst);//lo instancio
-		ingresarActividadDeportivaInternalFrame.setBounds(110, 79, 450, 450);
-		consultaActividadDepInternalFrame.getContentPane().add(ingresarActividadDeportivaInternalFrame);
-		jInternalFrameSize = ingresarActividadDeportivaInternalFrame.getSize();
-		ingresarActividadDeportivaInternalFrame.setVisible(false);
     
+		//registro
+		ingresarActividadDeportivaInternalFrame = new IngresarActividadDeportiva(iinst);//lo instancio
+        jInternalFrameSize = ingresarActividadDeportivaInternalFrame.getSize();
+        ingresarActividadDeportivaInternalFrame.setLocation((desktopSize.width - jInternalFrameSize.width)/2,//lo pongo en el medio de la pantalla
+		    (desktopSize.height- jInternalFrameSize.height)/2);
+        ingresarActividadDeportivaInternalFrame.setVisible(false);//lo hago invisible
+		frame.getContentPane().add(ingresarActividadDeportivaInternalFrame);//lo agrego
+		
 		//registro
 		IngresarRegistroFrame = new IngresarRegistro(iusu);//lo instancio
         jInternalFrameSize = IngresarRegistroFrame.getSize();

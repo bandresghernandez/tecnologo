@@ -161,31 +161,7 @@ public class IngresarClase extends JInternalFrame {
         	}
         });
         
-        institucionComboBox.addFocusListener(new FocusAdapter() {
-			@Override
-			public void focusGained(FocusEvent e) {
-				institucionComboBox.removeAllItems();
-				HashSet<String> instituciones = new HashSet<>(iinst.listarInstitucionDeportiva());
 
-				//ArrayList<String> socios = (ArrayList<String>) iusu.listarSocios();
-				if(instituciones.isEmpty()) {
-					institucionComboBox.addItem("<Sin instituciones ingresadas>");
-					institucionComboBox.setSelectedItem("<Sin instituciones ingresadas>");
-				}else {
-					institucionComboBox.addItem("<Seleccionar intitucion>");
-					institucionComboBox.setSelectedItem("<Sin instituciones>");
-				}
-				// miro si me trae algo
-				for (String i : instituciones) {
-					System.out.print(i);
-				}
-				
-				for (String i : instituciones) {
-					institucionComboBox.addItem(i);
-				}	
-			
-			}
-		});
 		
         
         btnNewButton.setVerticalAlignment(SwingConstants.BOTTOM);
@@ -225,6 +201,33 @@ public class IngresarClase extends JInternalFrame {
         minutoField.setBounds(241, 148, 75, 20);
         getContentPane().add(minutoField);
         minutoField.setColumns(10);
+        
+        institucionComboBox.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusGained(FocusEvent e) {
+				institucionComboBox.removeAllItems();
+				HashSet<String> instituciones = new HashSet<>(iinst.listarInstitucionDeportiva());
+
+				//ArrayList<String> socios = (ArrayList<String>) iusu.listarSocios();
+				if(instituciones.isEmpty()) {
+					institucionComboBox.addItem("<Sin instituciones ingresadas>");
+					institucionComboBox.setSelectedItem("<Sin instituciones ingresadas>");
+				}else {
+					institucionComboBox.addItem("<Seleccionar intitucion>");
+					institucionComboBox.setSelectedItem("<Sin instituciones>");
+				}
+				// miro si me trae algo
+				for (String i : instituciones) {
+					System.out.print(i);
+				}
+				
+				for (String i : instituciones) {
+					institucionComboBox.addItem(i);
+				}	
+			
+			}
+		});
+        
     }
     
     public void inicializarComboBox() {
