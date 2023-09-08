@@ -63,9 +63,10 @@ public class IngresarUsuario extends JInternalFrame {
         setResizable(true);
         setIconifiable(true);
         setMaximizable(true);
+    	setClosable(true);
     	setTitle("Ingresar Usuario");
-
-        setDefaultCloseOperation(JInternalFrame.EXIT_ON_CLOSE);
+    	
+    	setDefaultCloseOperation(JInternalFrame.DISPOSE_ON_CLOSE);
         setBounds(100, 100, 450, 300);
         JPanel contentPane = new JPanel();
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
