@@ -82,20 +82,24 @@ public class IngresarActividadDeportiva extends JInternalFrame {
 		textFieldDuracion.setColumns(10);
 
 		JLabel lblFechaReg = new JLabel("Fecha de Registro:");
-		lblFechaReg.setBounds(29, 257, 150, 20);
-		contentPane.add(lblFechaReg);
+        lblFechaReg.setBounds(29, 257, 150, 20);
+        contentPane.add(lblFechaReg);
 
-		spinnerDia = new JSpinner();
-		spinnerDia.setBounds(206, 257, 40, 20);
-		contentPane.add(spinnerDia);
+        SpinnerNumberModel diaModel = new SpinnerNumberModel(1, 1, 31, 1); 
+        SpinnerNumberModel mesModel = new SpinnerNumberModel(1, 1, 12, 1);
+        SpinnerNumberModel anioModel = new SpinnerNumberModel(2023, 0, Integer.MAX_VALUE, 1); 
 
-		spinnerMes = new JSpinner();
-		spinnerMes.setBounds(256, 257, 40, 20);
-		contentPane.add(spinnerMes);
+        spinnerDia = new JSpinner(diaModel);
+        spinnerDia.setBounds(206, 257, 40, 20);
+        contentPane.add(spinnerDia);
 
-		spinnerAnio = new JSpinner();
-		spinnerAnio.setBounds(306, 257, 60, 20);
-		contentPane.add(spinnerAnio);
+        spinnerMes = new JSpinner(mesModel);
+        spinnerMes.setBounds(256, 257, 40, 20);
+        contentPane.add(spinnerMes);
+
+        spinnerAnio = new JSpinner(anioModel);
+        spinnerAnio.setBounds(306, 257, 60, 20);
+        contentPane.add(spinnerAnio);
 
 		JLabel lblCosto = new JLabel("Costo:");
 		lblCosto.setBounds(29, 288, 80, 20);
@@ -196,6 +200,7 @@ public class IngresarActividadDeportiva extends JInternalFrame {
 		String anio =  spinnerAnio.getValue().toString();
 		String costo = textFieldCosto.getText();
 		if(nombre.isEmpty() || descripcion.isEmpty() || duracion.isEmpty() || dia.isEmpty() || mes.isEmpty() || anio.isEmpty() || costo.isEmpty()) {
+			System.out.print("\ntoy dentro\n");
 			JOptionPane.showMessageDialog(this, "No puede haber campos vacíos", "Actividad Deportiva", JOptionPane.ERROR_MESSAGE);
 			return false;
 		}
@@ -236,9 +241,9 @@ public class IngresarActividadDeportiva extends JInternalFrame {
 		textFieldNombre.setText("");
 		textAreaDescripcion.setText("");
 		textFieldDuracion.setText("");
-		spinnerDia.setValue(null);
-		spinnerMes.setValue(null);
-		spinnerAnio.setValue(null);
+		spinnerDia.setValue(0);
+		spinnerMes.setValue(0);
+		spinnerAnio.setValue(0);
 		textFieldCosto.setText("");
 	}
 	protected void altaActividadDeportivaActionPerformed(ActionEvent e) {
@@ -256,7 +261,7 @@ public class IngresarActividadDeportiva extends JInternalFrame {
 		if(checkFormulario()) {
 			try {
 				iinst.altaActividadDeportiva(nombre_inst, nombre, descripcion, duracion, costo, dtf);
-				JOptionPane.showMessageDialog(this, "No puede haber campos vacios", "Actividad Deportiva", JOptionPane.INFORMATION_MESSAGE);
+				JOptionPane.showMessageDialog(this, "Se dió de alta la actividad", "Actividad Deportiva", JOptionPane.INFORMATION_MESSAGE);
 			} catch (ActividadDeportivaRepetidaExcepcion e1){
 				JOptionPane.showMessageDialog(this, e1.getMessage(), "Actividad Deportiva", JOptionPane.ERROR_MESSAGE);
 				}
