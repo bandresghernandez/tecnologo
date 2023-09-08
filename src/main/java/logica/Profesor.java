@@ -75,8 +75,8 @@ public class Profesor extends Usuario {
 
 	@Override
 	public DtUsuario getDtUsuario() {
-		//return new DtProfesor(this.getNickname(), this.getNombre(), this.getApellido(), this.getEmail(), this.getFechaNac(), this.getDescripcion(),this.getBiogrfia(), this.getSitioweb());
-		return null;
+		return new DtProfesor(this.getNickname(), this.getNombre(), this.getApellido(), this.getEmail(), this.getFechaNac(), this.getDescripcion(),this.getBiogrfia(), this.getSitioweb());
+		//return null;
 	}
 
 	@Override
