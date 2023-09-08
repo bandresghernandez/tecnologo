@@ -24,6 +24,7 @@ public class Profesor extends Usuario {
         this.biografia = biografia;
         this.sitioweb = sitioweb;
         this.institucion = null;
+        this.clases = new ArrayList<Clase>();
         
     }
 

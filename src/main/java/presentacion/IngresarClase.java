@@ -29,6 +29,7 @@ import java.awt.event.FocusEvent;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.ActionEvent;
+
 public class IngresarClase extends JInternalFrame {
 
 	private ICInstitucion iinst;
