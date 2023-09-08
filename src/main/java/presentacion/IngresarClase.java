@@ -26,8 +26,9 @@ import javax.swing.SwingConstants;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.awt.event.ActionEvent;
-import javax.swing.JFormattedTextField$AbstractFormatter;
 public class IngresarClase extends JInternalFrame {
 
 	private ICInstitucion iinst;
@@ -136,12 +137,12 @@ public class IngresarClase extends JInternalFrame {
         actividadComboBox = new JComboBox<String>();
         actividadComboBox.setBounds(166, 51, 150, 20);
         // Agregar un ActionListener al comboBoxA para manejar la selección
-        actividadComboBox.addActionListener(new ActionListener() {
+        /*actividadComboBox.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 actualizarActividadComboBox();
             }
-        });
+        });*/
         getContentPane().add(actividadComboBox);
 
         JButton btnGuardar = new JButton("GUARDAR");
@@ -228,6 +229,15 @@ public class IngresarClase extends JInternalFrame {
 			}
 		});
         
+        institucionComboBox.addItemListener(new ItemListener() {
+            @Override
+            public void itemStateChanged(ItemEvent e) {
+                if (e.getStateChange() == ItemEvent.SELECTED && institucionComboBox.getSelectedItem() != "<Sin instituciones ingresadas>" && institucionComboBox.getSelectedItem() != "<Seleccionar intitucion>") {
+                    actualizarActividadComboBox((String) institucionComboBox.getSelectedItem());
+                }
+            }
+        });
+        
     }
     
     public void inicializarComboBox() {
@@ -270,11 +280,10 @@ public class IngresarClase extends JInternalFrame {
 		dispose();
     }
     
-    private void actualizarActividadComboBox() {
-    	actividadComboBox.removeAllItems();
-    	String nombre_inst = (String) institucionComboBox.getSelectedItem();
-    	DefaultComboBoxModel<String> modelInst2 = new DefaultComboBoxModel<String>(this.iinst.listarActividades(nombre_inst));
-		actividadComboBox.setModel(modelInst2);
+    private void actualizarActividadComboBox(String nombre_inst) {
+        actividadComboBox.removeAllItems();
+        DefaultComboBoxModel<String> modelInst2 = new DefaultComboBoxModel<String>(this.iinst.listarActividades(nombre_inst));
+        actividadComboBox.setModel(modelInst2);
     }
     
     private void limpiarFormulario() {
