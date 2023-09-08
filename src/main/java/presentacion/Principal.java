@@ -190,7 +190,7 @@ public class Principal {
         JMenu mnInformacion = new JMenu("Información");
         menuBar.add(mnInformacion);
         
-        JMenuItem mntmSocioInfo = new JMenuItem("Socio");
+        JMenuItem mntmSocioInfo = new JMenuItem("Usuario");
         mntmSocioInfo.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		consultaUsuarioInternalFrame.setVisible(true);
