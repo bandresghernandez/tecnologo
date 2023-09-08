@@ -72,10 +72,6 @@ public class IngresarActividadDeportiva extends JInternalFrame {
 		lblDescripcion.setBounds(29, 154, 97, 20);
 		contentPane.add(lblDescripcion);
 
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(120, 135, 300, 80);
-		contentPane.add(scrollPane);
-
 		JLabel lblDuracion = new JLabel("Duración:");
 		lblDuracion.setBounds(29, 226, 80, 20);
 		contentPane.add(lblDuracion);
@@ -195,9 +191,9 @@ public class IngresarActividadDeportiva extends JInternalFrame {
 		String nombre = textFieldNombre.getText();
 		String descripcion = textAreaDescripcion.getText();
 		String duracion = textFieldDuracion.getText();
-		String dia = (String) spinnerDia.getValue();
-		String mes = (String) spinnerMes.getValue();
-		String anio = (String) spinnerAnio.getValue();
+		String dia =  spinnerDia.getValue().toString();
+		String mes =  spinnerMes.getValue().toString();
+		String anio =  spinnerAnio.getValue().toString();
 		String costo = textFieldCosto.getText();
 		if(nombre.isEmpty() || descripcion.isEmpty() || duracion.isEmpty() || dia.isEmpty() || mes.isEmpty() || anio.isEmpty() || costo.isEmpty()) {
 			JOptionPane.showMessageDialog(this, "No puede haber campos vacíos", "Actividad Deportiva", JOptionPane.ERROR_MESSAGE);
