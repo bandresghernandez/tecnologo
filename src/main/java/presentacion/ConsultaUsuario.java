@@ -177,6 +177,9 @@ public class ConsultaUsuario extends JInternalFrame {
         	textFieldEmail.setText(dtu.getEmail());
         	
         	
+        	textFieldDia.setText(Integer.toString(dtu.getFechaNac().getDia()));
+        	textFieldMes.setText(Integer.toString(dtu.getFechaNac().getMes()));
+        	textFieldAnio.setText(Integer.toString(dtu.getFechaNac().getAnio()));
         	// textFieldDia ES STRING PASAR A INT COMO SE HACE? textFieldDia.setText(dtu.getFechaNac().getDia());
         	
             if (dtu instanceof DtSocio) {
