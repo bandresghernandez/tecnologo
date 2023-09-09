@@ -11,6 +11,7 @@ import javax.swing.JPanel;
 import javax.swing.JSpinner;
 import javax.swing.border.EmptyBorder;
 
+import datatypes.DtFecha;
 import interfaces.ICInstitucion;
 import interfaces.ICUsuario;
 import logica.CUsuario;
@@ -24,6 +25,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
+import java.time.LocalDateTime;
 
 public class IngresarRegistro extends JInternalFrame {
 
@@ -38,13 +40,11 @@ public class IngresarRegistro extends JInternalFrame {
 
 	private JPanel contentPane;
 	private JTextField textFieldFECHA;
-	private JSpinner spinnerDia;
-	private JSpinner spinnerMes;
-	private JSpinner spinnerAnio;
 	private JComboBox comboBoxInstituto;
 	private JComboBox comboBoxActividad;
 	private JComboBox comboBoxClase;
 	private JComboBox comboBoxSocio;
+	
 	/**
 	 * Create the frame.
 	 */
@@ -103,6 +103,15 @@ public class IngresarRegistro extends JInternalFrame {
 		JButton btnRegistrar = new JButton("REGISTRAR");
 		btnRegistrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				LocalDateTime fechaHoraActual = LocalDateTime.now();
+
+
+				        int dia = fechaHoraActual.getDayOfMonth();
+				        int mes = fechaHoraActual.getMonthValue();
+				        int anio = fechaHoraActual.getYear();
+						DtFecha dtf = new DtFecha(dia, mes, anio);
+
+				iusu.selecDatos((String)comboBoxSocio.getSelectedItem(), (String)comboBoxClase.getSelectedItem(), dtf   );
 				
 	
 
@@ -119,25 +128,6 @@ public class IngresarRegistro extends JInternalFrame {
 		});
 		btnCancelar.setBounds(235, 455, 117, 25);
 		contentPane.add(btnCancelar);
-
-		spinnerDia = new JSpinner();
-		spinnerDia.setBounds(117, 245, 40, 20);
-		contentPane.add(spinnerDia);
-
-		spinnerMes = new JSpinner();
-		spinnerMes.setBounds(169, 245, 40, 20);
-		contentPane.add(spinnerMes);
-
-		spinnerAnio = new JSpinner();
-		spinnerAnio.setBounds(221, 245, 41, 20);
-		contentPane.add(spinnerAnio);
-		
-		
-		
-		
-		JLabel lblNewLabel = new JLabel("Fecha:");
-		lblNewLabel.setBounds(46, 247, 70, 15);
-		contentPane.add(lblNewLabel);
 		
 		JComboBox comboBoxInstituto = new JComboBox();
 		comboBoxInstituto.setBounds(10, 84, 328, 24);

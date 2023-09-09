@@ -70,7 +70,7 @@ public class CUsuario implements ICUsuario{
 
 	// encuentro el socio, encuentro la clase y si no existe el regitro de ese socio a esa clase lo creo
 	@Override
-	public boolean selecDatos(String socio, String clase, DtFecha fechaReg, Float costo){
+	public boolean selecDatos(String socio, String clase, DtFecha fechaReg){
 		ManejadorUsuario mU = ManejadorUsuario.getInstancia();
 		Fabrica db = Fabrica.getInstancia();
 		ICInstitucion cin = db.getICInstitucion();
