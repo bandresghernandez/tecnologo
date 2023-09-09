@@ -164,4 +164,25 @@ public class CInstitucion implements ICInstitucion {
         }
         return act_ret;
 	}
+	
+	@Override
+	 public String[] listarClases(String nombre_inst, String nombre_actividad) {
+        ManejadorInstitucionDeportiva mi = ManejadorInstitucionDeportiva.getInstancia();
+        InstitucionDeportiva id = mi.getInstitucion(nombre_inst);
+        ActividadDeportiva actividad = id.obtenerActividad(nombre_actividad);
+
+        if (actividad != null) {
+            Set<String> clases = actividad.getClases();
+            String[] clases_ret = new String[clases.size()];
+            int i = 0;
+            for (String s : clases) {
+                clases_ret[i] = s;
+                i++;
+            }
+            return clases_ret;
+        } else {
+            return new String[0]; 
+        }
+    }
+	
 }

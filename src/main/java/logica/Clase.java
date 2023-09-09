@@ -99,4 +99,12 @@ public class Clase {
 	public DtClase getDtClase() {
     	return new DtClase(this.nombre, this.fecha);
     }
+	
+	public String getActividad() {
+	return this.actividadDepo.getNombre(); 
+	
+	}
+	
+
+	
 }

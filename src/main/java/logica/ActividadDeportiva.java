@@ -117,4 +117,8 @@ public class ActividadDeportiva {
 	public Clase obtenerClase(String clase) {
 		return this.clases.get(clase);
 	}
+	
+	 public Set<String> getClases() {
+        return clases.keySet(); // Devuelve el conjunto de nombres de las clases
+    }
 }

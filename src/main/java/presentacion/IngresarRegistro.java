@@ -34,18 +34,27 @@ public class IngresarRegistro extends JInternalFrame {
 	private ICUsuario iusu;
 
 	//private ICInstitucion iinst;
+	private ICInstitucion iinst;
+
 	private JPanel contentPane;
 	private JTextField textFieldFECHA;
 	private JSpinner spinnerDia;
 	private JSpinner spinnerMes;
 	private JSpinner spinnerAnio;
-
+	private JComboBox comboBoxInstituto;
+	private JComboBox comboBoxActividad;
+	private JComboBox comboBoxClase;
+	private JComboBox comboBoxSocio;
 	/**
 	 * Create the frame.
 	 */
-	public IngresarRegistro(ICUsuario iusu) {
+	public IngresarRegistro(ICUsuario iusu, ICInstitucion iinst) {
 		this.iusu=iusu;
-
+		this.iinst=iinst;
+		 //public ConsultaActividadDeportiva(ICInstitucion iinst) {
+		//	this.iinst=iinst;}
+		
+		
 		setResizable(true);//permite cambiar el tamaño del jframe
         setIconifiable(true);//permite poner iconos
         setMaximizable(true);//permite maximizar y minimizar el jframe
@@ -60,23 +69,23 @@ public class IngresarRegistro extends JInternalFrame {
 		contentPane.setLayout(null);
 		
 		JComboBox comboBoxSocio = new JComboBox();			
-		comboBoxSocio.setBounds(10, 57, 328, 22);	
+		comboBoxSocio.setBounds(10, 32, 328, 22);	
 		contentPane.add(comboBoxSocio);
 	
 		
 	
 		JComboBox comboBoxClase = new JComboBox();
-		comboBoxClase.setBounds(10, 132, 328, 22);
+		comboBoxClase.setBounds(10, 198, 328, 22);
 		comboBoxClase.addItem("<Seleccionar Clase>");
 		comboBoxClase.setEnabled(true);
 		contentPane.add(comboBoxClase);
 		
 		JLabel lblComboSocio = new JLabel("Socios");
-		lblComboSocio.setBounds(10, 32, 194, 14);
+		lblComboSocio.setBounds(10, 12, 194, 14);
 		contentPane.add(lblComboSocio);
 		
 		JLabel lblComboClase = new JLabel("Clases");
-		lblComboClase.setBounds(10, 106, 183, 14);
+		lblComboClase.setBounds(10, 174, 183, 14);
 		contentPane.add(lblComboClase);
 		
 		JTextPane textInfoClase = new JTextPane();
@@ -112,23 +121,116 @@ public class IngresarRegistro extends JInternalFrame {
 		contentPane.add(btnCancelar);
 
 		spinnerDia = new JSpinner();
-		spinnerDia.setBounds(116, 193, 40, 20);
+		spinnerDia.setBounds(117, 245, 40, 20);
 		contentPane.add(spinnerDia);
 
 		spinnerMes = new JSpinner();
-		spinnerMes.setBounds(168, 193, 40, 20);
+		spinnerMes.setBounds(169, 245, 40, 20);
 		contentPane.add(spinnerMes);
 
 		spinnerAnio = new JSpinner();
-		spinnerAnio.setBounds(220, 193, 41, 20);
+		spinnerAnio.setBounds(221, 245, 41, 20);
 		contentPane.add(spinnerAnio);
 		
 		
 		
 		
 		JLabel lblNewLabel = new JLabel("Fecha:");
-		lblNewLabel.setBounds(58, 195, 70, 15);
+		lblNewLabel.setBounds(46, 247, 70, 15);
 		contentPane.add(lblNewLabel);
+		
+		JComboBox comboBoxInstituto = new JComboBox();
+		comboBoxInstituto.setBounds(10, 84, 328, 24);
+		contentPane.add(comboBoxInstituto);
+		
+		JComboBox comboBoxActividad = new JComboBox();
+		comboBoxActividad.setBounds(10, 138, 328, 24);
+		contentPane.add(comboBoxActividad);
+		
+		JLabel lblNewLabel_1 = new JLabel("Actividad deportiva");
+		lblNewLabel_1.setBounds(12, 120, 162, 15);
+		contentPane.add(lblNewLabel_1);
+		
+		JLabel lblNewLabel_2 = new JLabel("Institucion");
+		lblNewLabel_2.setBounds(12, 66, 104, 15);
+		contentPane.add(lblNewLabel_2);
+		
+
+		
+		//instituto
+		comboBoxInstituto.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusGained(FocusEvent e) {
+				comboBoxInstituto.removeAllItems();
+				
+				ArrayList<String> instituciones = iinst.listarInstitucionDeportiva();
+				if(instituciones.isEmpty()) {
+					comboBoxInstituto.addItem("<Sin intituciones creadas>");
+					comboBoxInstituto.setSelectedItem("<Sin intituciones creadas>");
+				}else {
+					comboBoxInstituto.addItem("<Seleccionar institucion>");
+					comboBoxInstituto.setSelectedItem("<Seleccionar institucion>");
+				}
+				// miro si me trae algo
+				for (String s : instituciones) {
+					System.out.print(s);
+				}
+				
+				for (String s : instituciones) {
+					comboBoxInstituto.addItem(s);
+				}	
+			
+			}
+			
+			
+		});
+		// Desabilitar/habilitar combo actividades segun lo que se seleccione en el combo instituto
+		comboBoxInstituto.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e) {
+				if(comboBoxInstituto.getSelectedIndex()==0) {
+					comboBoxActividad.setEnabled(false);
+				}else {
+					comboBoxActividad.setEnabled(true);
+				}
+			}
+			
+		});
+		
+		////actvidad
+		
+		comboBoxActividad.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusGained(FocusEvent e) {
+				comboBoxActividad.removeAllItems();
+				
+				Set<String> actividades = iinst.selectInstitucionDeportiva(comboBoxInstituto.getSelectedItem().toString());
+				if(actividades.isEmpty()) {
+					comboBoxActividad.addItem("<Sin intituciones creadas>");
+					comboBoxActividad.setSelectedItem("<Sin intituciones creadas>");
+				}else {
+					comboBoxActividad.addItem("<Seleccionar institucion>");
+					comboBoxActividad.setSelectedItem("<Seleccionar institucion>");
+				}
+				// miro si me trae algo
+				for (String s : actividades) {
+					System.out.print(s);
+				}
+				
+				for (String s : actividades) {
+					comboBoxActividad.addItem(s);
+				}	
+			
+			}
+			
+			
+		});
+		
+		
+		
+		
+		
+		
+		// socio
 		
 		comboBoxSocio.addFocusListener(new FocusAdapter() {
 			@Override
@@ -158,16 +260,16 @@ public class IngresarRegistro extends JInternalFrame {
 			
 		});
 
-		
+		//clase
 		
 		comboBoxClase.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusGained(FocusEvent e) {
 				comboBoxClase.removeAllItems();
-				HashSet<String> clases = new HashSet<>(iusu.listarSocios());
+				String [] clases =  iinst.listarClases((String)comboBoxInstituto.getSelectedItem(),(String)comboBoxActividad.getSelectedItem());
  
-				//ArrayList<String> socios = (ArrayList<String>) iusu.listarSocios();
-				if(clases.isEmpty()) {
+			//ArrayList<String> socios = (ArrayList<String>) iinst();
+				if(clases.length==0) {
 					comboBoxClase.addItem("<Sin clses ingresadas >");
 					comboBoxClase.setSelectedItem("<Sin clases ingresadas>");
 				}else {

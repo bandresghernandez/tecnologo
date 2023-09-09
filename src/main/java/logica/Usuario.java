@@ -1,5 +1,7 @@
 package logica;
 
+import java.util.ArrayList;
+
 import datatypes.DtFecha;
 import datatypes.DtUsuario;
 
@@ -10,6 +12,7 @@ public abstract class Usuario {
     private String apellido;
     private String email;
     private DtFecha fechaNac;
+    public abstract ArrayList<String> obtenerClases();
 
     public Usuario(String nick, String nombre, String apellido, String email, DtFecha fechaNac) {
         this.nickname = nick;

@@ -29,6 +29,7 @@ public class ConsultaActividadDeportiva extends JInternalFrame {
 	private ICInstitucion iinst;
 	private JPanel contentPane;
 
+	
 
 	/**
 	 * Create the frame.

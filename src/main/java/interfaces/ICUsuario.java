@@ -16,5 +16,8 @@ public interface ICUsuario {
 	//public boolean selecDatos(String socio, String clase, DtFecha fechaReg, Float costo);
 	boolean selecDatos(String socio, String clase, DtFecha fechaReg, Float costo);
 	public String[] listarUsuario();
+	public String[] devolverClases(String nickname);
+
+	public String getActividad(String nickname, String clase);
 
 	}

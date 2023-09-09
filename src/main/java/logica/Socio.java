@@ -78,5 +78,13 @@ class Socio extends Usuario {
 		
 		return !flag;
 	}
-    
+
+	@Override
+	public ArrayList<String> obtenerClases(){
+        ArrayList<String> arrayClas = new ArrayList<String>();
+        for(Registro i: registros) {
+            arrayClas.add(i.getClase().getNombre());
+        }
+        return arrayClas;
+    }
 }

@@ -17,6 +17,7 @@ import datatypes.DtProfesor;
 import datatypes.DtSocio;
 import datatypes.DtUsuario;
 import excepciones.UsuarioEnUsoExcepcion;
+import interfaces.ICInstitucion;
 import interfaces.ICUsuario;
 import logica.CUsuario;
 import javax.swing.SwingConstants;
@@ -27,7 +28,6 @@ public class IngresarUsuario extends JInternalFrame {
 
 	private static final long serialVersionUID = 1L;
 	private ICUsuario icon;
-	
 	private JTextField textFieldNickname;
     private JTextField textFieldNombre;
     private JTextField textFieldApellido;

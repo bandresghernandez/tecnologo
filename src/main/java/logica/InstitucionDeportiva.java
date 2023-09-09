@@ -110,6 +110,16 @@ public class InstitucionDeportiva {
 		Clase clac = act.obtenerClase(clase);
 		return clac;
 	}
+	
+	
+	 public ActividadDeportiva obtenerActividad(String nombreActividad) {
+        for (ActividadDeportiva actividad : actividades.values()) {
+            if (actividad.getNombre().equals(nombreActividad)) {
+                return actividad;
+            }
+        }
+        return null; // Devuelve null si no se encuentra la actividad
+    }
 
     /*public static void main(String[] args) {
 

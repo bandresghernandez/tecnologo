@@ -98,4 +98,38 @@ public class Profesor extends Usuario {
 	public void daClase(Clase c) {
         clases.add(c);
     }
+
+	
+	@Override
+	public ArrayList<String> obtenerClases(){
+        ArrayList<String> arrayClases = new ArrayList<String>();
+        for(Clase i: clases) {
+            arrayClases.add(i.getNombre());
+        }
+        return arrayClases;
+    }
+	
+	public String obtenerActividad(String clase){
+		
+		String resultado=null;
+		
+				for(Clase i: clases) {
+					
+            if (i.getNombre( ).equals(clase) ) {
+            	
+            	resultado = i.getActividad();
+            	
+            	
+            }
+             
+            
+        }
+        return resultado;
+		
+	}
+	
+	
+	
+	
+	
 }

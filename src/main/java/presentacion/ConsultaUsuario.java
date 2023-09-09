@@ -23,6 +23,8 @@ import datatypes.DtUsuario;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 
 public class ConsultaUsuario extends JInternalFrame {
 
@@ -40,6 +42,7 @@ public class ConsultaUsuario extends JInternalFrame {
 	private JComboBox<String> comboBoxNickname;
 	private JComboBox<String> comboBoxClasesR;
 	private JComboBox<String> comboBoxClasesD;
+	private JTextField textFieldActividad;
 	
 	/**
 	 * Create the frame.
@@ -84,24 +87,12 @@ public class ConsultaUsuario extends JInternalFrame {
 		lblFechNac.setBounds(37, 114, 89, 13);
 		getContentPane().add(lblFechNac);
 		
-		JLabel lblSOCIO = new JLabel("SOCIO :");
-		lblSOCIO.setBounds(12, 151, 89, 13);
-		getContentPane().add(lblSOCIO);
-		
-		JLabel lblclasesR = new JLabel("Clases Registradas");
-		lblclasesR.setBounds(109, 139, 142, 28);
+		JLabel lblclasesR = new JLabel("Clases Registradas / Dictadas");
+		lblclasesR.setBounds(12, 144, 239, 28);
 		getContentPane().add(lblclasesR);
 		
-		JLabel lblprofesor = new JLabel("PROFESOR :");
-		lblprofesor.setBounds(12, 191, 109, 15);
-		getContentPane().add(lblprofesor);
-		
-		JLabel lblClasesDic = new JLabel("Clases Dictadas");
-		lblClasesDic.setBounds(96, 192, 116, 13);
-		getContentPane().add(lblClasesDic);
-		
-		JLabel lblactividadesDepAsoc = new JLabel("Actividades Deportivas");
-		lblactividadesDepAsoc.setBounds(220, 192, 208, 13);
+		JLabel lblactividadesDepAsoc = new JLabel("Actividad Deportiva");
+		lblactividadesDepAsoc.setBounds(240, 192, 208, 13);
 		getContentPane().add(lblactividadesDepAsoc);
 		
 		JButton btnCancelar = new JButton("Cancelar");
@@ -147,17 +138,20 @@ public class ConsultaUsuario extends JInternalFrame {
 		comboBoxNickname.setBounds(111, 8, 91, 18);
 		getContentPane().add(comboBoxNickname);
 		
-		JComboBox comboBoxClasesR = new JComboBox();
-		comboBoxClasesR.setBounds(269, 150, 89, 15);
+		 comboBoxClasesR = new JComboBox();
+		comboBoxClasesR.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusGained(FocusEvent e) {
+				textFieldActividad.setText(icon.getActividad((String)comboBoxNickname.getSelectedItem(), (String)comboBoxClasesR.getSelectedItem() ));
+			}
+		});
+		comboBoxClasesR.setBounds(240, 151, 158, 15);
 		getContentPane().add(comboBoxClasesR);
 		
-		JComboBox comboBoxClasesD = new JComboBox();
-		comboBoxClasesD.setBounds(96, 211, 116, 15);
-		getContentPane().add(comboBoxClasesD);
-		
-		JComboBox comboBoxActividadesAsoc = new JComboBox();
-		comboBoxActividadesAsoc.setBounds(230, 211, 142, 15);
-		getContentPane().add(comboBoxActividadesAsoc);
+		textFieldActividad = new JTextField();
+		textFieldActividad.setBounds(242, 217, 156, 19);
+		getContentPane().add(textFieldActividad);
+		textFieldActividad.setColumns(10);
 		
 		setBounds(100, 100, 450, 300);
 
@@ -181,12 +175,9 @@ public class ConsultaUsuario extends JInternalFrame {
         	textFieldMes.setText(Integer.toString(dtu.getFechaNac().getMes()));
         	textFieldAnio.setText(Integer.toString(dtu.getFechaNac().getAnio()));
         	// textFieldDia ES STRING PASAR A INT COMO SE HACE? textFieldDia.setText(dtu.getFechaNac().getDia());
-        	
-            if (dtu instanceof DtSocio) {
-            	String strClasesR = this.comboBoxClasesR.getSelectedItem().toString();
-            }else if (dtu instanceof DtProfesor) {
-            	String strClasesD = this.comboBoxClasesD.getSelectedItem().toString();
-            }
+        
+            	String strClasesD = this.comboBoxClasesR.getSelectedItem().toString();
+            
             
             
             }
@@ -199,11 +190,16 @@ public class ConsultaUsuario extends JInternalFrame {
 					
 				 DefaultComboBoxModel<String> modelclases = new DefaultComboBoxModel<String>(icon.listarUsuario());
 				 comboBoxNickname.setModel(modelclases);//nickname Usuario
-				 /*DefaultComboBoxModel<String> modelclases = new DefaultComboBoxModel<String>(icon.listarProfesor());
-					comboBoxClasesD.setModel(modelclases);
-					DefaultComboBoxModel<String> modelclases = new DefaultComboBoxModel<String>(icon.listarSocios());
-					comboBoxClasesR.setModel(modelclases);*/
-			}	
+				 DefaultComboBoxModel<String> modelclases1 = new DefaultComboBoxModel<String>(icon.devolverClases((String) comboBoxNickname.getSelectedItem()));
+					comboBoxClasesD.setModel(modelclases1);
 		
-	
+			}	
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
 }

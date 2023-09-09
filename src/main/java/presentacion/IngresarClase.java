@@ -105,9 +105,9 @@ public class IngresarClase extends JInternalFrame {
         getContentPane().add(urlField);
         urlField.setColumns(10);
 
-        JLabel lblFechaRef = new JLabel("Fecha Ref:");
+        JLabel lblFechaRef = new JLabel("Fecha Ref (dd/mm/aaaa):");
         lblFechaRef.setFont(new Font("Tahoma", Font.PLAIN, 14));
-        lblFechaRef.setBounds(26, 199, 80, 14);
+        lblFechaRef.setBounds(12, 200, 181, 14);
         getContentPane().add(lblFechaRef);
 
         try {
@@ -122,9 +122,9 @@ public class IngresarClase extends JInternalFrame {
             e.printStackTrace();
         }
 
-        fechaRefDiaField.setBounds(166, 198, 40, 20);
-        fechaRefMesField.setBounds(209, 198, 46, 20);
-        fechaRefAnioField.setBounds(259, 198, 57, 20);
+        fechaRefDiaField.setBounds(197, 198, 30, 20);
+        fechaRefMesField.setBounds(239, 198, 30, 20);
+        fechaRefAnioField.setBounds(281, 198, 57, 20);
 
         getContentPane().add(fechaRefDiaField);
         getContentPane().add(fechaRefMesField);
@@ -132,7 +132,7 @@ public class IngresarClase extends JInternalFrame {
 
         JLabel lblActividadDeportiva = new JLabel("Actividad Deportiva:");
         lblActividadDeportiva.setFont(new Font("Tahoma", Font.PLAIN, 14));
-        lblActividadDeportiva.setBounds(26, 52, 130, 14);
+        lblActividadDeportiva.setBounds(12, 52, 144, 14);
         getContentPane().add(lblActividadDeportiva);
 
         actividadComboBox = new JComboBox<String>();
@@ -170,9 +170,9 @@ public class IngresarClase extends JInternalFrame {
         btnNewButton.setBounds(250, 240, 117, 25);
         getContentPane().add(btnNewButton);
         
-        JLabel lblNewLabel = new JLabel("Institucion");
+        JLabel lblNewLabel = new JLabel("Institucion:");
         lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
-        lblNewLabel.setBounds(27, 27, 64, 14);
+        lblNewLabel.setBounds(12, 27, 115, 14);
         getContentPane().add(lblNewLabel);
         
         institucionComboBox = new JComboBox<String>();
@@ -271,7 +271,7 @@ public class IngresarClase extends JInternalFrame {
 		if(checkFormulario()) {
 			try {
 				iinst.altaClase(nombre_inst, act, nombre, dtf, dth, profe, url, dtf2);
-				JOptionPane.showMessageDialog(this, "No puede haber campos vacios", "Clase", JOptionPane.INFORMATION_MESSAGE);
+				JOptionPane.showMessageDialog(this, "Alta de clase satisfactoria", "Clase", JOptionPane.INFORMATION_MESSAGE);
 			} catch (ClaseRepetidaExcepcion e1){
 				JOptionPane.showMessageDialog(this, e1.getMessage(), "Clase", JOptionPane.ERROR_MESSAGE);
 				}

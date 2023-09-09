@@ -24,4 +24,5 @@ public interface ICInstitucion {
 	public Clase obtenerClase(String clase);
 	public String[] listarInstitucion();
 	public String[] listarActividades(String nombre_inst);
+	String[] listarClases(String nombre_inst, String nombre_actividad);
 }

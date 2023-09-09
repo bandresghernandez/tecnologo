@@ -115,7 +115,7 @@ public class Principal {
 		frame.getContentPane().add(ingresarActividadDeportivaInternalFrame);//lo agrego
 		
 		//registro
-		IngresarRegistroFrame = new IngresarRegistro(iusu);//lo instancio
+		IngresarRegistroFrame = new IngresarRegistro(iusu, iinst);//lo instancio
         jInternalFrameSize = IngresarRegistroFrame.getSize();
         IngresarRegistroFrame.setLocation((desktopSize.width - jInternalFrameSize.width)/2,//lo pongo en el medio de la pantalla
 		    (desktopSize.height- jInternalFrameSize.height)/2);
@@ -221,7 +221,7 @@ public class Principal {
         JMenuItem mntmAgregar = new JMenuItem("Agregar");
         mntmAgregar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-            	IngresarRegistro l = new IngresarRegistro(null);
+            	//IngresarRegistro l = new IngresarRegistro(null);
                  //desktopPane.add(l);
                 //IngresarRegistroFrame.setVisible(true);
             	IngresarRegistroFrame.setVisible(true);

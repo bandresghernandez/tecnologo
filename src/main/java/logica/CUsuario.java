@@ -85,7 +85,7 @@ public class CUsuario implements ICUsuario{
 		
  
 	}
-		//@Override
+	@Override
 	public String[] listarUsuario() {
 		ArrayList<String> usuarios;
 		ManejadorUsuario mU = ManejadorUsuario.getInstancia();
@@ -97,6 +97,45 @@ public class CUsuario implements ICUsuario{
         	i++;
         }
         return usuarios_ret;
+	}
+	
+	@Override
+	public String[] devolverClases(String email) {
+        ManejadorUsuario mU = ManejadorUsuario.getInstancia();
+        Usuario usuarioBusc = mU.buscarUsuario(email);
+        //ArrayList<String> usuariosBusc;
+        //usuariosBusc = mU.getUsuarios();
+        
+        ArrayList<String> listClases = new ArrayList<>();
+        
+        if (usuarioBusc instanceof Profesor) {
+            listClases = ((Profesor) usuarioBusc).obtenerClases();
+        } else if (usuarioBusc instanceof Socio) {
+            listClases = ((Socio) usuarioBusc).obtenerClases();
+        }
+        
+        return listClases.toArray(new String[0]);
+        
+        
+        
+        //return null;
+    }
+	@Override
+	public String getActividad(String nickname, String clase) {
+		// TODO Auto-generated method stub
+	      ManejadorUsuario mU = ManejadorUsuario.getInstancia();
+	        Usuario usuarioBusc = mU.buscarUsuario(nickname);
+	        //ArrayList<String> usuariosBusc;
+	        //usuariosBusc = mU.getUsuarios();
+	        
+	        String actividad= null;
+	        
+	        if (usuarioBusc instanceof Profesor) {
+	           actividad = ((Profesor) usuarioBusc).obtenerActividad(clase);
+	        }
+		
+	        
+		return actividad;
 	}
 	
 
