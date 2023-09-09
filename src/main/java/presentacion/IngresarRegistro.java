@@ -68,13 +68,13 @@ public class IngresarRegistro extends JInternalFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JComboBox comboBoxSocio = new JComboBox();			
+		comboBoxSocio = new JComboBox();			
 		comboBoxSocio.setBounds(10, 32, 328, 22);	
 		contentPane.add(comboBoxSocio);
 	
 		
 	
-		JComboBox comboBoxClase = new JComboBox();
+		comboBoxClase = new JComboBox();
 		comboBoxClase.setBounds(10, 198, 328, 22);
 		comboBoxClase.addItem("<Seleccionar Clase>");
 		comboBoxClase.setEnabled(true);
@@ -103,18 +103,7 @@ public class IngresarRegistro extends JInternalFrame {
 		JButton btnRegistrar = new JButton("REGISTRAR");
 		btnRegistrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				LocalDateTime fechaHoraActual = LocalDateTime.now();
-
-
-				        int dia = fechaHoraActual.getDayOfMonth();
-				        int mes = fechaHoraActual.getMonthValue();
-				        int anio = fechaHoraActual.getYear();
-						DtFecha dtf = new DtFecha(dia, mes, anio);
-
-				iusu.selecDatos((String)comboBoxSocio.getSelectedItem(), (String)comboBoxClase.getSelectedItem(), dtf   );
-				
-	
-
+				registroActionPerformed(e);
 			}
 		});
 		btnRegistrar.setBounds(84, 455, 117, 25);
@@ -129,11 +118,11 @@ public class IngresarRegistro extends JInternalFrame {
 		btnCancelar.setBounds(235, 455, 117, 25);
 		contentPane.add(btnCancelar);
 		
-		JComboBox comboBoxInstituto = new JComboBox();
+		comboBoxInstituto = new JComboBox();
 		comboBoxInstituto.setBounds(10, 84, 328, 24);
 		contentPane.add(comboBoxInstituto);
 		
-		JComboBox comboBoxActividad = new JComboBox();
+		comboBoxActividad = new JComboBox();
 		comboBoxActividad.setBounds(10, 138, 328, 24);
 		contentPane.add(comboBoxActividad);
 		
@@ -283,4 +272,17 @@ public class IngresarRegistro extends JInternalFrame {
 	
 		
 	}
+	
+	public void registroActionPerformed(ActionEvent e) {
+		LocalDateTime fechaHoraActual = LocalDateTime.now();
+	    int dia = fechaHoraActual.getDayOfMonth();
+	    int mes = fechaHoraActual.getMonthValue();
+	    int anio = fechaHoraActual.getYear();
+		DtFecha dtf = new DtFecha(dia, mes, anio);
+		//System.out.print((String)comboBoxSocio.getSelectedItem()+ "\n");
+		//System.out.print((String)comboBoxClase.getSelectedItem()+ "\n");
+		
+		iusu.selecDatos((String) comboBoxInstituto.getSelectedItem(), (String) comboBoxActividad.getSelectedItem(), (String) comboBoxSocio.getSelectedItem(), (String) comboBoxClase.getSelectedItem(), dtf);
+	}
+	
 }

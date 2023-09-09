@@ -70,12 +70,12 @@ public class CUsuario implements ICUsuario{
 
 	// encuentro el socio, encuentro la clase y si no existe el regitro de ese socio a esa clase lo creo
 	@Override
-	public boolean selecDatos(String socio, String clase, DtFecha fechaReg){
+	public boolean selecDatos(String inst, String act, String socio, String clase, DtFecha fechaReg){
 		ManejadorUsuario mU = ManejadorUsuario.getInstancia();
 		Fabrica db = Fabrica.getInstancia();
 		ICInstitucion cin = db.getICInstitucion();
 		
-		Clase clac = cin.obtenerClase(clase);		
+		Clase clac = cin.obtenerClase(inst, act, clase);		
 		Socio usr = (Socio) mU.buscarUsuario(socio);
 		
 		usr.crearRegistro(clac, fechaReg);

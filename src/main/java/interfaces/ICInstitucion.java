@@ -21,7 +21,7 @@ public interface ICInstitucion {
     public boolean altaClase(String nombre_inst, String actividad, String nombre, DtFecha fechaini, DtHora horaini, String profesor, String url, DtFecha fechaAlta) throws ClaseRepetidaExcepcion;
     public boolean altaActividadDeportiva(String nombre_institucion, String nombre, String descripcion, int duracion, Float costo, DtFecha fechaAlta)throws ActividadDeportivaRepetidaExcepcion;
     public DtClase selectClase(String nombre);
-	public Clase obtenerClase(String clase);
+	public Clase obtenerClase(String inst, String act, String clase);
 	public String[] listarInstitucion();
 	public String[] listarActividades(String nombre_inst);
 	String[] listarClases(String nombre_inst, String nombre_actividad);

@@ -132,10 +132,11 @@ public class CInstitucion implements ICInstitucion {
 	}
 	
 	@Override
-	public Clase obtenerClase(String clase) {
+	public Clase obtenerClase(String inst, String act, String clase) {
 		ManejadorInstitucionDeportiva mi = ManejadorInstitucionDeportiva.getInstancia();
-		InstitucionDeportiva id = mi.getInstitucion(this.institucion);
-		Clase clac = id.obtenerClase(clase,this.actividadDeportiva);
+		InstitucionDeportiva id = mi.getInstitucion(inst);
+		
+		Clase clac = id.obtenerClase(clase,act);
 		return clac;
 	}
 	

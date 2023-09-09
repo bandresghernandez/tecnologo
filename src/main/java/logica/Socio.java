@@ -62,7 +62,8 @@ class Socio extends Usuario {
 			//Si encuentro una fecha igual salgo del for
 			if (fecha.getAnio() == fechaReg.getAnio() &&
 				    fecha.getMes() == fechaReg.getMes() &&
-				    fecha.getDia() == fechaReg.getDia()) {
+				    fecha.getDia() == fechaReg.getDia() &&
+				    c.getNombre().equals(r.getClase().getNombre())) {
 				    flag = true;
 				    break;
 			}		

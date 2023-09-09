@@ -28,6 +28,10 @@ public class ConsultaActividadDeportiva extends JInternalFrame {
 	//Variables 
 	private ICInstitucion iinst;
 	private JPanel contentPane;
+	private JComboBox comboBoxClase;
+	private JComboBox comboBoxSocio;
+	private JComboBox comboBoxActividad;
+	private JComboBox comboBoxInstituto;
 
 	
 
@@ -50,18 +54,18 @@ public class ConsultaActividadDeportiva extends JInternalFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JComboBox comboBoxInstituto = new JComboBox();			
+		comboBoxInstituto = new JComboBox();			
 		comboBoxInstituto.setBounds(10, 57, 328, 22);	
 		contentPane.add(comboBoxInstituto);
 	
 		
 		
-		JComboBox comboBoxActividad = new JComboBox();
+		comboBoxActividad = new JComboBox();
 		comboBoxActividad.setBounds(10, 152, 328, 22);
 		comboBoxActividad.addItem("<Seleccionar Actividad Deportiva");
 		contentPane.add(comboBoxActividad);
 		
-		JComboBox comboBoxClase = new JComboBox();
+		comboBoxClase = new JComboBox();
 		comboBoxClase.setBounds(10, 254, 328, 22);
 		comboBoxClase.addItem("<Seleccionar Clase");
 		comboBoxClase.setEnabled(false);
@@ -161,6 +165,34 @@ public class ConsultaActividadDeportiva extends JInternalFrame {
 				
 				for (String s : actividades) {
 					comboBoxActividad.addItem(s);
+				}	
+			
+			}
+			
+			
+		});
+		
+		comboBoxClase.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusGained(FocusEvent e) {
+				comboBoxClase.removeAllItems();
+				String [] clases =  iinst.listarClases((String)comboBoxInstituto.getSelectedItem(),(String)comboBoxActividad.getSelectedItem());
+ 
+			//ArrayList<String> socios = (ArrayList<String>) iinst();
+				if(clases.length==0) {
+					comboBoxClase.addItem("<Sin clses ingresadas >");
+					comboBoxClase.setSelectedItem("<Sin clases ingresadas>");
+				}else {
+					comboBoxClase.addItem("<Seleccionar clase>");
+					comboBoxClase.setSelectedItem("<Seleccionar clase>");
+				}
+				// miro si me trae algo
+				for (String c : clases) {
+					System.out.print(c);
+				}
+				
+				for (String c : clases) {
+					comboBoxClase.addItem(c);
 				}	
 			
 			}

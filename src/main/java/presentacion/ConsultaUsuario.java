@@ -41,7 +41,6 @@ public class ConsultaUsuario extends JInternalFrame {
 	private JTextField textFieldMes;
 	private JComboBox<String> comboBoxNickname;
 	private JComboBox<String> comboBoxClasesR;
-	private JComboBox<String> comboBoxClasesD;
 	private JTextField textFieldActividad;
 	
 	/**
@@ -134,17 +133,22 @@ public class ConsultaUsuario extends JInternalFrame {
 		textFieldMes.setBounds(170, 109, 27, 19);
 		getContentPane().add(textFieldMes);
 		
-		 comboBoxNickname = new JComboBox();
+		comboBoxNickname = new JComboBox();
 		comboBoxNickname.setBounds(111, 8, 91, 18);
 		getContentPane().add(comboBoxNickname);
 		
-		 comboBoxClasesR = new JComboBox();
-		comboBoxClasesR.addFocusListener(new FocusAdapter() {
+		comboBoxClasesR = new JComboBox();
+		comboBoxClasesR.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				textFieldActividad.setText(icon.getActividad((String)comboBoxNickname.getSelectedItem(), (String)comboBoxClasesR.getSelectedItem() ));
+			}
+		});
+		/*comboBoxClasesR.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusGained(FocusEvent e) {
 				textFieldActividad.setText(icon.getActividad((String)comboBoxNickname.getSelectedItem(), (String)comboBoxClasesR.getSelectedItem() ));
 			}
-		});
+		});*/
 		comboBoxClasesR.setBounds(240, 151, 158, 15);
 		getContentPane().add(comboBoxClasesR);
 		
@@ -175,11 +179,8 @@ public class ConsultaUsuario extends JInternalFrame {
         	textFieldMes.setText(Integer.toString(dtu.getFechaNac().getMes()));
         	textFieldAnio.setText(Integer.toString(dtu.getFechaNac().getAnio()));
         	// textFieldDia ES STRING PASAR A INT COMO SE HACE? textFieldDia.setText(dtu.getFechaNac().getDia());
-        
-            	String strClasesD = this.comboBoxClasesR.getSelectedItem().toString();
-            
-            
-            
+            //String strClasesD = this.comboBoxClasesR.getSelectedItem().toString();
+            actualizarComboBoxR();
             }
        	
 		
@@ -187,15 +188,15 @@ public class ConsultaUsuario extends JInternalFrame {
 		
 		
 			 public void iniciarlizarComboBoxes() {
-					
-				 DefaultComboBoxModel<String> modelclases = new DefaultComboBoxModel<String>(icon.listarUsuario());
-				 comboBoxNickname.setModel(modelclases);//nickname Usuario
-				 DefaultComboBoxModel<String> modelclases1 = new DefaultComboBoxModel<String>(icon.devolverClases((String) comboBoxNickname.getSelectedItem()));
-					comboBoxClasesD.setModel(modelclases1);
+				DefaultComboBoxModel<String> modelclases = new DefaultComboBoxModel<String>(icon.listarUsuario());
+				comboBoxNickname.setModel(modelclases);//nickname Usuario
 		
 			}	
 			 
-			 
+			public void actualizarComboBoxR() {
+				DefaultComboBoxModel<String> modelclases3 = new DefaultComboBoxModel<String>(icon.devolverClases((String) comboBoxNickname.getSelectedItem()));
+				comboBoxClasesR.setModel(modelclases3);
+			}
 			 
 			 
 			 
