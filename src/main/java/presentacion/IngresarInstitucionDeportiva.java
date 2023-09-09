@@ -140,7 +140,8 @@ public class IngresarInstitucionDeportiva extends JInternalFrame {
 	            }
 	             
 	        }
-		
+	dispose();
+
 	}
 	
 
