@@ -128,7 +128,7 @@ public class IngresarClase extends JInternalFrame {
 
         fechaRefDiaField.setBounds(253, 205, 30, 20);
         fechaRefMesField.setBounds(211, 205, 30, 20);
-        fechaRefAnioField.setBounds(295, 205, 57, 20);
+        fechaRefAnioField.setBounds(295, 205, 40, 20);
 
         getContentPane().add(fechaRefDiaField);
         getContentPane().add(fechaRefMesField);
@@ -194,12 +194,12 @@ public class IngresarClase extends JInternalFrame {
         profeField.setColumns(10);
         
         fechaRefMesField_1 = new JTextField();
-        fechaRefMesField_1.setBounds(209, 123, 46, 20);
+        fechaRefMesField_1.setBounds(218, 122, 46, 20);
         getContentPane().add(fechaRefMesField_1);
         fechaRefMesField_1.setColumns(10);
         
         fechaRefAnioField_1 = new JTextField();
-        fechaRefAnioField_1.setBounds(259, 123, 40, 20);
+        fechaRefAnioField_1.setBounds(276, 122, 40, 20);
         getContentPane().add(fechaRefAnioField_1);
         fechaRefAnioField_1.setColumns(10);
         
@@ -223,6 +223,18 @@ public class IngresarClase extends JInternalFrame {
         label_2 = new JLabel(":");
         label_2.setBounds(197, 149, 21, 15);
         getContentPane().add(label_2);
+        
+        JLabel label_3 = new JLabel("/");
+        label_3.setBounds(270, 124, 70, 15);
+        getContentPane().add(label_3);
+        
+        JLabel label_5 = new JLabel("/");
+        label_5.setBounds(259, 124, 70, 15);
+        getContentPane().add(label_5);
+        
+        JLabel label_5_1 = new JLabel("/");
+        label_5_1.setBounds(208, 124, 70, 15);
+        getContentPane().add(label_5_1);
         
         institucionComboBox.addFocusListener(new FocusAdapter() {
 			@Override
