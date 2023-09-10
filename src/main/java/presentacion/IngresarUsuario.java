@@ -236,6 +236,14 @@ public class IngresarUsuario extends JInternalFrame {
         rdbtnProfesor.setBounds(98, 43, 103, 21);
         contentPane.add(rdbtnProfesor);
         
+        JLabel label = new JLabel("/");
+        label.setBounds(183, 168, 31, 19);
+        contentPane.add(label);
+        
+        JLabel label_1 = new JLabel("/");
+        label_1.setBounds(237, 168, 31, 19);
+        contentPane.add(label_1);
+        
     }
     
     

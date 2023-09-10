@@ -47,6 +47,9 @@ public class IngresarClase extends JInternalFrame {
     private JTextField fechaRefMesField_1;
     private JTextField fechaRefAnioField_1;
     private JTextField minutoField;
+    private JLabel label;
+    private JLabel label_1;
+    private JLabel label_4;
 
     /*public static void main(String[] args) {
         EventQueue.invokeLater(new Runnable() {
@@ -107,7 +110,7 @@ public class IngresarClase extends JInternalFrame {
 
         JLabel lblFechaRef = new JLabel("Fecha Ref (dd/mm/aaaa):");
         lblFechaRef.setFont(new Font("Tahoma", Font.PLAIN, 14));
-        lblFechaRef.setBounds(12, 200, 181, 14);
+        lblFechaRef.setBounds(12, 207, 181, 14);
         getContentPane().add(lblFechaRef);
 
         try {
@@ -122,9 +125,9 @@ public class IngresarClase extends JInternalFrame {
             e.printStackTrace();
         }
 
-        fechaRefDiaField.setBounds(197, 198, 30, 20);
-        fechaRefMesField.setBounds(239, 198, 30, 20);
-        fechaRefAnioField.setBounds(281, 198, 57, 20);
+        fechaRefDiaField.setBounds(253, 205, 30, 20);
+        fechaRefMesField.setBounds(211, 205, 30, 20);
+        fechaRefAnioField.setBounds(295, 205, 57, 20);
 
         getContentPane().add(fechaRefDiaField);
         getContentPane().add(fechaRefMesField);
@@ -203,6 +206,18 @@ public class IngresarClase extends JInternalFrame {
         minutoField.setBounds(218, 147, 40, 20);
         getContentPane().add(minutoField);
         minutoField.setColumns(10);
+        
+        label = new JLabel("");
+        label.setBounds(246, 206, 21, 14);
+        getContentPane().add(label);
+        
+        label_1 = new JLabel("/");
+        label_1.setBounds(246, 194, 9, 40);
+        getContentPane().add(label_1);
+        
+        label_4 = new JLabel("/");
+        label_4.setBounds(289, 207, 70, 15);
+        getContentPane().add(label_4);
         
         institucionComboBox.addFocusListener(new FocusAdapter() {
 			@Override
