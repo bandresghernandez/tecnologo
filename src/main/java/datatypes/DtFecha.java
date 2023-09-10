@@ -24,4 +24,8 @@ public class DtFecha {
     public int getAnio() {
         return anio;
     }
+    @Override
+	public String toString() {
+		return "" + dia + "/" + mes + "/" + anio + "";
+	}
 }

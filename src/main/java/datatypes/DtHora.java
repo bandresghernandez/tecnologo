@@ -18,4 +18,9 @@ public class DtHora {
     public int getMinuto() {
         return minutos;
     }
+    @Override
+	public String toString() {
+		return "" + hora + ":" + minutos + "";
+	}
+    
 }

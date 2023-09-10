@@ -71,7 +71,7 @@ public class Clase {
     }
 
     public DtClase obtenerinfo() {
-    	return new DtClase(this.nombre, this.fecha);
+    	return new DtClase(this.nombre, this.fecha, this.horaInicio, this.url, this.fechaReg);
     }
     
     public void mostrarInformacion() {
@@ -97,7 +97,7 @@ public class Clase {
 	}
 	
 	public DtClase getDtClase() {
-    	return new DtClase(this.nombre, this.fecha);
+		return new DtClase(this.nombre, this.fecha,  this.horaInicio, this.url, this.fechaReg);
     }
 	
 	public String getActividad() {

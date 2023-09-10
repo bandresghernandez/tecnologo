@@ -123,13 +123,13 @@ public class CInstitucion implements ICInstitucion {
 		return res;
 	}
 	
-	@Override
+	/*@Override
 	public DtClase selectClase(String nombre) {
 		ManejadorInstitucionDeportiva mi = ManejadorInstitucionDeportiva.getInstancia();
 		InstitucionDeportiva id = mi.getInstitucion(this.institucion);
 		DtClase dtc = id.getDtClase(this.actividadDeportiva, nombre);
 		return dtc;
-	}
+	}*/
 	
 	@Override
 	public Clase obtenerClase(String inst, String act, String clase) {
@@ -185,5 +185,18 @@ public class CInstitucion implements ICInstitucion {
             return new String[0]; 
         }
     }
+	
+	@Override
+	public DtClase selectClase(String inst, String act, String clase7) {
+		
+		ManejadorInstitucionDeportiva mi = ManejadorInstitucionDeportiva.getInstancia();
+		InstitucionDeportiva id = mi.getInstitucion(inst);
+		
+		ActividadDeportiva dta = id.obtenerActividad(act);//obtengo la actividad
+		Clase c1 = dta.obtenerClase(clase7);
+
+		return new DtClase(c1.getNombre(),c1.getFecha(),c1.getHoraInicio(),c1.getUrl(),c1.getFechaReg());
+
+	}
 	
 }

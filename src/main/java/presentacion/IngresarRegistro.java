@@ -11,6 +11,7 @@ import javax.swing.JPanel;
 import javax.swing.JSpinner;
 import javax.swing.border.EmptyBorder;
 
+import datatypes.DtClase;
 import datatypes.DtFecha;
 import excepciones.RegistroUsuarioClaseException;
 import excepciones.UsuarioEnUsoExcepcion;
@@ -72,7 +73,7 @@ public class IngresarRegistro extends JInternalFrame {
 		contentPane.setLayout(null);
 		
 		comboBoxSocio = new JComboBox();			
-		comboBoxSocio.setBounds(10, 32, 328, 22);	
+		comboBoxSocio.setBounds(10, 321, 328, 22);	
 		contentPane.add(comboBoxSocio);
 	
 		
@@ -84,7 +85,7 @@ public class IngresarRegistro extends JInternalFrame {
 		contentPane.add(comboBoxClase);
 		
 		JLabel lblComboSocio = new JLabel("Socios:");
-		lblComboSocio.setBounds(10, 12, 194, 14);
+		lblComboSocio.setBounds(10, 297, 194, 14);
 		contentPane.add(lblComboSocio);
 		
 		JLabel lblComboClase = new JLabel("Clases:");
@@ -94,7 +95,7 @@ public class IngresarRegistro extends JInternalFrame {
 		JTextPane textInfoClase = new JTextPane();
 		textInfoClase.setEnabled(false);
 		textInfoClase.setText("Detalles de las clase . . .");
-		textInfoClase.setBounds(23, 282, 328, 113);
+		textInfoClase.setBounds(394, 230, 328, 137);
 		contentPane.add(textInfoClase);
 		
 		JButton btnRegistrar = new JButton("REGISTRAR");
@@ -121,24 +122,35 @@ public class IngresarRegistro extends JInternalFrame {
 		contentPane.add(btnCancelar);
 		
 		comboBoxInstituto = new JComboBox();
-		comboBoxInstituto.setBounds(10, 84, 328, 24);
+		comboBoxInstituto.setBounds(10, 48, 328, 24);
 		contentPane.add(comboBoxInstituto);
 		
 		comboBoxActividad = new JComboBox();
-		comboBoxActividad.setBounds(10, 138, 328, 24);
+		comboBoxActividad.setBounds(10, 123, 328, 24);
 		contentPane.add(comboBoxActividad);
 		
 		JLabel lblNewLabel_1 = new JLabel("Actividad deportiva:");
-		lblNewLabel_1.setBounds(12, 120, 162, 15);
+		lblNewLabel_1.setBounds(10, 98, 162, 15);
 		contentPane.add(lblNewLabel_1);
 		
 		JLabel lblNewLabel_2 = new JLabel("Institución:");
-		lblNewLabel_2.setBounds(12, 66, 104, 15);
+		lblNewLabel_2.setBounds(10, 23, 104, 15);
 		contentPane.add(lblNewLabel_2);
 		
-		JLabel lblNewLabel = new JLabel("Información de la clase:");
-		lblNewLabel.setBounds(23, 248, 212, 22);
-		contentPane.add(lblNewLabel);
+		JButton btnVerDatosC = new JButton("Ver Datos de la Clase");
+		btnVerDatosC.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				textInfoClase.setText("");
+				
+				//String datos = "INFO_DE_LA_CLASE_SELECCIONADA";
+				DtClase dtc = iinst.selectClase((String)comboBoxInstituto.getSelectedItem(),(String)comboBoxActividad.getSelectedItem(),(String)comboBoxClase.getSelectedItem());
+				//datos = datos + "\n\n" + dtc.toString();
+				textInfoClase.setText(dtc.toString());
+			}
+		});
+		btnVerDatosC.setBounds(394, 199, 155, 21);
+		contentPane.add(btnVerDatosC);
 		
 
 		
@@ -314,8 +326,4 @@ private boolean checkFormulario() {
     
     return true;
 }
-	
-	
-	
-	
 }
