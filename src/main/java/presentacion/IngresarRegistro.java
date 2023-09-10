@@ -80,25 +80,19 @@ public class IngresarRegistro extends JInternalFrame {
 		comboBoxClase.setEnabled(true);
 		contentPane.add(comboBoxClase);
 		
-		JLabel lblComboSocio = new JLabel("Socios");
+		JLabel lblComboSocio = new JLabel("Socios:");
 		lblComboSocio.setBounds(10, 12, 194, 14);
 		contentPane.add(lblComboSocio);
 		
-		JLabel lblComboClase = new JLabel("Clases");
+		JLabel lblComboClase = new JLabel("Clases:");
 		lblComboClase.setBounds(10, 174, 183, 14);
 		contentPane.add(lblComboClase);
 		
 		JTextPane textInfoClase = new JTextPane();
 		textInfoClase.setEnabled(false);
 		textInfoClase.setText("Detalles de las clase . . .");
-		textInfoClase.setBounds(23, 291, 328, 104);
+		textInfoClase.setBounds(23, 282, 328, 113);
 		contentPane.add(textInfoClase);
-		
-		JTextPane textInfoActividad = new JTextPane();
-		textInfoActividad.setEnabled(false);
-		textInfoActividad.setText("Detalle de socio. . .");
-		textInfoActividad.setBounds(385, 32, 372, 314);
-		contentPane.add(textInfoActividad);
 		
 		JButton btnRegistrar = new JButton("REGISTRAR");
 		btnRegistrar.addActionListener(new ActionListener() {
@@ -106,7 +100,7 @@ public class IngresarRegistro extends JInternalFrame {
 				registroActionPerformed(e);
 			}
 		});
-		btnRegistrar.setBounds(84, 455, 117, 25);
+		btnRegistrar.setBounds(76, 455, 117, 25);
 		contentPane.add(btnRegistrar);
 		
 		JButton btnCancelar = new JButton("CANCELAR");
@@ -126,13 +120,17 @@ public class IngresarRegistro extends JInternalFrame {
 		comboBoxActividad.setBounds(10, 138, 328, 24);
 		contentPane.add(comboBoxActividad);
 		
-		JLabel lblNewLabel_1 = new JLabel("Actividad deportiva");
+		JLabel lblNewLabel_1 = new JLabel("Actividad deportiva:");
 		lblNewLabel_1.setBounds(12, 120, 162, 15);
 		contentPane.add(lblNewLabel_1);
 		
-		JLabel lblNewLabel_2 = new JLabel("Institucion");
+		JLabel lblNewLabel_2 = new JLabel("Institución:");
 		lblNewLabel_2.setBounds(12, 66, 104, 15);
 		contentPane.add(lblNewLabel_2);
+		
+		JLabel lblNewLabel = new JLabel("Información de la clase:");
+		lblNewLabel.setBounds(23, 248, 212, 22);
+		contentPane.add(lblNewLabel);
 		
 
 		
@@ -284,5 +282,4 @@ public class IngresarRegistro extends JInternalFrame {
 		
 		iusu.selecDatos((String) comboBoxInstituto.getSelectedItem(), (String) comboBoxActividad.getSelectedItem(), (String) comboBoxSocio.getSelectedItem(), (String) comboBoxClase.getSelectedItem(), dtf);
 	}
-	
 }

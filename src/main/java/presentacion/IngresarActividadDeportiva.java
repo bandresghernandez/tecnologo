@@ -106,7 +106,7 @@ public class IngresarActividadDeportiva extends JInternalFrame {
 		contentPane.add(lblCosto);
 
 		textFieldCosto = new JTextField();
-		textFieldCosto.setBounds(122, 288, 124, 20);
+		textFieldCosto.setBounds(122, 288, 85, 20);
 		contentPane.add(textFieldCosto);
 		textFieldCosto.setColumns(10);
 		
@@ -118,7 +118,7 @@ public class IngresarActividadDeportiva extends JInternalFrame {
 		textAreaDescripcion.setBounds(120, 137, 298, 78);
 		contentPane.add(textAreaDescripcion);
 				
-		JLabel lblNewLabel = new JLabel("Institucion:");
+		JLabel lblNewLabel = new JLabel("Institución:");
 		lblNewLabel.setBounds(29, 78, 80, 14);
 		contentPane.add(lblNewLabel);
 		

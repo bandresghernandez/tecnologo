@@ -67,9 +67,9 @@ public class IngresarClase extends JInternalFrame {
         setBounds(100, 100, 450, 300);
         getContentPane().setLayout(null);
 
-        JLabel lblNombre = new JLabel("Nombre:");
+        JLabel lblNombre = new JLabel("Nombre clase:");
         lblNombre.setFont(new Font("Tahoma", Font.PLAIN, 14));
-        lblNombre.setBounds(26, 77, 80, 14);
+        lblNombre.setBounds(26, 77, 109, 14);
         getContentPane().add(lblNombre);
 
         nombreField = new JTextField();
@@ -92,7 +92,7 @@ public class IngresarClase extends JInternalFrame {
         getContentPane().add(lblHoraInicio);
 
         horaField = new JTextField();
-        horaField.setBounds(166, 148, 70, 20);
+        horaField.setBounds(166, 148, 40, 20);
         getContentPane().add(horaField);
 
         JLabel lblURL = new JLabel("URL:");
@@ -132,7 +132,7 @@ public class IngresarClase extends JInternalFrame {
 
         JLabel lblActividadDeportiva = new JLabel("Actividad Deportiva:");
         lblActividadDeportiva.setFont(new Font("Tahoma", Font.PLAIN, 14));
-        lblActividadDeportiva.setBounds(12, 52, 144, 14);
+        lblActividadDeportiva.setBounds(26, 54, 144, 14);
         getContentPane().add(lblActividadDeportiva);
 
         actividadComboBox = new JComboBox<String>();
@@ -170,18 +170,18 @@ public class IngresarClase extends JInternalFrame {
         btnNewButton.setBounds(250, 240, 117, 25);
         getContentPane().add(btnNewButton);
         
-        JLabel lblNewLabel = new JLabel("Institucion:");
+        JLabel lblNewLabel = new JLabel("Institución:");
         lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
-        lblNewLabel.setBounds(12, 27, 115, 14);
+        lblNewLabel.setBounds(26, 29, 115, 14);
         getContentPane().add(lblNewLabel);
         
         institucionComboBox = new JComboBox<String>();
         institucionComboBox.setBounds(166, 25, 150, 22);
         getContentPane().add(institucionComboBox);
         
-        JLabel lblNewLabel_1 = new JLabel("Profesor");
+        JLabel lblNewLabel_1 = new JLabel("Nombre profesor:");
         lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
-        lblNewLabel_1.setBounds(26, 102, 65, 14);
+        lblNewLabel_1.setBounds(26, 102, 130, 14);
         getContentPane().add(lblNewLabel_1);
         
         profeField = new JTextField();
@@ -195,12 +195,12 @@ public class IngresarClase extends JInternalFrame {
         fechaRefMesField_1.setColumns(10);
         
         fechaRefAnioField_1 = new JTextField();
-        fechaRefAnioField_1.setBounds(259, 123, 57, 20);
+        fechaRefAnioField_1.setBounds(259, 123, 40, 20);
         getContentPane().add(fechaRefAnioField_1);
         fechaRefAnioField_1.setColumns(10);
         
         minutoField = new JTextField();
-        minutoField.setBounds(241, 148, 75, 20);
+        minutoField.setBounds(218, 147, 40, 20);
         getContentPane().add(minutoField);
         minutoField.setColumns(10);
         

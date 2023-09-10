@@ -71,15 +71,15 @@ public class ConsultaActividadDeportiva extends JInternalFrame {
 		comboBoxClase.setEnabled(false);
 		contentPane.add(comboBoxClase);
 		
-		JLabel lblComboInstituto = new JLabel("Institutos");
+		JLabel lblComboInstituto = new JLabel("Institutos:");
 		lblComboInstituto.setBounds(10, 32, 194, 14);
 		contentPane.add(lblComboInstituto);
 		
-		JLabel lblComboActividad = new JLabel("Actividades");
+		JLabel lblComboActividad = new JLabel("Actividades:");
 		lblComboActividad.setBounds(10, 127, 282, 14);
 		contentPane.add(lblComboActividad);
 		
-		JLabel lblComboClase = new JLabel("Clases");
+		JLabel lblComboClase = new JLabel("Clases:");
 		lblComboClase.setBounds(10, 216, 183, 14);
 		contentPane.add(lblComboClase);
 		
