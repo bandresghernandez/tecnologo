@@ -156,16 +156,16 @@ public class IngresarUsuario extends JInternalFrame {
    
         
         
-        JLabel lblDescripcion = new JLabel("Descripción");
+        JLabel lblDescripcion = new JLabel("Descripción:");
         lblDescripcion.setBounds(10, 204, 100, 13);
         contentPane.add(lblDescripcion);
         
-        JLabel lblBiografia = new JLabel("Biografía");
+        JLabel lblBiografia = new JLabel("Biografía:");
         lblBiografia.setBounds(152, 204, 85, 13);
         contentPane.add(lblBiografia);
         
-        JLabel lblSitioWeb = new JLabel("Sitio Web");
-        lblSitioWeb.setBounds(281, 204, 72, 13);
+        JLabel lblSitioWeb = new JLabel("Sitio Web:");
+        lblSitioWeb.setBounds(281, 204, 121, 13);
         contentPane.add(lblSitioWeb);
         
       
