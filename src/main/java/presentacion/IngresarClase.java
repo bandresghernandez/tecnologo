@@ -50,6 +50,7 @@ public class IngresarClase extends JInternalFrame {
     private JLabel label;
     private JLabel label_1;
     private JLabel label_4;
+    private JLabel label_2;
 
     /*public static void main(String[] args) {
         EventQueue.invokeLater(new Runnable() {
@@ -89,13 +90,13 @@ public class IngresarClase extends JInternalFrame {
         fechaRefDiaField_1.setBounds(166, 123, 40, 20);
         getContentPane().add(fechaRefDiaField_1);
 
-        JLabel lblHoraInicio = new JLabel("Hora Inicio:");
+        JLabel lblHoraInicio = new JLabel("Hora Inicio (hh:mm):");
         lblHoraInicio.setFont(new Font("Tahoma", Font.PLAIN, 14));
-        lblHoraInicio.setBounds(26, 149, 80, 14);
+        lblHoraInicio.setBounds(26, 149, 144, 14);
         getContentPane().add(lblHoraInicio);
 
         horaField = new JTextField();
-        horaField.setBounds(166, 148, 40, 20);
+        horaField.setBounds(166, 148, 30, 20);
         getContentPane().add(horaField);
 
         JLabel lblURL = new JLabel("URL:");
@@ -203,7 +204,7 @@ public class IngresarClase extends JInternalFrame {
         fechaRefAnioField_1.setColumns(10);
         
         minutoField = new JTextField();
-        minutoField.setBounds(218, 147, 40, 20);
+        minutoField.setBounds(208, 147, 33, 20);
         getContentPane().add(minutoField);
         minutoField.setColumns(10);
         
@@ -218,6 +219,10 @@ public class IngresarClase extends JInternalFrame {
         label_4 = new JLabel("/");
         label_4.setBounds(289, 207, 70, 15);
         getContentPane().add(label_4);
+        
+        label_2 = new JLabel(":");
+        label_2.setBounds(197, 149, 21, 15);
+        getContentPane().add(label_2);
         
         institucionComboBox.addFocusListener(new FocusAdapter() {
 			@Override

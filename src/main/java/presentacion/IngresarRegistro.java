@@ -12,12 +12,15 @@ import javax.swing.JSpinner;
 import javax.swing.border.EmptyBorder;
 
 import datatypes.DtFecha;
+import excepciones.RegistroUsuarioClaseException;
+import excepciones.UsuarioEnUsoExcepcion;
 import interfaces.ICInstitucion;
 import interfaces.ICUsuario;
 import logica.CUsuario;
 
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
 import javax.swing.JButton;
@@ -97,7 +100,12 @@ public class IngresarRegistro extends JInternalFrame {
 		JButton btnRegistrar = new JButton("REGISTRAR");
 		btnRegistrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				registroActionPerformed(e);
+				try {
+					registroActionPerformed(e);
+				} catch (RegistroUsuarioClaseException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		});
 		btnRegistrar.setBounds(76, 455, 117, 25);
@@ -271,7 +279,7 @@ public class IngresarRegistro extends JInternalFrame {
 		
 	}
 	
-	public void registroActionPerformed(ActionEvent e) {
+	public void registroActionPerformed(ActionEvent e) throws RegistroUsuarioClaseException {
 		LocalDateTime fechaHoraActual = LocalDateTime.now();
 	    int dia = fechaHoraActual.getDayOfMonth();
 	    int mes = fechaHoraActual.getMonthValue();
@@ -281,5 +289,33 @@ public class IngresarRegistro extends JInternalFrame {
 		//System.out.print((String)comboBoxClase.getSelectedItem()+ "\n");
 		
 		iusu.selecDatos((String) comboBoxInstituto.getSelectedItem(), (String) comboBoxActividad.getSelectedItem(), (String) comboBoxSocio.getSelectedItem(), (String) comboBoxClase.getSelectedItem(), dtf);
-	}
+	
+	
+	if (checkFormulario()) {
+        this.iusu.selecDatos((String) comboBoxInstituto.getSelectedItem(), (String) comboBoxActividad.getSelectedItem(), (String) comboBoxSocio.getSelectedItem(), (String) comboBoxClase.getSelectedItem(), dtf);
+  	
+		JOptionPane.showMessageDialog(this, "El Usuario se ha registrado con éxito a la clase", "Agregar Socio", JOptionPane.INFORMATION_MESSAGE);
+       // limpiarFormulario();
+        setVisible(false);
+    }
+		}
+
+
+
+private boolean checkFormulario() {
+    String nickname = (String) this.comboBoxSocio.getSelectedItem();
+   // String email = this.textFieldEmail.getText();
+   // if (nickname.isEmpty() || email.isEmpty()) {
+    if (nickname.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "No puede haber campos vacíos", "Registrar Usuario a clase",
+                JOptionPane.ERROR_MESSAGE);
+        return false;
+    }
+    
+    return true;
+}
+	
+	
+	
+	
 }

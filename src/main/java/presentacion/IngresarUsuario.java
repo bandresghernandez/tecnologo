@@ -74,11 +74,11 @@ public class IngresarUsuario extends JInternalFrame {
         contentPane.setLayout(null);
 
         JLabel lblNickname = new JLabel("Nickname:");
-        lblNickname.setBounds(10, 70, 121, 20);
+        lblNickname.setBounds(10, 68, 121, 20);
         contentPane.add(lblNickname);
 
         textFieldNickname = new JTextField();
-        textFieldNickname.setBounds(104, 73, 151, 15);
+        textFieldNickname.setBounds(104, 67, 151, 23);
         contentPane.add(textFieldNickname);
         textFieldNickname.setColumns(10);
 
@@ -87,7 +87,7 @@ public class IngresarUsuario extends JInternalFrame {
         contentPane.add(lblNombre);
 
         textFieldNombre = new JTextField();
-        textFieldNombre.setBounds(104, 92, 151, 15);
+        textFieldNombre.setBounds(104, 97, 151, 20);
         contentPane.add(textFieldNombre);
         textFieldNombre.setColumns(10);
 
@@ -96,30 +96,30 @@ public class IngresarUsuario extends JInternalFrame {
         contentPane.add(lblApellido);
 
         textFieldApellido = new JTextField();
-        textFieldApellido.setBounds(104, 121, 151, 15);
+        textFieldApellido.setBounds(104, 121, 151, 23);
         contentPane.add(textFieldApellido);
         textFieldApellido.setColumns(10);
 
         JLabel lblEmail = new JLabel("Email:");
-        lblEmail.setBounds(10, 138, 100, 20);
+        lblEmail.setBounds(10, 148, 100, 20);
         contentPane.add(lblEmail);
 
         textFieldEmail = new JTextField();
-        textFieldEmail.setBounds(104, 141, 151, 15);
+        textFieldEmail.setBounds(104, 151, 151, 20);
         contentPane.add(textFieldEmail);
         textFieldEmail.setColumns(10);
 
         JLabel lblFecha = new JLabel("Fecha Nacimiento:");
-        lblFecha.setBounds(10, 167, 140, 20);
+        lblFecha.setBounds(10, 172, 140, 20);
         contentPane.add(lblFecha);
 
         textFieldDia = new JTextField();
-        textFieldDia.setBounds(142, 168, 40, 20);
+        textFieldDia.setBounds(142, 173, 40, 20);
         contentPane.add(textFieldDia);
         textFieldDia.setColumns(10);
 
         textFieldMes = new JTextField();
-        textFieldMes.setBounds(194, 168, 40, 19);
+        textFieldMes.setBounds(194, 173, 40, 19);
         contentPane.add(textFieldMes);
         textFieldMes.setColumns(10);
 
@@ -141,7 +141,7 @@ public class IngresarUsuario extends JInternalFrame {
         
         textFieldAnio = new JTextField();
         textFieldAnio.setColumns(10);
-        textFieldAnio.setBounds(246, 168, 40, 20);
+        textFieldAnio.setBounds(246, 173, 40, 20);
         contentPane.add(textFieldAnio);
         
         JLabel lblTipoU = new JLabel("Tipo Usuario");
@@ -161,7 +161,7 @@ public class IngresarUsuario extends JInternalFrame {
         contentPane.add(lblDescripcion);
         
         JLabel lblBiografia = new JLabel("Biografía:");
-        lblBiografia.setBounds(152, 204, 85, 13);
+        lblBiografia.setBounds(152, 200, 85, 20);
         contentPane.add(lblBiografia);
         
         JLabel lblSitioWeb = new JLabel("Sitio Web:");
@@ -171,19 +171,19 @@ public class IngresarUsuario extends JInternalFrame {
       
         textFieldDescripcion = new JTextField();
         textFieldDescripcion.setEnabled(false);
-        textFieldDescripcion.setBounds(10, 226, 100, 16);
+        textFieldDescripcion.setBounds(10, 226, 100, 18);
         contentPane.add(textFieldDescripcion);
         textFieldDescripcion.setColumns(10);
         
         textFieldBiografia = new JTextField();
         textFieldBiografia.setEnabled(false);
-        textFieldBiografia.setBounds(142, 225, 121, 19);
+        textFieldBiografia.setBounds(142, 225, 121, 20);
         contentPane.add(textFieldBiografia);
         textFieldBiografia.setColumns(10);
         
         textFieldSitioWeb = new JTextField();
         textFieldSitioWeb.setEnabled(false);
-        textFieldSitioWeb.setBounds(273, 225, 129, 17);
+        textFieldSitioWeb.setBounds(273, 225, 129, 20);
         contentPane.add(textFieldSitioWeb);
         textFieldSitioWeb.setColumns(10);
         
@@ -237,12 +237,12 @@ public class IngresarUsuario extends JInternalFrame {
         contentPane.add(rdbtnProfesor);
         
         JLabel label = new JLabel("/");
-        label.setBounds(183, 168, 31, 19);
+        label.setBounds(183, 173, 31, 19);
         contentPane.add(label);
         
-        JLabel label_1 = new JLabel("/");
-        label_1.setBounds(237, 168, 31, 19);
-        contentPane.add(label_1);
+        JLabel label_2 = new JLabel("/");
+        label_2.setBounds(238, 173, 31, 19);
+        contentPane.add(label_2);
         
     }
     
