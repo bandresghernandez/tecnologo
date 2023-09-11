@@ -137,7 +137,7 @@ public class IngresarRegistro extends JInternalFrame {
 		lblNewLabel_2.setBounds(10, 23, 104, 15);
 		contentPane.add(lblNewLabel_2);
 		
-		JButton btnVerDatosC = new JButton("Ver Datos de la Clase");
+		JButton btnVerDatosC = new JButton("Ver datos clase");
 		btnVerDatosC.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -149,7 +149,7 @@ public class IngresarRegistro extends JInternalFrame {
 				textInfoClase.setText(dtc.toString());
 			}
 		});
-		btnVerDatosC.setBounds(394, 199, 155, 21);
+		btnVerDatosC.setBounds(394, 199, 240, 21);
 		contentPane.add(btnVerDatosC);
 		
 
