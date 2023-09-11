@@ -86,7 +86,7 @@ public class ConsultaActividadDeportiva extends JInternalFrame {
 		JTextPane textInfoClase = new JTextPane();
 		textInfoClase.setEnabled(false);
 		textInfoClase.setText("Detalles de las clase . . .");
-		textInfoClase.setBounds(10, 357, 747, 141);
+		textInfoClase.setBounds(10, 310, 372, 135);
 		contentPane.add(textInfoClase);
 		
 		JTextPane textInfoActividad = new JTextPane();
@@ -94,6 +94,15 @@ public class ConsultaActividadDeportiva extends JInternalFrame {
 		textInfoActividad.setText("Informacion de Actividad . . .");
 		textInfoActividad.setBounds(385, 32, 372, 314);
 		contentPane.add(textInfoActividad);
+		
+		JButton btnCancelar = new JButton("CANCELAR");
+		btnCancelar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
+		btnCancelar.setBounds(131, 469, 117, 25);
+		contentPane.add(btnCancelar);
 		
 		comboBoxInstituto.addFocusListener(new FocusAdapter() {
 			@Override
