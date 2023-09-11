@@ -186,7 +186,11 @@ public class IngresarUsuario extends JInternalFrame {
         textFieldSitioWeb.setBounds(273, 225, 129, 20);
         contentPane.add(textFieldSitioWeb);
         textFieldSitioWeb.setColumns(10);
-        
+	    
+	textFieldDia.setText("dd");
+        textFieldMes.setText("mm");
+        textFieldAnio.setText("aaaa");
+	    
         JButton btnAceptar = new JButton("ACEPTAR");
         btnAceptar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
