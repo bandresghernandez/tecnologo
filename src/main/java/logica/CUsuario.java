@@ -27,7 +27,7 @@ public class CUsuario implements ICUsuario{
 		Usuario nuevoUsuario = mU.buscarUsuario(usuario.getNickname());
 		//Usuario nuevoUsuario= null;
 		if (nuevoUsuario != null) {
-			throw new UsuarioEnUsoExcepcion("El usuario" + usuario.getNickname() + "ya esta en uso"); 
+			throw new UsuarioEnUsoExcepcion("El usuario: [" + usuario.getNickname() + "] ya esta en uso"); 
 		}else {
 		if (usuario instanceof DtSocio) {
 			nuevoUsuario = new Socio(usuario.getNickname(),usuario.getNombre(), usuario.getApellido(), usuario.getEmail(), usuario.getFechaNac());	
