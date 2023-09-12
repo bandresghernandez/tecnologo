@@ -9,6 +9,8 @@ import javax.swing.JInternalFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import datatypes.DtActividadDeportiva;
+import datatypes.DtClase;
 import interfaces.ICInstitucion;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -19,6 +21,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
+import java.awt.Color;
+import javax.swing.SwingConstants;
 
 public class ConsultaActividadDeportiva extends JInternalFrame {
 
@@ -32,8 +36,10 @@ public class ConsultaActividadDeportiva extends JInternalFrame {
 	private JComboBox comboBoxSocio;
 	private JComboBox comboBoxActividad;
 	private JComboBox comboBoxInstituto;
-
-	
+	private JTextPane textInfoActividad;
+	private JTextPane txtpnInformClase;
+	private JButton btnVerDatosA;
+	private JButton btnVerDatosC;
 
 	/**
 	 * Create the frame.
@@ -48,7 +54,7 @@ public class ConsultaActividadDeportiva extends JInternalFrame {
         setClosable(true);// permite que el usuario cierre la ventana
         setTitle("Constula Activdad Deportiva");//setteo el titulo
 		
-		setBounds(100, 100, 800, 600);
+		setBounds(100, 100, 656, 600);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -66,43 +72,73 @@ public class ConsultaActividadDeportiva extends JInternalFrame {
 		contentPane.add(comboBoxActividad);
 		
 		comboBoxClase = new JComboBox();
-		comboBoxClase.setBounds(10, 254, 328, 22);
+		comboBoxClase.setBounds(10, 229, 328, 22);
 		comboBoxClase.addItem("<Seleccionar Clase");
 		comboBoxClase.setEnabled(false);
 		contentPane.add(comboBoxClase);
 		
-		JLabel lblComboInstituto = new JLabel("Institutos:");
+		JLabel lblComboInstituto = new JLabel("Institutos");
 		lblComboInstituto.setBounds(10, 32, 194, 14);
 		contentPane.add(lblComboInstituto);
 		
-		JLabel lblComboActividad = new JLabel("Actividades:");
+		JLabel lblComboActividad = new JLabel("Actividades");
 		lblComboActividad.setBounds(10, 127, 282, 14);
 		contentPane.add(lblComboActividad);
 		
-		JLabel lblComboClase = new JLabel("Clases:");
-		lblComboClase.setBounds(10, 216, 183, 14);
+		JLabel lblComboClase = new JLabel("Clases");
+		lblComboClase.setBounds(10, 212, 183, 14);
 		contentPane.add(lblComboClase);
-		
-		JTextPane textInfoClase = new JTextPane();
-		textInfoClase.setEnabled(false);
-		textInfoClase.setText("Detalles de las clase . . .");
-		textInfoClase.setBounds(10, 310, 372, 135);
-		contentPane.add(textInfoClase);
 		
 		JTextPane textInfoActividad = new JTextPane();
 		textInfoActividad.setEnabled(false);
 		textInfoActividad.setText("Informacion de Actividad . . .");
-		textInfoActividad.setBounds(385, 32, 372, 314);
+		textInfoActividad.setBounds(373, 191, 244, 141);
 		contentPane.add(textInfoActividad);
 		
-		JButton btnCancelar = new JButton("CANCELAR");
+		JButton btnVerDatosA = new JButton("VER DATOS DE LA ACTIVIDAD");
+		btnVerDatosA.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				textInfoActividad.setText("");
+				DtActividadDeportiva dta = iinst.selectActividadDeportiva((String)comboBoxInstituto.getSelectedItem(),(String) comboBoxActividad.getSelectedItem());
+				textInfoActividad.setText(dta.toString());
+				
+			}
+		});
+		btnVerDatosA.setBounds(371, 153, 183, 21);
+		contentPane.add(btnVerDatosA);
+		
+		JButton btnCancelar = new JButton("Salir");
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+					
 				dispose();
 			}
 		});
-		btnCancelar.setBounds(131, 469, 117, 25);
+		btnCancelar.setBounds(394, 381, 85, 21);
 		contentPane.add(btnCancelar);
+		
+		JTextPane txtpnInformClase = new JTextPane();
+		txtpnInformClase.setText("Informacion de la Clase . . . ");
+		txtpnInformClase.setEnabled(false);
+		txtpnInformClase.setBounds(24, 313, 314, 100);
+		contentPane.add(txtpnInformClase);
+		
+		JButton btnVerDatosC = new JButton("VER DATOS DE LA CLASE");
+		btnVerDatosC.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				txtpnInformClase.setText("");
+				
+				//String datos = "INFO_DE_LA_CLASE_SELECCIONADA";
+				DtClase dtc = iinst.selectClase((String)comboBoxInstituto.getSelectedItem(),(String)comboBoxActividad.getSelectedItem(),(String)comboBoxClase.getSelectedItem());
+				
+				txtpnInformClase.setText(dtc.toString());
+				
+				
+			}
+		});
+		btnVerDatosC.setBounds(24, 282, 169, 21);
+		contentPane.add(btnVerDatosC);
 		
 		comboBoxInstituto.addFocusListener(new FocusAdapter() {
 			@Override
@@ -150,6 +186,7 @@ public class ConsultaActividadDeportiva extends JInternalFrame {
 				}else {
 					comboBoxClase.setEnabled(true);
 				}
+				
 			}
 			
 		});
@@ -161,8 +198,11 @@ public class ConsultaActividadDeportiva extends JInternalFrame {
 				
 				Set<String> actividades = iinst.selectInstitucionDeportiva(comboBoxInstituto.getSelectedItem().toString());
 				if(actividades.isEmpty()) {
+					
 					comboBoxActividad.addItem("<Sin intituciones creadas>");
 					comboBoxActividad.setSelectedItem("<Sin intituciones creadas>");
+					btnVerDatosA.setEnabled(false);
+					btnVerDatosC.setEnabled(false);
 				}else {
 					comboBoxActividad.addItem("<Seleccionar institucion>");
 					comboBoxActividad.setSelectedItem("<Seleccionar institucion>");
@@ -189,8 +229,11 @@ public class ConsultaActividadDeportiva extends JInternalFrame {
  
 			//ArrayList<String> socios = (ArrayList<String>) iinst();
 				if(clases.length==0) {
+					
 					comboBoxClase.addItem("<Sin clses ingresadas >");
 					comboBoxClase.setSelectedItem("<Sin clases ingresadas>");
+					btnVerDatosC.setEnabled(false);
+					
 				}else {
 					comboBoxClase.addItem("<Seleccionar clase>");
 					comboBoxClase.setSelectedItem("<Seleccionar clase>");
@@ -204,10 +247,13 @@ public class ConsultaActividadDeportiva extends JInternalFrame {
 					comboBoxClase.addItem(c);
 				}	
 			
+				
 			}
 			
 			
 		});
 		
+		  
 	}
+	
 }
