@@ -87,7 +87,7 @@ public class ActividadDeportiva {
     	Set<DtClase> dtc = new HashSet<>();
     	for(Clase c : clases.values())
     		dtc.add(c.getDtClase());
-    	return new DtActividadDeportiva(this.nombre, this.descripcion, dtc);
+    	return new DtActividadDeportiva(this.nombre, this.descripcion, this.duracion, this.costo,  this.fechaReg);
     }
     
     public DtClase getDtClase(String nombre) {
@@ -111,7 +111,7 @@ public class ActividadDeportiva {
 
 	public DtActividadDeportiva obtenerInfo() {
 		// TODO Auto-generated method stub
-		return new DtActividadDeportiva(this.nombre, this.descripcion, null);
+		return new DtActividadDeportiva(this.nombre, this.descripcion, this.duracion, this.costo,  this.fechaReg);
 	}
 
 	public Clase obtenerClase(String clase) {
