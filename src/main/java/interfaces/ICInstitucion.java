@@ -16,7 +16,7 @@ public interface ICInstitucion {
 
     public ArrayList<String> listarInstitucionDeportiva();
     public Set<String> selectInstitucionDeportiva(String institucion);
-    public DtActividadDeportiva selectActividadDeportiva(String actividad);
+    //public DtActividadDeportiva selectActividadDeportiva(String actividad); se la definio de nuevo pasandole la inst y activ tambien 
     public boolean altaInstitucionDeportiva(String nombre_institucion, String descripcion, String url)throws InstitucionRepetidaExcepcion;
     public boolean altaClase(String nombre_inst, String actividad, String nombre, DtFecha fechaini, DtHora horaini, String profesor, String url, DtFecha fechaAlta) throws ClaseRepetidaExcepcion;
     public boolean altaActividadDeportiva(String nombre_institucion, String nombre, String descripcion, int duracion, Float costo, DtFecha fechaAlta)throws ActividadDeportivaRepetidaExcepcion;
@@ -26,4 +26,5 @@ public interface ICInstitucion {
 	public String[] listarActividades(String nombre_inst);
 	String[] listarClases(String nombre_inst, String nombre_actividad);
 	public DtClase selectClase(String inst, String act, String clase);
+	public DtActividadDeportiva selectActividadDeportiva(String inst, String act);	
 }
