@@ -84,13 +84,13 @@ public class CInstitucion implements ICInstitucion {
 		return res;
 	}
 	
-	@Override
+	/*@Override
 	public DtActividadDeportiva selectActividadDeportiva(String actividad) {
 		ManejadorInstitucionDeportiva mi = ManejadorInstitucionDeportiva.getInstancia();
 		InstitucionDeportiva inst = mi.getInstitucion(this.institucion);
 		this.actividadDeportiva = actividad;
 		return inst.getDtActividad(actividad);
-	}
+	}*/
 	
 	@Override
 	public boolean altaClase(String nombre_inst, String actividad, String nombre, DtFecha fechaIni, DtHora horaIni, String profesor, String url, DtFecha fechaAlta) {
@@ -197,6 +197,31 @@ public class CInstitucion implements ICInstitucion {
 
 		return new DtClase(c1.getNombre(),c1.getFecha(),c1.getHoraInicio(),c1.getUrl(),c1.getFechaReg());
 
+	}
+
+	@Override
+	public DtActividadDeportiva selectActividadDeportiva(String inst, String act) {
+		
+		ManejadorInstitucionDeportiva mi = ManejadorInstitucionDeportiva.getInstancia();
+		InstitucionDeportiva insti = mi.getInstitucion(inst);
+		ActividadDeportiva ac1 = insti.obtenerActividad(act);//obtengo la actividad
+		//Clase c1 = ac1.obtenerClase(claseR);//obtengo la clase
+		Set<String> clases = ac1.getClases();//las clases de la actividad
+		
+		Set<DtClase> dtc = new HashSet<>();
+		
+		String[] clases_ret = new String[clases.size()];
+        
+		int i = 0;
+        for (String s : clases) {// hay que comentar porque al final no le paso la clase al DtActividadDeportiva
+        	clases_ret[i]= s;
+        	Clase c1= ac1.obtenerClase(s);
+        	dtc.add(new DtClase(c1.getNombre(),c1.getFecha(),c1.getHoraInicio(),c1.getUrl(),c1.getFechaReg()));
+           i++;
+       }
+      
+		return new DtActividadDeportiva(ac1.getNombre(),ac1.getDescripcion(), ac1.getDuracion(), ac1.getCosto(), ac1.getFechaReg());
+	
 	}
 	
 }
