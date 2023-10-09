@@ -119,7 +119,7 @@ public class ConsultaUsuario extends JInternalFrame {
 		textFieldApellido.setColumns(10);
 		
 		textFieldAnio = new JTextField();
-		textFieldAnio.setBounds(195, 124, 27, 19);
+		textFieldAnio.setBounds(190, 124, 35, 19);
 		getContentPane().add(textFieldAnio);
 		textFieldAnio.setColumns(10);
 		

@@ -1,16 +1,28 @@
 package logica;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+
+import org.hibernate.annotations.Type;
+
 import datatypes.DtActividadDeportiva;
 import datatypes.DtClase;
 import datatypes.DtFecha;
 import datatypes.DtHora;
 
+@Entity
 public class Clase {
+    @Id
     private String nombre;
+    @Type(type = "logica.DtFechaUserType")
     private DtFecha fecha;
+    @Type(type = "logica.DtHoraUserType")
     private DtHora horaInicio;
     private String url;
+    @Type(type = "logica.DtFechaUserType")
     private DtFecha fechaReg;
+    @ManyToOne
     private ActividadDeportiva actividadDepo;
 
     public ActividadDeportiva getActividadDepo() {
@@ -19,6 +31,9 @@ public class Clase {
 
 	public void setActividadDepo(ActividadDeportiva actividadDepo) {
 		this.actividadDepo = actividadDepo;
+	}
+	public Clase() {
+		super();
 	}
 
 	public Clase(String nombre, DtFecha fecha, DtHora horaInicio, String url, DtFecha fechaReg, ActividadDeportiva actividadDepo) {

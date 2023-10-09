@@ -40,6 +40,7 @@ public class IngresarUsuario extends JInternalFrame {
     private JTextField textFieldSitioWeb;
     private JRadioButton rdbtnSocio;
     private JRadioButton rdbtnProfesor;
+    private JTextField textFieldPass;
     
   
    /* public static void main(String[] args) {
@@ -110,16 +111,16 @@ public class IngresarUsuario extends JInternalFrame {
         textFieldEmail.setColumns(10);
 
         JLabel lblFecha = new JLabel("Fecha Nacimiento:");
-        lblFecha.setBounds(10, 172, 140, 20);
+        lblFecha.setBounds(10, 198, 140, 20);
         contentPane.add(lblFecha);
 
         textFieldDia = new JTextField();
-        textFieldDia.setBounds(142, 173, 40, 20);
+        textFieldDia.setBounds(104, 198, 40, 20);
         contentPane.add(textFieldDia);
         textFieldDia.setColumns(10);
 
         textFieldMes = new JTextField();
-        textFieldMes.setBounds(194, 173, 40, 19);
+        textFieldMes.setBounds(160, 198, 40, 19);
         contentPane.add(textFieldMes);
         textFieldMes.setColumns(10);
 
@@ -141,7 +142,7 @@ public class IngresarUsuario extends JInternalFrame {
         
         textFieldAnio = new JTextField();
         textFieldAnio.setColumns(10);
-        textFieldAnio.setBounds(246, 173, 40, 20);
+        textFieldAnio.setBounds(215, 198, 40, 20);
         contentPane.add(textFieldAnio);
         
         JLabel lblTipoU = new JLabel("Tipo Usuario");
@@ -157,33 +158,33 @@ public class IngresarUsuario extends JInternalFrame {
         
         
         JLabel lblDescripcion = new JLabel("Descripción:");
-        lblDescripcion.setBounds(10, 204, 100, 13);
+        lblDescripcion.setBounds(10, 228, 100, 13);
         contentPane.add(lblDescripcion);
         
         JLabel lblBiografia = new JLabel("Biografía:");
-        lblBiografia.setBounds(152, 200, 85, 20);
+        lblBiografia.setBounds(124, 224, 85, 20);
         contentPane.add(lblBiografia);
         
         JLabel lblSitioWeb = new JLabel("Sitio Web:");
-        lblSitioWeb.setBounds(281, 204, 121, 13);
+        lblSitioWeb.setBounds(262, 228, 121, 13);
         contentPane.add(lblSitioWeb);
         
       
         textFieldDescripcion = new JTextField();
         textFieldDescripcion.setEnabled(false);
-        textFieldDescripcion.setBounds(10, 226, 100, 18);
+        textFieldDescripcion.setBounds(10, 251, 100, 18);
         contentPane.add(textFieldDescripcion);
         textFieldDescripcion.setColumns(10);
         
         textFieldBiografia = new JTextField();
         textFieldBiografia.setEnabled(false);
-        textFieldBiografia.setBounds(142, 225, 121, 20);
+        textFieldBiografia.setBounds(124, 249, 121, 20);
         contentPane.add(textFieldBiografia);
         textFieldBiografia.setColumns(10);
         
         textFieldSitioWeb = new JTextField();
         textFieldSitioWeb.setEnabled(false);
-        textFieldSitioWeb.setBounds(273, 225, 129, 20);
+        textFieldSitioWeb.setBounds(262, 250, 129, 20);
         contentPane.add(textFieldSitioWeb);
         textFieldSitioWeb.setColumns(10);
 	    
@@ -241,12 +242,21 @@ public class IngresarUsuario extends JInternalFrame {
         contentPane.add(rdbtnProfesor);
         
         JLabel label = new JLabel("/");
-        label.setBounds(183, 173, 31, 19);
+        label.setBounds(146, 198, 13, 19);
         contentPane.add(label);
         
         JLabel label_2 = new JLabel("/");
-        label_2.setBounds(238, 173, 31, 19);
+        label_2.setBounds(206, 199, 31, 19);
         contentPane.add(label_2);
+        
+        textFieldPass = new JTextField();
+        textFieldPass.setBounds(104, 176, 151, 20);
+        contentPane.add(textFieldPass);
+        textFieldPass.setColumns(10);
+        
+        JLabel lblNewLabel = new JLabel("Contraseña");
+        lblNewLabel.setBounds(10, 179, 92, 15);
+        contentPane.add(lblNewLabel);
         
     }
     
@@ -255,6 +265,7 @@ public class IngresarUsuario extends JInternalFrame {
 		//String nombre = this.textFieldNombre.getText();
        // String ci = this.textFieldCI.getText();
     	String nickname = textFieldNickname.getText();
+    	String pass = textFieldPass.getText();
         String nombre = textFieldNombre.getText();
         String apellido = textFieldApellido.getText();
         String email = textFieldEmail.getText();
@@ -269,9 +280,9 @@ public class IngresarUsuario extends JInternalFrame {
         
         
         if(rdbtnSocio.isSelected()) {
-        dtusuario = new DtSocio(nickname,nombre,apellido,email,fechaNac);
+        dtusuario = new DtSocio(nickname, pass, nombre, apellido, email, fechaNac);
         } else if(rdbtnProfesor.isSelected()) {
-        	dtusuario = new DtProfesor(nickname,nombre,apellido,email,fechaNac,descripcion,biografia,sitioWeb);
+        	dtusuario = new DtProfesor(nickname, pass, nombre, apellido, email, fechaNac, descripcion, biografia, sitioWeb);
         }
         
     	if (checkFormulario()) {

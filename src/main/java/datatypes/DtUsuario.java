@@ -2,13 +2,15 @@ package datatypes;
 
 public class DtUsuario {
     private String nickname;
+    private String pass;
     private String nombre;
     private String apellido;
     private String email;
     private DtFecha fechaNac;
 
-    public DtUsuario (String nickname, String nombre,String apellido, String email, DtFecha fechaNac ) {
+    public DtUsuario (String nickname, String pass, String nombre,String apellido, String email, DtFecha fechaNac ) {
         this.nickname = nickname;
+        this.pass = pass;
         this.nombre = nombre;
         this.apellido = apellido;
         this.email = email;
@@ -20,7 +22,10 @@ public class DtUsuario {
     public String getNickname() {
         return nickname;
     }
-
+    
+    public String getPass() {
+    	return pass;
+    }
 
     // Getter para nombre
     public String getNombre() {

@@ -6,6 +6,7 @@ import datatypes.DtFecha;
 import datatypes.DtProfesor;
 import datatypes.DtSocio;
 import datatypes.DtUsuario;
+import excepciones.LoginExcepcion;
 import excepciones.UsuarioEnUsoExcepcion;
 import interfaces.Fabrica;
 import interfaces.ICInstitucion;
@@ -30,10 +31,10 @@ public class CUsuario implements ICUsuario{
 			throw new UsuarioEnUsoExcepcion("El usuario: [" + usuario.getNickname() + "] ya esta en uso"); 
 		}else {
 		if (usuario instanceof DtSocio) {
-			nuevoUsuario = new Socio(usuario.getNickname(),usuario.getNombre(), usuario.getApellido(), usuario.getEmail(), usuario.getFechaNac());	
+			nuevoUsuario = new Socio(usuario.getNickname(), usuario.getPass(), usuario.getNombre(), usuario.getApellido(), usuario.getEmail(), usuario.getFechaNac());	
 		}
 		if (usuario instanceof DtProfesor) {
-			nuevoUsuario = new Profesor(usuario.getNickname(),usuario.getNombre(), usuario.getApellido(), usuario.getEmail(), usuario.getFechaNac(), ((DtProfesor) usuario).getDescripcion(),((DtProfesor) usuario).getBiogrfia(), ((DtProfesor) usuario).getSitioweb() );
+			nuevoUsuario = new Profesor(usuario.getNickname(), usuario.getPass(), usuario.getNombre(), usuario.getApellido(), usuario.getEmail(), usuario.getFechaNac(), ((DtProfesor) usuario).getDescripcion(),((DtProfesor) usuario).getBiogrfia(), ((DtProfesor) usuario).getSitioweb(),true );
 		}
 		}
 		mU.agregarUsuario(nuevoUsuario);
@@ -138,6 +139,22 @@ public class CUsuario implements ICUsuario{
 		return actividad;
 	}
 	
-
+	@Override
+	public boolean login(String nick, String pass) throws LoginExcepcion {
+		ManejadorUsuario mU = ManejadorUsuario.getInstancia();
+        Usuario usuarioBusc = mU.buscarUsuario(nick);
+        boolean res = false;
+        if (usuarioBusc == null) {
+			throw new LoginExcepcion("El usuario: [" + nick + "] no existe"); 
+		}
+        else if((usuarioBusc != null && !pass.equals(usuarioBusc.getPass()))) {
+        	throw new LoginExcepcion("Contraseña incorrecta, intente nuevamente");
+        }
+        else {
+            if(pass.equals(usuarioBusc.getPass()))
+            	res = true;
+        }
+        return res;
+	}
 	
 }

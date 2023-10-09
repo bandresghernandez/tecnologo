@@ -137,7 +137,7 @@ public class IngresarRegistro extends JInternalFrame {
 		lblNewLabel_2.setBounds(10, 23, 104, 15);
 		contentPane.add(lblNewLabel_2);
 		
-		JButton btnVerDatosC = new JButton("Ver datos clase");
+		JButton btnVerDatosC = new JButton("Ver Datos de la Clase");
 		btnVerDatosC.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -149,7 +149,7 @@ public class IngresarRegistro extends JInternalFrame {
 				textInfoClase.setText(dtc.toString());
 			}
 		});
-		btnVerDatosC.setBounds(394, 199, 240, 21);
+		btnVerDatosC.setBounds(394, 199, 155, 21);
 		contentPane.add(btnVerDatosC);
 		
 
@@ -300,7 +300,7 @@ public class IngresarRegistro extends JInternalFrame {
 		//System.out.print((String)comboBoxSocio.getSelectedItem()+ "\n");
 		//System.out.print((String)comboBoxClase.getSelectedItem()+ "\n");
 		
-		iusu.selecDatos((String) comboBoxInstituto.getSelectedItem(), (String) comboBoxActividad.getSelectedItem(), (String) comboBoxSocio.getSelectedItem(), (String) comboBoxClase.getSelectedItem(), dtf);
+		//iusu.selecDatos((String) comboBoxInstituto.getSelectedItem(), (String) comboBoxActividad.getSelectedItem(), (String) comboBoxSocio.getSelectedItem(), (String) comboBoxClase.getSelectedItem(), dtf);
 	
 	
 	if (checkFormulario()) {

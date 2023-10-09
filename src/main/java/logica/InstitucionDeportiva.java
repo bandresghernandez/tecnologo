@@ -5,6 +5,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
 import datatypes.DtActividadDeportiva;
 import datatypes.DtClase;
 import datatypes.DtFecha;
@@ -12,11 +17,14 @@ import datatypes.DtHora;
 import logica.ActividadDeportiva;
 
 
+@Entity
 public class InstitucionDeportiva {
+    @Id
     private String nombre;
     private String descripcion;
     private String url;
-    private Map<String, ActividadDeportiva> actividades;
+    @OneToMany(cascade = CascadeType.ALL)
+   private Map<String, ActividadDeportiva> actividades;
 
 
     // Constructor
@@ -24,7 +32,10 @@ public class InstitucionDeportiva {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.url = url;
-        this.actividades = new HashMap<>();
+       this.actividades = new HashMap<>();
+    }
+    public InstitucionDeportiva() {
+    	super();
     }
 
     // Métodos getter y setter para nombre
@@ -54,50 +65,61 @@ public class InstitucionDeportiva {
         this.url = url;
     }
 
-    /*public List<ActividadDeportiva> getActividades() {
+   /* public List<ActividadDeportiva> getActividades() {
         return actividades;
     }
 
     public void setActividades(List<ActividadDeportiva> actividades) {
     	this.actividades = actividades;
 	}*/
-    
+   
 	public Set<String> getActividades() {
 		return actividades.keySet();
 	}
+	public ActividadDeportiva getActividad(String nombre) {
+    	ActividadDeportiva act = this.actividades.get(nombre);
+    	return act;
+    }
+	  public boolean existeActividadDeportiva(String nombre) {
+	    	boolean res = false;
+	    	if(actividades.containsKey(nombre))
+	    		res = true;
+	    	return res;
+	    }
+	  
+	    public boolean crearActividadDeportiva(String nombre, String descripcion, int duracion, float costo, DtFecha fechaAlta) {
+	    	boolean res = false;
+			if(!existeActividadDeportiva(nombre)) {
+				ActividadDeportiva act = new ActividadDeportiva(nombre, descripcion, duracion, costo, fechaAlta);
+				actividades.put(nombre, act);
+				res = true;
+			}
+	    	return res;
+	    }
 
+		 public ActividadDeportiva obtenerActividad(String nombreActividad) {
+	        for (ActividadDeportiva actividad : actividades.values()) {
+	            if (actividad.getNombre().equals(nombreActividad)) {
+	                return actividad;
+	            }
+	        }
+	        return null; // Devuelve null si no se encuentra la actividad
+	    }
+	 
 	public Clase crearClase(String actividad, String nombre, DtFecha fechaIni, DtHora horaIni, String profesor, String url, DtFecha fechaAlta) {
 		ActividadDeportiva act = actividades.get(actividad);
 		Clase c = act.crearClase(nombre, fechaIni, horaIni, url, fechaAlta, act);
 		return c;
 	}
 	
-	public ActividadDeportiva getActividad(String nombre) {
-    	ActividadDeportiva act = this.actividades.get(nombre);
-    	return act;
-    }
+	
     
     public DtActividadDeportiva getDtActividad(String actividad) {
     	ActividadDeportiva act = actividades.get(actividad);
     	return act.getDtActividadDeportiva();
     }
     
-    public boolean existeActividadDeportiva(String nombre) {
-    	boolean res = false;
-    	if(actividades.containsKey(nombre))
-    		res = true;
-    	return res;
-    }
-    
-    public boolean crearActividadDeportiva(String nombre, String descripcion, int duracion, float costo, DtFecha fechaAlta) {
-    	boolean res = false;
-		if(!existeActividadDeportiva(nombre)) {
-			ActividadDeportiva act = new ActividadDeportiva(nombre, descripcion, duracion, costo, fechaAlta);
-			actividades.put(nombre, act);
-			res = true;
-		}
-    	return res;
-    }
+  
     
     public DtClase getDtClase(String actividad, String clase) {
     	ActividadDeportiva act = actividades.get(actividad);
@@ -111,15 +133,7 @@ public class InstitucionDeportiva {
 		return clac;
 	}
 	
-	
-	 public ActividadDeportiva obtenerActividad(String nombreActividad) {
-        for (ActividadDeportiva actividad : actividades.values()) {
-            if (actividad.getNombre().equals(nombreActividad)) {
-                return actividad;
-            }
-        }
-        return null; // Devuelve null si no se encuentra la actividad
-    }
+	 
 
     /*public static void main(String[] args) {
 

@@ -2,6 +2,14 @@ package logica;
 
 import java.util.Map;
 import java.util.Set;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
+import org.hibernate.annotations.Type;
+
 import java.util.HashMap;
 import java.util.HashSet;
 
@@ -10,21 +18,28 @@ import datatypes.DtClase;
 import datatypes.DtFecha;
 import datatypes.DtHora;
 
+@Entity
 public class ActividadDeportiva {
+	@Id
     private String nombre;
     private String descripcion;
     private int duracion;
     private float costo;
+    @Type(type = "logica.DtFechaUserType")
     private DtFecha fechaReg;
+	@OneToMany(mappedBy = "actividadDepo",cascade = CascadeType.ALL)
     private Map<String, Clase> clases;
 
+    public ActividadDeportiva() {
+    	super();
+    }
     public ActividadDeportiva(String nombre, String descripcion, int duracion, float costo, DtFecha fechaReg) {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.duracion = duracion;
         this.costo = costo;
         this.fechaReg = fechaReg;
-        this.clases = new HashMap<>();
+       this.clases = new HashMap<>();
     }
 
     public String getNombre() {
@@ -111,8 +126,7 @@ public class ActividadDeportiva {
 
 	public DtActividadDeportiva obtenerInfo() {
 		// TODO Auto-generated method stub
-		return new DtActividadDeportiva(this.nombre, this.descripcion, this.duracion, this.costo,  this.fechaReg);
-	}
+		return new DtActividadDeportiva(this.nombre, this.descripcion, this.duracion, this.costo,  this.fechaReg);	}
 
 	public Clase obtenerClase(String clase) {
 		return this.clases.get(clase);

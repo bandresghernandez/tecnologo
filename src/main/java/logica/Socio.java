@@ -2,20 +2,31 @@ package logica;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+
 import datatypes.DtClase;
 import datatypes.DtFecha;
 import datatypes.DtSocio;
 import datatypes.DtUsuario;
 
+@Entity
+@DiscriminatorValue("Socio")
 class Socio extends Usuario {
 	
 	//private List<Registro> registros ;
+	@OneToMany(cascade = CascadeType.ALL)
 	private List<Registro> registros = new ArrayList<>();
     
-	public Socio(String nickname, String nombre, String apellido, String email, DtFecha fechaNac) {
-        super(nickname, nombre, apellido, email, fechaNac);
+	public Socio(String nickname, String pass, String nombre, String apellido, String email, DtFecha fechaNac) {
+        super(nickname, pass, nombre, apellido, email, fechaNac);
         //this.registros = null;
     }
+	public Socio() {
+		super();
+	}
 
 	/*public List<Registro> getRegistros() {
 		return registros;
@@ -23,8 +34,8 @@ class Socio extends Usuario {
 
 	public void setRegistros(List<Registro> registros) {
 		this.registros = registros;
-	}*/
-
+	}
+*/
 	public void agregarRegistros(Clase clase, DtFecha fechaRegistro) {
 		Registro r = new Registro(clase,fechaRegistro);
 		registros.add(r);
@@ -32,7 +43,7 @@ class Socio extends Usuario {
 	@Override
 	public DtUsuario getDtUsuario() {
 		// TODO Auto-generated method stub
-		return new DtSocio(this.getNickname(), this.getNombre(), this.getApellido(), this.getEmail(), this.getFechaNac());
+		return new DtSocio(this.getNickname(), this.getPass(), this.getNombre(), this.getApellido(), this.getEmail(), this.getFechaNac());
 		//return null;
 		// Falta pasarle un DtClase al constructor
 	}
@@ -46,7 +57,7 @@ class Socio extends Usuario {
 		}
 		
 		//una ves teniendo todas las clases creo el DtSocio
-		DtSocio data = new DtSocio(this.getNickname(), this.getNombre(), this.getApellido(), this.getEmail(),this.getFechaNac());
+		DtSocio data = new DtSocio(this.getNickname(), this.getPass(), this.getNombre(), this.getApellido(), this.getEmail(),this.getFechaNac());
 		//String nickname, String nombre, String apellido, String email,DtFecha fechaNac,List<DtClase> clases
 		return data;
 	}

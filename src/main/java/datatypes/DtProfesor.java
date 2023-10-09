@@ -10,9 +10,9 @@ public class DtProfesor extends DtUsuario{
 	   private List<DtClase> clases;
 	
 	
-	public DtProfesor (String nickname, String nombre, String apellido, String email,
+	public DtProfesor (String nickname, String pass, String nombre, String apellido, String email,
             DtFecha fechaNac, String descripcion, String biografia, String sitioweb) {
-super(nickname, nombre, apellido, email,fechaNac);
+super(nickname, pass, nombre, apellido, email,fechaNac);
 		this.descripcion = descripcion;
 		this.biografia = biografia;
 		this.sitioweb = sitioweb;

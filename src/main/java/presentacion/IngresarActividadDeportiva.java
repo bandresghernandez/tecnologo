@@ -146,22 +146,18 @@ public class IngresarActividadDeportiva extends JInternalFrame {
 				comboBoxInst.removeAllItems();
 				HashSet<String> instituciones = new HashSet<>(iinst.listarInstitucionDeportiva());
 
-				//ArrayList<String> socios = (ArrayList<String>) iusu.listarSocios();
-				if(instituciones.isEmpty()) {
-					comboBoxInst.addItem("<Sin instituciones ingresadas >");
-					comboBoxInst.setSelectedItem("<Sin instituciones ingresadas>");
-				}else {
-					comboBoxInst.addItem("<Seleccionar intitucion>");
-					comboBoxInst.setSelectedItem("<Sin instituciones ingresadas>");
+				if (instituciones.isEmpty()) {
+				    comboBoxInst.addItem("<Sin instituciones ingresadas >");
+				    comboBoxInst.setSelectedItem("<Sin instituciones ingresadas>");
+				} else {
+				    comboBoxInst.addItem("<Seleccionar intitucion>");
+				    comboBoxInst.setSelectedItem("<Sin instituciones ingresadas>");
 				}
-				// miro si me trae algo
+
 				for (String i : instituciones) {
-					System.out.print(i);
+				    comboBoxInst.addItem(i);
 				}
-				
-				for (String i : instituciones) {
-					comboBoxInst.addItem(i);
-				}	
+	
 			
 			}
 		});
@@ -185,7 +181,7 @@ public class IngresarActividadDeportiva extends JInternalFrame {
 	}
 	
 	public void inicializarComboBox() {
-		DefaultComboBoxModel<String> modelInst = new DefaultComboBoxModel<String>(this.iinst.listarInstitucion());
+		DefaultComboBoxModel<String> modelInst = new DefaultComboBoxModel<String>();
 		comboBoxInst.addItem("Actividad 1");
 		comboBoxInst.setModel(modelInst);
 	}

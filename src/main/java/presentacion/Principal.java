@@ -29,6 +29,7 @@ import interfaces.Fabrica;
 import interfaces.ICInstitucion;
 import interfaces.ICUsuario;
 import java.awt.BorderLayout;
+import javax.swing.JInternalFrame;
 
 public class Principal {
 
@@ -44,6 +45,7 @@ public class Principal {
 	private ConsultaUsuario consultaUsuarioInternalFrame;
 	private ConsultaActividadDeportiva consultaActividadDepInternalFrame;
     private IngresarRegistro IngresarRegistroFrame;
+    private Login LoginFrame;
 	
     public static void main(String[] args) {
         EventQueue.invokeLater(new Runnable() {
@@ -68,29 +70,6 @@ public class Principal {
         Dimension desktopSize = frame.getSize();
 		Dimension jInternalFrameSize;
 		
-		ingresarUsuarioInternalFrame = new IngresarUsuario(iusu);
-		jInternalFrameSize = ingresarUsuarioInternalFrame.getSize();
-		ingresarUsuarioInternalFrame.setLocation((desktopSize.width - jInternalFrameSize.width)/2, (desktopSize.height- jInternalFrameSize.height)/2);
-		//ingresarUsuarioInternalFrame.setSize(450, 300);
-		ingresarUsuarioInternalFrame.setVisible(false);
-		frame.getContentPane().add(ingresarUsuarioInternalFrame);
-		//ingresarInstDepInternalFrame.getContentPane().add(ingresarUsuarioInternalFrame);
-		
-		
-        ingresarInstDepInternalFrame = new IngresarInstitucionDeportiva(iinst);//lo instancio
-        jInternalFrameSize = ingresarInstDepInternalFrame.getSize();
-        ingresarInstDepInternalFrame.setLocation((desktopSize.width - jInternalFrameSize.width)/2,//lo pongo en el medio de la pantalla
-		    (desktopSize.height- jInternalFrameSize.height)/2);
-        ingresarInstDepInternalFrame.setVisible(false);//lo hago invisible
-		frame.getContentPane().add(ingresarInstDepInternalFrame);//lo agrego
-		
-		ingresarClaseInternalFrame = new IngresarClase(iinst);//lo instancio
-        jInternalFrameSize = ingresarClaseInternalFrame.getSize();
-        ingresarClaseInternalFrame.setLocation((desktopSize.width - jInternalFrameSize.width)/2,//lo pongo en el medio de la pantalla
-		    (desktopSize.height- jInternalFrameSize.height)/2);
-        ingresarClaseInternalFrame.setVisible(false);//lo hago invisible
-		frame.getContentPane().add(ingresarClaseInternalFrame, BorderLayout.NORTH);
-		
 		consultaUsuarioInternalFrame = new ConsultaUsuario(iusu);//lo instancio
         jInternalFrameSize = consultaUsuarioInternalFrame.getSize();
         consultaUsuarioInternalFrame.setLocation((desktopSize.width - jInternalFrameSize.width)/2,//lo pongo en el medio de la pantalla
@@ -104,6 +83,27 @@ public class Principal {
 		    (desktopSize.height- jInternalFrameSize.height)/2);
         consultaActividadDepInternalFrame.setVisible(false);//lo hago invisible
 		frame.getContentPane().add(consultaActividadDepInternalFrame, BorderLayout.NORTH);
+		
+		ingresarUsuarioInternalFrame = new IngresarUsuario(iusu);
+		ingresarUsuarioInternalFrame.setBounds(96, 124, 450, 300);
+		consultaActividadDepInternalFrame.getContentPane().add(ingresarUsuarioInternalFrame);
+		//ingresarInstDepInternalFrame.getContentPane().add(ingresarUsuarioInternalFrame);
+		
+		
+        ingresarInstDepInternalFrame = new IngresarInstitucionDeportiva(iinst);//lo instancio
+        ingresarInstDepInternalFrame.setBounds(96, 124, 450, 300);
+        consultaActividadDepInternalFrame.getContentPane().add(ingresarInstDepInternalFrame);
+        
+        ingresarClaseInternalFrame = new IngresarClase(iinst);//lo instancio
+        ingresarClaseInternalFrame.setBounds(96, 124, 450, 300);
+        consultaActividadDepInternalFrame.getContentPane().add(ingresarClaseInternalFrame);
+        jInternalFrameSize = ingresarClaseInternalFrame.getSize();
+        ingresarClaseInternalFrame.setVisible(false);
+        jInternalFrameSize = ingresarInstDepInternalFrame.getSize();
+        ingresarInstDepInternalFrame.setVisible(false);
+		jInternalFrameSize = ingresarUsuarioInternalFrame.getSize();
+		//ingresarUsuarioInternalFrame.setSize(450, 300);
+		ingresarUsuarioInternalFrame.setVisible(false);
 		
     
 		//registro
@@ -121,6 +121,14 @@ public class Principal {
 		    (desktopSize.height- jInternalFrameSize.height)/2);
         IngresarRegistroFrame.setVisible(false);//lo hago invisible
 		frame.getContentPane().add(IngresarRegistroFrame);//lo agrego
+		
+		//Login
+		LoginFrame = new Login(iusu);
+		jInternalFrameSize = LoginFrame.getSize();
+		LoginFrame.setLocation((desktopSize.width - jInternalFrameSize.width)/2,//lo pongo en el medio de la pantalla
+			(desktopSize.height- jInternalFrameSize.height)/2);
+		LoginFrame.setVisible(false);//lo hago invisible
+		frame.getContentPane().add(LoginFrame);//lo agrego
     
     }
 
@@ -230,7 +238,16 @@ public class Principal {
         });
         mnRegistro.add(mntmAgregar);
         
-        
+        JMenu mnIngresar = new JMenu("Ingresar");
+        menuBar.add(mnIngresar);
+
+        JMenuItem mntmLogin = new JMenuItem("Login");
+        mntmLogin.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		LoginFrame.setVisible(true);
+        	}
+        });
+        mnIngresar.add(mntmLogin);
         
         
         
@@ -246,7 +263,6 @@ public class Principal {
         
         JMenuItem mntmSalirSistema = new JMenuItem("Salir Sistema");
         mnSalir.add(mntmSalirSistema);
-
         
         frame.setLocationRelativeTo(null);
         

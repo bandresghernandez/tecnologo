@@ -2,32 +2,54 @@ package logica;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+
 import datatypes.DtFecha;
 import datatypes.DtProfesor;
 import datatypes.DtUsuario;
 import datatypes.DtActividadDeportiva;
 import datatypes.DtClase;
 
+@Entity
+@DiscriminatorValue("Profesor")
 public class Profesor extends Usuario {
     private String descripcion;
     private String biografia;
     private String sitioweb;
-   
-    private List<Clase> clases;
+	boolean condition;
+
+	 @OneToMany(cascade = CascadeType.ALL)
+	   private List<Clase> clases;
+	    @ManyToOne
+		@JoinColumn(name = "Coljoin")
     private InstitucionDeportiva institucion;
 
     // Constructor
-    public Profesor(String nickname, String nombre, String apellido, String email,
-                    DtFecha fechaNac, String descripcion, String biografia, String sitioweb) {
-        super(nickname, nombre, apellido, email,fechaNac);
+    public Profesor(String nickname, String pass, String nombre, String apellido, String email,DtFecha fechaNac, String descripcion, String biografia, String sitioweb,boolean condition) {
+    	super(nickname, pass, nombre, apellido, email,fechaNac);
         this.descripcion = descripcion;
         this.biografia = biografia;
         this.sitioweb = sitioweb;
+        this.condition = condition;
         this.institucion = null;
-        this.clases = new ArrayList<Clase>();
+       this.clases = new ArrayList<Clase>();
         
     }
+    public Profesor() {
+    	super();
+    }
+    public boolean isCondition() {
+		return condition;
+	}
 
+	public void setCondition(boolean condition) {
+		this.condition = condition;
+	}
     public  void setDescripcion(String descripcion)
     {
         this.descripcion = descripcion;
@@ -76,10 +98,10 @@ public class Profesor extends Usuario {
 
 	@Override
 	public DtUsuario getDtUsuario() {
-		return new DtProfesor(this.getNickname(), this.getNombre(), this.getApellido(), this.getEmail(), this.getFechaNac(), this.getDescripcion(),this.getBiogrfia(), this.getSitioweb());
+		return new DtProfesor(this.getNickname(), this.getPass(), this.getNombre(), this.getApellido(), this.getEmail(), this.getFechaNac(), this.getDescripcion(),this.getBiogrfia(), this.getSitioweb());
 		//return null;
 	}
-
+	
 	@Override
 	public DtUsuario obtenerInfo() {
 		
@@ -92,12 +114,10 @@ public class Profesor extends Usuario {
 			actividades.add(clase.obtenerInfoActividad());
 		}
 		//creo un DtProfesor con su info y el listado de lcases y actividades vinculadas
-		return new DtProfesor(this.getNickname(), this.getNombre(), this.getApellido(), this.getEmail(), this.getFechaNac(), this.getDescripcion(),this.getBiogrfia(), this.getSitioweb());
+		return new DtProfesor(this.getNickname(), this.getPass(), this.getNombre(), this.getApellido(), this.getEmail(), this.getFechaNac(), this.getDescripcion(),this.getBiogrfia(), this.getSitioweb());
 	}
 
-	public void daClase(Clase c) {
-        clases.add(c);
-    }
+	
 
 	
 	@Override
@@ -107,6 +127,10 @@ public class Profesor extends Usuario {
             arrayClases.add(i.getNombre());
         }
         return arrayClases;
+    }
+
+	public void daClase(Clase c) {
+        clases.add(c);
     }
 	
 	public String obtenerActividad(String clase){
@@ -127,9 +151,5 @@ public class Profesor extends Usuario {
         return resultado;
 		
 	}
-	
-	
-	
-	
-	
+		
 }

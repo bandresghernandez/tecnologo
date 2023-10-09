@@ -16,10 +16,6 @@ import excepciones.ActividadDeportivaRepetidaExcepcion;
 
 public class CInstitucion implements ICInstitucion {
 	
-	
-	
-	
-	
 	private String institucion;
 	private String actividadDeportiva;
 	private String clase;
@@ -58,12 +54,37 @@ public class CInstitucion implements ICInstitucion {
 		ArrayList<String> ni = mi.getNombres();
 		return ni;
 	}
+	
+	@Override
+	public DtActividadDeportiva selectActividadDeportiva(String inst, String act) {
+
+		ManejadorInstitucionDeportiva mi = ManejadorInstitucionDeportiva.getInstancia();
+		InstitucionDeportiva insti = mi.getInstitucion(inst);
+		ActividadDeportiva ac1 = insti.obtenerActividad(act);//obtengo la actividad
+		//Clase c1 = ac1.obtenerClase(claseR);//obtengo la clase
+		Set<String> clases = ac1.getClases();//las clases de la actividad
+
+		Set<DtClase> dtc = new HashSet<>();
+
+		String[] clases_ret = new String[clases.size()];
+
+		int i = 0;
+        for (String s : clases) {// hay que comentar porque al final no le paso la clase al DtActividadDeportiva
+        	clases_ret[i]= s;
+        	Clase c1= ac1.obtenerClase(s);
+        	dtc.add(new DtClase(c1.getNombre(),c1.getFecha(),c1.getHoraInicio(),c1.getUrl(),c1.getFechaReg()));
+           i++;
+       }
+
+		return new DtActividadDeportiva(ac1.getNombre(),ac1.getDescripcion(), ac1.getDuracion(), ac1.getCosto(), ac1.getFechaReg());
+
+	}
 
 	@Override
 	public Set<String> selectInstitucionDeportiva(String institucion) {
 		ManejadorInstitucionDeportiva mi = ManejadorInstitucionDeportiva.getInstancia();
 		Set<String> res = new HashSet<>();
-		if(mi.existeInsttitucion(institucion)) { // si ya se que la institucion existe esto es al cuete
+		if(mi.existeInstitucion(institucion)) { // si ya se que la institucion existe esto es al cuete
 			this.setInstitucion(institucion);
 			InstitucionDeportiva inst = mi.getInstitucion(institucion);
 			this.institucion = institucion;
@@ -76,22 +97,22 @@ public class CInstitucion implements ICInstitucion {
 	public boolean altaInstitucionDeportiva(String nombre_institucion, String descripcion, String url)throws InstitucionRepetidaExcepcion {
 		boolean res = false;
 		ManejadorInstitucionDeportiva mi = ManejadorInstitucionDeportiva.getInstancia();
-		if(!mi.existeInsttitucion(nombre_institucion)) {
+		if(!mi.existeInstitucion(nombre_institucion)) {
 			InstitucionDeportiva inst = new InstitucionDeportiva(nombre_institucion, descripcion, url);
 			mi.agregarInstitucion(nombre_institucion ,inst);
 			res = true;
 		}
 		return res;
 	}
-	
-	/*@Override
+	/*
+	@Override
 	public DtActividadDeportiva selectActividadDeportiva(String actividad) {
 		ManejadorInstitucionDeportiva mi = ManejadorInstitucionDeportiva.getInstancia();
 		InstitucionDeportiva inst = mi.getInstitucion(this.institucion);
 		this.actividadDeportiva = actividad;
 		return inst.getDtActividad(actividad);
-	}*/
-	
+	}
+	*/
 	@Override
 	public boolean altaClase(String nombre_inst, String actividad, String nombre, DtFecha fechaIni, DtHora horaIni, String profesor, String url, DtFecha fechaAlta) {
 		boolean res = false;
@@ -109,6 +130,24 @@ public class CInstitucion implements ICInstitucion {
 		return res;
 	}
 	
+	
+	/*
+	@Override
+	public DtClase selectClase(String nombre) {
+		ManejadorInstitucionDeportiva mi = ManejadorInstitucionDeportiva.getInstancia();
+		InstitucionDeportiva id = mi.getInstitucion(this.institucion);
+		DtClase dtc = id.getDtClase(this.actividadDeportiva, nombre);
+		return dtc;
+	}
+	*/
+	@Override
+	public Clase obtenerClase(String inst, String act, String clase) {
+		ManejadorInstitucionDeportiva mi = ManejadorInstitucionDeportiva.getInstancia();
+		InstitucionDeportiva id = mi.getInstitucion(inst);
+		
+		Clase clac = id.obtenerClase(clase,act);
+		return clac;
+	}
 	@Override
 	public boolean altaActividadDeportiva(String nombre_institucion, String nombre, String descripcion, int duracion, Float costo, DtFecha fechaAlta)throws ActividadDeportivaRepetidaExcepcion {
 		ManejadorInstitucionDeportiva mi = ManejadorInstitucionDeportiva.getInstancia();
@@ -122,24 +161,6 @@ public class CInstitucion implements ICInstitucion {
 		}
 		return res;
 	}
-	
-	/*@Override
-	public DtClase selectClase(String nombre) {
-		ManejadorInstitucionDeportiva mi = ManejadorInstitucionDeportiva.getInstancia();
-		InstitucionDeportiva id = mi.getInstitucion(this.institucion);
-		DtClase dtc = id.getDtClase(this.actividadDeportiva, nombre);
-		return dtc;
-	}*/
-	
-	@Override
-	public Clase obtenerClase(String inst, String act, String clase) {
-		ManejadorInstitucionDeportiva mi = ManejadorInstitucionDeportiva.getInstancia();
-		InstitucionDeportiva id = mi.getInstitucion(inst);
-		
-		Clase clac = id.obtenerClase(clase,act);
-		return clac;
-	}
-	
 	@Override
 	public String[] listarInstitucion() {
 		ArrayList<String> inst = listarInstitucionDeportiva();
@@ -197,31 +218,6 @@ public class CInstitucion implements ICInstitucion {
 
 		return new DtClase(c1.getNombre(),c1.getFecha(),c1.getHoraInicio(),c1.getUrl(),c1.getFechaReg());
 
-	}
-
-	@Override
-	public DtActividadDeportiva selectActividadDeportiva(String inst, String act) {
-		
-		ManejadorInstitucionDeportiva mi = ManejadorInstitucionDeportiva.getInstancia();
-		InstitucionDeportiva insti = mi.getInstitucion(inst);
-		ActividadDeportiva ac1 = insti.obtenerActividad(act);//obtengo la actividad
-		//Clase c1 = ac1.obtenerClase(claseR);//obtengo la clase
-		Set<String> clases = ac1.getClases();//las clases de la actividad
-		
-		Set<DtClase> dtc = new HashSet<>();
-		
-		String[] clases_ret = new String[clases.size()];
-        
-		int i = 0;
-        for (String s : clases) {// hay que comentar porque al final no le paso la clase al DtActividadDeportiva
-        	clases_ret[i]= s;
-        	Clase c1= ac1.obtenerClase(s);
-        	dtc.add(new DtClase(c1.getNombre(),c1.getFecha(),c1.getHoraInicio(),c1.getUrl(),c1.getFechaReg()));
-           i++;
-       }
-      
-		return new DtActividadDeportiva(ac1.getNombre(),ac1.getDescripcion(), ac1.getDuracion(), ac1.getCosto(), ac1.getFechaReg());
-	
 	}
 	
 }
